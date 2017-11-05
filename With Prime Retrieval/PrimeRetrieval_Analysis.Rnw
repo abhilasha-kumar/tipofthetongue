@@ -64,23 +64,40 @@ PrimeRetrieval_Correct = subset(PrimeRetrieval, PrimeRetrieval$TargetFirstResp_A
 
 agg_target_correct = dplyr::group_by(PrimeRetrieval, Subject, TargetFirstResp_ACC)%>%
     summarise(n = n())
+colnames(agg_target_correct) = c("Subject", "TargetAccuracy", "TargetTrials")
+
+agg_prime_correct = dplyr::group_by(PrimeRetrieval, Subject, 
+                                    PrimeFirstResp_ACC)%>%
+    summarise(n = n())
+colnames(agg_prime_correct) = c("Subject", "PrimeRetrieved", "PrimeTrials")
 
 agg_primeret_alltrials = group_by(PrimeRetrieval, Subject, 
                             PrimeFirstResp_ACC, TargetFirstResp_ACC)%>%
     summarise(n = n())
+colnames(agg_primeret_alltrials) = c("Subject", "PrimeRetrieved", 
+                                     "TargetAccuracy", "Trials")
 
-agg_primeret_correctonly = group_by(PrimeRetrieval_Correct, Subject, 
-                            PrimeFirstResp_ACC, TargetFirstResp_ACC)%>%
-    summarise(n = n())
 ##ALL TRIALS
 
 merged_agg_primeret_all = merge(agg_target_correct, agg_primeret_alltrials, 
-                                by = c("Subject", "TargetFirstResp_ACC"))
-colnames(merged_agg_primeret_all) = c("Subject", "TargetAccuracy", "TotalTrials", 
-                                      "PrimeRetrieved", "Trials")
+                                by = c("Subject", "TargetAccuracy"))
 
-merged_agg_primeret_all$Proportion = merged_agg_primeret_all$Trials/
-  merged_agg_primeret_all$TotalTrials
+
+# NOTE: SUBJECT 20 has an empty cell for Not Retrieved i.e. there were no trials where they correctly retrieved the target but did not correctly retrieve the prime. 
+merged_agg_primeret_all[176, ] = c("20", "1", "10", "Not Retrieved", 0)
+                                   
+
+merged_agg_primeret_all = merge(merged_agg_primeret_all, agg_prime_correct,
+                                by = c("Subject", "PrimeRetrieved") )
+merged_agg_primeret_all$Trials = as.numeric(as.character(merged_agg_primeret_all$Trials))
+
+merged_agg_primeret_all$TargetTrials = as.numeric(as.character(merged_agg_primeret_all$TargetTrials))
+
+merged_agg_primeret_all$ProportionTarget = merged_agg_primeret_all$Trials/
+  merged_agg_primeret_all$TargetTrials
+
+merged_agg_primeret_all$ProportionPrime = merged_agg_primeret_all$Trials/
+  merged_agg_primeret_all$PrimeTrials
 
 ##CORRECT TRIALS ONLY
 
@@ -93,27 +110,13 @@ merged_agg_primeret_all$Proportion = merged_agg_primeret_all$Trials/
 # 
 # merged_agg_primeret$MeanAccuracy = merged_agg_primeret$NumCorrect/merged_agg_primeret$CorrectTrials
 
-## NOTE: SUBJECT 20 has an empty cell for Not Retrieved i.e. there were no trials where they correctly retrieved the target but did not correctly retrieve the prime. 
-# So we set mean accuracy for that cell as mean of not retrieved 
-
-primeretrieved = subset(merged_agg_primeret_all, 
-                        merged_agg_primeret_all$PrimeRetrieved == "Retrieved")
-primenotretrieved = subset(merged_agg_primeret_all, 
-                           merged_agg_primeret_all$PrimeRetrieved == "Not Retrieved")
-
-mean_retrieved = mean(primeretrieved$Proportion)
-mean_notretrieved = mean(primenotretrieved$Proportion)
-
-merged_agg_primeret_all[176, ] = c("20","1", "10", "Not Retrieved", 
-                                   "0", mean_notretrieved)
 
 merged_agg_primeret_all$Subject = as.factor(as.character(merged_agg_primeret_all$Subject)) 
-merged_agg_primeret_all$Proportion = as.numeric(as.character(merged_agg_primeret_all$Proportion)) 
 merged_agg_primeret_all$TargetAccuracy = as.factor(as.character(merged_agg_primeret_all$TargetAccuracy)) 
 
 
 primeret_aov = aov(data = merged_agg_primeret_all, 
-                   Proportion ~ TargetAccuracy*PrimeRetrieved + 
+                   ProportionPrime ~ TargetAccuracy*PrimeRetrieved + 
                                 Error(Subject/(TargetAccuracy*PrimeRetrieved)))
 
 summary(primeret_aov)
@@ -254,28 +257,54 @@ ggplot(agg_acc, aes(x = PrimeCondition, y = TargetFirstResp_ACC)) +
 
 @
 \subsection *{Prime Ret/Not}
+\subsubsection *{Proportions by Target Accuracy}
 
 <<>>=
 library(Rmisc)
-agg_ret = summarySE(merged_agg_primeret_all, 
-                      measurevar = "Proportion",
+agg_ret_target = summarySE(merged_agg_primeret_all, 
+                      measurevar = "ProportionTarget",
                       groupvars = c("TargetAccuracy", "PrimeRetrieved"))
 
 library(ggplot2)
 library(ggthemes)
-agg_ret %>% mutate(TargetAccuracy = factor(TargetAccuracy, 
+agg_ret_target %>% mutate(TargetAccuracy = factor(TargetAccuracy, 
                                                  levels = unique(TargetAccuracy),
                     labels = c("Incorrect Target", "Correct Target")))%>%
-ggplot(aes(x = PrimeRetrieved, y = Proportion, 
+ggplot(aes(x = TargetAccuracy, y = ProportionTarget, 
+                    group = PrimeRetrieved, fill = PrimeRetrieved)) + 
+ geom_bar(stat = "identity", position = "dodge", width = 0.5)+
+   geom_errorbar(aes(ymin = ProportionTarget - ci, ymax = ProportionTarget + ci),
+                width=.05, position=position_dodge(.5)) +
+     theme_few()+
+  scale_fill_colorblind()+
+      xlab("Target Accuracy") + ylab("Mean Proportion of Trials") + 
+    ggtitle("Mean Proportion of \nCorrect/Incorrect Trials by Prime Retrieval") 
+@
+
+\subsubsection *{Proportions by Prime Accuracy}
+
+<<>>=
+library(Rmisc)
+agg_ret_prime = summarySE(merged_agg_primeret_all, 
+                      measurevar = "ProportionPrime",
+                      groupvars = c("TargetAccuracy", "PrimeRetrieved"))
+
+library(ggplot2)
+library(ggthemes)
+agg_ret_prime %>% mutate(TargetAccuracy = factor(TargetAccuracy, 
+                                                 levels = unique(TargetAccuracy),
+                    labels = c("Incorrect Target", "Correct Target")))%>%
+ggplot(aes(x = PrimeRetrieved, y = ProportionPrime, 
                     group = TargetAccuracy, fill = TargetAccuracy)) + 
  geom_bar(stat = "identity", position = "dodge", width = 0.5)+
-   geom_errorbar(aes(ymin = Proportion - ci, ymax = Proportion + ci),
+   geom_errorbar(aes(ymin = ProportionPrime - ci, ymax = ProportionPrime + ci),
                 width=.05, position=position_dodge(.5)) +
      theme_few()+
   scale_fill_colorblind()+
       xlab("Prime Retrieval") + ylab("Mean Proportion of Trials") + 
     ggtitle("Mean Proportion of \nCorrect/Incorrect Trials by Prime Retrieval") 
 @
+
 \subsection *{How Many Subjects}
 <<>>=
 ### HOW MANY SUBJECTS SHOW THIS EFFECT OF PRIME RETRIEVAL?
