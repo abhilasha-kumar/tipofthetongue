@@ -1,0 +1,612 @@
+\documentclass[a4paper]{article}
+\usepackage{Sweave}
+\usepackage{fixltx2e}
+
+\usepackage[margin=1.0in]{geometry}
+
+ \DefineVerbatimEnvironment{Sinput}{Verbatim} { frame = lines, fontshape = sl}
+\DefineVerbatimEnvironment{Soutput}{Verbatim}{frame=lines, fontshape = sl}
+
+\title{Prime Without Retrieval: Analysis}
+\author{Abhilasha Kumar}
+<<echo=FALSE>>=
+options(width=60)
+library(xtable)
+library(ggplot2)
+library(ggthemes)
+library(gridExtra)
+library(tidyr)
+library(sjPlot)
+library(dplyr)
+@
+
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+ \maketitle
+
+%\section{Reading File}
+
+\section {Analysing Retrieval States}
+
+First read the file into an object. If you already have the object, then you don't need to worry about this step:
+
+<<>>=
+prime_without = read.csv("CompiledSubjects_FINAL.csv", header = TRUE, sep = ",")
+@
+
+Next, we calculate mean number of states at different levels. Print each object out to see what it contains.  
+
+<<>>=
+meanstates = group_by(prime_without, TargetQuestion.RESP.Trial.)%>%
+    summarise(count = n())
+
+meanstates_persubject = group_by(prime_without, Subject, TargetQuestion.RESP.Trial.)%>%
+    summarise(count = n())
+
+meanstates_prime =  group_by(prime_without, PrimeCondition, TargetQuestion.RESP.Trial.)%>%
+    summarise(count = n())
+
+meanstates_persubject_prime =  group_by(prime_without, Subject, PrimeCondition, 
+                                        TargetQuestion.RESP.Trial.)%>%
+    summarise(count = n())
+
+@
+
+\section {Plotting States per Prime Condition}
+
+First, we make some changes to our variable and condition names so that they are easy to plot:
+<<>>=
+
+colnames(meanstates_prime) = c("PrimeCondition", "State", "Count")
+colnames(meanstates_persubject_prime) = c("Subject", "PrimeCondition", "State", "Count")
+
+meanstates_prime$State = as.factor(meanstates_prime$State)
+meanstates_prime$State = sub("1", "1_Know", meanstates_prime$State)
+meanstates_prime$State = sub("2", "2_DontKnow", meanstates_prime$State)
+meanstates_prime$State = sub("3", "3_Other", meanstates_prime$State)
+meanstates_prime$State = sub("4", "4_TOT", meanstates_prime$State)
+@
+
+Next, we plot the mean number of states per prime condition. We use the group() argument in ggplot to do this:
+
+<<fig=TRUE>>=
+ggplot(meanstates_prime, aes(x = PrimeCondition, y = Count, fill = State, group = State))+
+ geom_bar(stat = "identity", position = "dodge", width = 0.5)+
+ theme_few()+
+  xlab("Prime Condition") + ylab("Mean Accuracy") + 
+  ggtitle("Number of States by Prime Condition")
+@
+
+%\section {ANOVA on States}
+
+<<echo=FALSE>>=
+meanstates_persubject_prime[47, ] = c("3", "R", "4", 0)
+meanstates_persubject_prime[48, ] = c("3", "B", "4", 0)
+
+meanstates_persubject_prime$Subject = as.factor(meanstates_persubject_prime$Subject)
+meanstates_persubject_prime$PrimeCondition = as.factor(meanstates_persubject_prime$PrimeCondition)
+meanstates_persubject_prime$State = as.factor(meanstates_persubject_prime$State)
+
+states_aov = aov(data = meanstates_persubject_prime, Count ~ PrimeCondition*State +
+                                        Error(Subject/(PrimeCondition*State)))
+#summary(states_aov)
+                 
+@
+
+<<echo=FALSE>>=
+prime_without = read.csv("CompiledSubjects_FINAL.csv", header = TRUE, sep = ",")
+library(dplyr)
+agg_prime = group_by(prime_without, PrimeCondition)%>%
+    summarise_each(funs(mean(., na.rm = TRUE)), TargetFirstResponseAccuracy, 
+                                        RTrecognisePrime, RTrecogniseTarget )
+
+agg_sub_prime = group_by(prime_without,Subject, PrimeCondition)%>%
+    summarise_each(funs(mean(., na.rm = TRUE)), TargetFirstResponseAccuracy, 
+                                        RTrecognisePrime, RTrecogniseTarget )
+@
+
+\section {z-scoring RTs}
+\subsection*{RT prime and Target}
+<<>>=
+prime_without_trimmedRT = subset(prime_without, prime_without$TargetDefinition.RT.Trial. > 300)
+
+N = nrow(prime_without_trimmedRT)
+
+by_id = split(prime_without_trimmedRT, prime_without_trimmedRT$Subject) 
+
+newcomplete <- matrix(NA, nrow = N, ncol = 4)
+
+for(i in seq(along = by_id)) {
+  
+  id = names(by_id)[i];
+  
+  #created dataset for each subject
+  id_subjectdata = prime_without_trimmedRT[prime_without_trimmedRT$Subject == id,]
+  
+  meanRTprime = mean(id_subjectdata$RTrecognisePrime)
+  sdRTprime = sd(id_subjectdata$RTrecognisePrime)
+  
+  meanRTtarget = mean(id_subjectdata$RTrecogniseTarget)
+  sdRTtarget = sd(id_subjectdata$RTrecogniseTarget)
+  
+  meanRTtargetdef = mean(id_subjectdata$TargetDefinition.RT.Trial.)
+  sdRTtargetdef = sd(id_subjectdata$TargetDefinition.RT.Trial.)
+  
+  
+  
+  newcomplete = id_subjectdata[,c('Subject', 'Trial')]    
+  newcomplete$RTrecognisePrime = id_subjectdata$RTrecognisePrime
+  newcomplete$RTrecogniseTarget = id_subjectdata$RTrecogniseTarget
+  newcomplete$zRTprime = ((id_subjectdata$RTrecognisePrime) - meanRTprime )/sdRTprime
+  newcomplete$zRTtarget = ((id_subjectdata$RTrecogniseTarget) - meanRTtarget )/sdRTtarget
+  newcomplete$zRTtargetdef = ((id_subjectdata$TargetDefinition.RT.Trial.) - meanRTtargetdef )/sdRTtargetdef
+  newcomplete$Accuracy = id_subjectdata$TargetFirstResponseAccuracy
+  newcomplete$PrimeCondition = id_subjectdata$PrimeCondition
+  newcomplete$TargetDefinitionRT = id_subjectdata$TargetDefinition.RT.Trial.
+
+ 
+  if (i == 1)
+    result = newcomplete
+  else
+    result = rbind(result, newcomplete)
+}
+
+RT_z <- result
+RT_z <- as.data.frame(RT_z)
+
+
+@
+\section{RT distributions}
+
+<<>>=
+
+## RT to demask prime
+ggplot(RT_z, aes(x = RTrecognisePrime))+
+ geom_histogram(binwidth = 500, color = "gray26", fill = "goldenrod")+
+ theme_few()+
+ xlab("RT to recognise Prime") + ylab("Count") + 
+ggtitle("Raw RT to Recognize Prime")
+
+ggplot(RT_z, aes(x = zRTprime))+
+ geom_histogram(binwidth = 0.2, color = "gray26", fill = "goldenrod")+
+ theme_few()+
+ xlab("z-RT to recognise Prime") + ylab("Count") + 
+ggtitle("z-RT to Recognize Prime")
+
+## RT to retrieve target
+ggplot(RT_z, aes(x = TargetDefinitionRT))+
+ geom_histogram(binwidth = 100, color = "gray26", fill = "goldenrod")+
+ theme_few()+
+ xlab("RT to Retrieve Target (ms)") + ylab("Count") + 
+ggtitle("Raw RT to Retrieve Target")
+
+ggplot(RT_z, aes(x = zRTtargetdef))+
+ geom_histogram(binwidth = 0.1, color = "gray26", fill = "goldenrod")+
+ theme_few()+
+ xlab("z-RT to Retrieve Target") + ylab("Count") + 
+ggtitle("z-RT to Retrieve Target")
+
+
+## RT to demask target
+ggplot(RT_z, aes(x = RTrecogniseTarget))+
+ geom_histogram(binwidth = 200, color = "gray26", fill = "goldenrod")+
+ theme_few()+
+ xlab("RT to Retrieve Target (ms)") + ylab("Count") + 
+ggtitle("Raw RT to Recognize Target")
+
+ggplot(RT_z, aes(x = zRTtarget))+
+ geom_histogram(binwidth = 0.1, color = "gray26", fill = "goldenrod")+
+ theme_few()+
+ xlab("z-RT to Retrieve Target") + ylab("Count") + 
+ggtitle("z-RT to Recognize Target")
+
+@
+
+\section {Trimming z-RTs}
+
+<<>>=
+RT_z_trimmed = subset(RT_z, RT_z$zRTprime < 3 & RT_z$zRTtarget < 3)
+@
+
+\section {Repeating z-scoring}
+
+<<>>=
+N = nrow(RT_z_trimmed)
+
+by_id = split(RT_z_trimmed, RT_z_trimmed$Subject) 
+
+newcomplete <- matrix(NA, nrow = N, ncol = 4)
+
+for(i in seq(along = by_id)) {
+  
+  id = names(by_id)[i];
+  
+  #created dataset for each subject
+  id_subjectdata = RT_z_trimmed[RT_z_trimmed$Subject == id,]
+  
+  meanRTprime = mean(id_subjectdata$RTrecognisePrime)
+  sdRTprime = sd(id_subjectdata$RTrecognisePrime)
+  
+  meanRTtarget = mean(id_subjectdata$RTrecogniseTarget)
+  sdRTtarget = sd(id_subjectdata$RTrecogniseTarget)
+  
+  meanRTtargetdef = mean(id_subjectdata$TargetDefinitionRT)
+  sdRTtargetdef = sd(id_subjectdata$TargetDefinitionRT)
+  
+  
+  
+  newcomplete = id_subjectdata[,c('Subject', 'Trial')]    
+  newcomplete$RTrecognisePrime = id_subjectdata$RTrecognisePrime
+  newcomplete$RTrecogniseTarget = id_subjectdata$RTrecogniseTarget
+  newcomplete$zRTprime = ((id_subjectdata$RTrecognisePrime) - meanRTprime )/sdRTprime
+  newcomplete$zRTtarget = ((id_subjectdata$RTrecogniseTarget) - meanRTtarget )/sdRTtarget
+  newcomplete$zRTtargetdef = ((id_subjectdata$TargetDefinitionRT) - meanRTtargetdef )/sdRTtargetdef
+  newcomplete$Accuracy = id_subjectdata$Accuracy
+  newcomplete$PrimeCondition = id_subjectdata$PrimeCondition
+  newcomplete$TargetDefinitionRT = id_subjectdata$TargetDefinitionRT
+
+ 
+  if (i == 1)
+    result = newcomplete
+  else
+    result = rbind(result, newcomplete)
+}
+
+RT_z_final <- result
+RT_z_final <- as.data.frame(RT_z_final)
+@
+\section {Final RT distributions}
+<<>>=
+ggplot(RT_z_final, aes(x = zRTprime))+
+ geom_histogram(binwidth = 0.2, color = "gray26", fill = "goldenrod")+
+ theme_few()+
+ xlab("z-RT to recognise Prime") + ylab("Count") + 
+ggtitle("z-RT to Recognize Prime")
+
+ggplot(RT_z_final, aes(x = zRTtarget))+
+ geom_histogram(binwidth = 0.2, color = "gray26", fill = "goldenrod")+
+ theme_few()+
+ xlab("z-RT to recognise Target") + ylab("Count") + 
+ggtitle("z-RT to Recognize Target")
+
+ggplot(RT_z_final, aes(x = zRTtargetdef))+
+ geom_histogram(binwidth = 0.2, color = "gray26", fill = "goldenrod")+
+ theme_few()+
+ xlab("z-RT to Retrieve Target") + ylab("Count") + 
+ggtitle("z-RT to Retrieve Target")
+
+@
+
+%\section{Linear Model}
+<<echo=FALSE>>=
+library(lme4)
+library(lmerTest)
+#effect of recognizing prime and prime condition on retrieving target
+
+Rt_m1 = lmer(data = RT_z, zRTtargetdef ~ PrimeCondition*zRTprime +
+                  (1 | Subject) + (1|Trial))
+summary(Rt_m1)
+
+#effect of retrieving target on recognizing target
+
+Rt_m2 = lmer(data = RT_z, RTrecogniseTarget ~ PrimeCondition*zRTtargetdef + 
+              (1|Subject) + (1| Trial))
+summary(Rt_m2)
+
+RT_subject_prime = group_by(prime_without, Subject, PrimeCondition)%>%
+    summarise_each(funs(mean(., na.rm = TRUE)), TargetFirstResponseAccuracy, 
+                                        RTrecognisePrime, RTrecogniseTarget )
+
+targetRT_aov = aov(data = RT_subject_prime, RTrecogniseTarget ~ PrimeCondition +
+                                              Error(Subject/PrimeCondition))
+summary(targetRT_aov)
+
+@
+
+\section {Per Subject Data}
+
+<<>>=
+
+RT_subject_prime = group_by(RT_z_final, Subject, PrimeCondition)%>%
+    summarise_each(funs(mean(., na.rm = TRUE)), Accuracy,  zRTprime, zRTtarget, zRTtargetdef )
+
+RT_subject_overall = group_by(RT_z_final, Subject)%>%
+    summarise_each(funs(mean(., na.rm = TRUE)), Accuracy,  zRTprime, zRTtarget, zRTtargetdef )
+
+RT_prime = group_by(RT_z, PrimeCondition)%>%
+    summarise_each(funs(mean(., na.rm = TRUE)), Accuracy,  zRTprime, zRTtarget, zRTtargetdef )
+
+library(Rmisc)
+acc_Rmisc = summarySE(RT_subject_prime,
+                      measurevar = "Accuracy",
+                      groupvars = "PrimeCondition")
+
+acc_Rmisc$PrimeCondition = sub("B", "Both", acc_Rmisc$PrimeCondition)
+acc_Rmisc$PrimeCondition = sub("P", "Phonological", acc_Rmisc$PrimeCondition)
+acc_Rmisc$PrimeCondition = sub("R", "Related", acc_Rmisc$PrimeCondition)
+acc_Rmisc$PrimeCondition = sub("U", "Unrelated", acc_Rmisc$PrimeCondition)
+library(ggplot2)
+library(ggthemes)
+ggplot(acc_Rmisc, aes(x = PrimeCondition, y = Accuracy)) + 
+ geom_bar(stat = "identity", position = "dodge", width = 0.5, fill = "skyblue")+
+  geom_errorbar(aes(ymin=Accuracy - ci, ymax=Accuracy + ci), 
+             width=.1, color = "gray26", 
+             position = position_dodge(0.6))+
+    theme_few()+
+  theme(axis.text = element_text(size =15), axis.title = element_text(size =15))+
+    xlab("Prime Condition") + ylab("Mean Target Accuracy") + 
+    ggtitle("Mean Accuracy \nas a Function of Prime Condition")
+
+## ANOVA for mean accuracy per prime condition : may have done elsewhere 
+
+acc_aov = aov(data = RT_subject_prime, Accuracy ~ PrimeCondition + Error(Subject/PrimeCondition))
+summary(acc_aov)
+
+@
+
+\section {Plots}
+<<>>=
+
+@
+
+\section {ANOVAs and LMs}
+
+<<>>=
+# Mean RT to retrieve Target as a function of Prime Condition
+
+RTtargetdef_aov = aov(data = RT_subject_prime, zRTtargetdef ~ PrimeCondition +
+                                        Error (Subject/PrimeCondition))
+summary(RTtargetdef_aov)
+
+# Effect of RT prime on Accuracy
+library(lme4)
+library(lmerTest)
+RTprime_acc_model = glmer(data = RT_z_final, Accuracy ~ zRTprime + 
+                            (1|Subject) + (1|Trial), family = binomial )
+summary(RTprime_acc_model)
+
+sjp.setTheme(theme_few())
+sjp.glmer(RTprime_acc_model, type = "eff")
+
+# Note: This is significant, so we model random slopes
+
+RTprime_acc_model_2 = glmer(data = RT_z_final, Accuracy ~ zRTprime + 
+                            (zRTprime|Subject) + (1|Trial), family = binomial )
+summary(RTprime_acc_model_2)
+sjp.glmer(RTprime_acc_model_2, type = "eff")
+
+
+sjp.glmer(RTprime_acc_model_2, type = "rs.ri", show.legend = TRUE)
+
+## spaghetti plot for each subject
+RT_z_final$Subject = as.factor(RT_z_final$Subject)
+ggplot(RT_z_final, aes(x = zRTprime, y = Accuracy, group= Subject)) + 
+stat_smooth(aes(color = Subject), method = "glm", se = FALSE, size = 0.9)+
+      theme_few()+
+    xlab("Mean z-RT to Recognise Prime") + ylab("Target Accuracy") + 
+    ggtitle("Target Accuracy as a \n function of RT to Recognise Prime")
+
+# looking at only high performers
+
+bottom6 = subset(RT_z_final, RT_z_final$Subject == "13" |
+                          RT_z_final$Subject == "9" |
+                          RT_z_final$Subject == "5" |
+                          RT_z_final$Subject == "2" |
+                          RT_z_final$Subject == "11" |
+                          RT_z_final$Subject == "15" )
+                       
+ggplot(bottom6, aes(x = zRTprime, y = Accuracy, group= Subject)) + 
+stat_smooth(aes(color = Subject), method = "glm", se = FALSE, size = 0.9)+
+      theme_few()+
+    xlab("Mean z-RT to Recognise Prime") + ylab("Target Accuracy") + 
+    ggtitle("Target Accuracy as a \n function of RT to Recognise Prime: Bottom 6")
+
+top11 = subset(RT_z_final, RT_z_final$Subject != "13" &
+                          RT_z_final$Subject != "9" &
+                          RT_z_final$Subject != "5" &
+                          RT_z_final$Subject != "2" &
+                          RT_z_final$Subject != "11" &
+                          RT_z_final$Subject != "15" &
+                          RT_z_final$Subject != "3" &
+                            RT_z_final$Subject != "12" &
+                          RT_z_final$Subject != "10" )
+                       
+ggplot(top11, aes(x = zRTprime, y = Accuracy, group= Subject)) + 
+stat_smooth(aes(color = Subject), method = "glm", se = FALSE, size = 0.9)+
+      theme_few()+
+    xlab("Mean z-RT to Recognise Prime") + ylab("Target Accuracy") + 
+    ggtitle("Target Accuracy as a \n function of RT to Recognise Prime: Bottom 6")
+
+## RUNNING MODEl ONLY FOR TOP11 and BOTTOM 6
+
+top11_model = glmer(data = top11, Accuracy ~ zRTprime + 
+                            (1|Subject) + (1|Trial), family = binomial )
+summary(top11_model)
+
+bottom6_model = glmer(data = bottom6, Accuracy ~ zRTprime + 
+                            (1|Subject) + (1|Trial), family = binomial )
+summary(bottom6_model)
+
+RTrecognisePrime_Acc = group_by(RT_z_final, Accuracy)%>%
+  summarise_at(vars(zRTprime), mean)
+
+acc_0 = subset(RT_z_final, RT_z_final$Accuracy == '0')
+acc_1 = subset(RT_z_final, RT_z_final$Accuracy == '1')
+
+RTrecognisePrime_Acc$Error = c(qnorm(0.995)*(sd(acc_0$zRTprime))/sqrt(nrow(acc_0)),
+                               qnorm(0.995)*(sd(acc_1$zRTprime))/sqrt(nrow(acc_1)))
+
+RTrecognisePrime_Acc$CIlower = RTrecognisePrime_Acc$zRTprime - RTrecognisePrime_Acc$Error
+RTrecognisePrime_Acc$CIupper = RTrecognisePrime_Acc$zRTprime + RTrecognisePrime_Acc$Error
+RTrecognisePrime_Acc$Accuracy = as.factor(RTrecognisePrime_Acc$Accuracy)
+ggplot(RTrecognisePrime_Acc, aes(x = Accuracy, y = zRTprime)) + 
+ geom_bar(stat = "identity", position = "dodge", width = 0.5, fill = "pink")+
+  geom_errorbar(aes(ymin=CIlower, ymax=CIupper), 
+             width=.1, color = "gray26", 
+             position = position_dodge(0.6))+
+    theme_few()+
+    xlab("Target Accuracy") + ylab("Mean RT to Recognise Prime") + 
+    ggtitle("RT to Recognise Prime \nas a Function of Target Accuracy")
+
+# Effect of RT prime on Accuracy by Prime Condition
+
+
+RTprime_acc_model_3 = glmer(data = RT_z_final, Accuracy ~ PrimeCondition*zRTprime + 
+                            (1|Subject) + (1|Trial), family = binomial )
+summary(RTprime_acc_model_3)
+
+#no effect of prime condition
+
+# Effect of Accuracy on Demasking Target: LMER
+
+RT_target_m1 = lmer(data = RT_z_final, zRTtarget ~ PrimeCondition*Accuracy +
+                      (1|Subject) + (1|Trial) )
+summary(RT_target_m1)
+
+# Effect of Accuracy on Demasking Target: ANOVA
+
+RT_target_means = group_by(RT_z_final, Subject, Accuracy) %>%
+          summarise_at(vars(zRTtarget), mean)
+RT_target_means$Subject = as.factor(RT_target_means$Subject)
+RT_target_means$Accuracy = as.factor(RT_target_means$Accuracy)
+
+RT_target_aov = aov(data = RT_target_means, zRTtarget ~ Accuracy + 
+                              Error(Subject/(Accuracy)))
+#summary(RT_target_aov) -- missing cells and no effect of Prime Condition
+
+# Effect of Retrieving Target on Demasking Target
+
+m4 = lmer(data = RT_z_final, zRTtarget ~ PrimeCondition*zRTtargetdef +
+                          (1|Subject) + (1|Trial))
+summary(m4)
+@
+
+<<>>=
+library(multcomp)
+library(knitr)
+options(contrasts = c('contr.sum', 'contr.poly'))
+
+acc_lsm = lsmeans::lsmeans(RT_target_aov, "Accuracy")
+acc_effect = cld(acc_lsm, alpha = 0.05, 
+                adjust = "tukey", details = TRUE)
+
+
+plot_acc = summary(acc_lsm)
+plot_acc <- as.data.frame(plot_acc)
+ggplot(plot_acc, aes(x = Accuracy, y = lsmean)) + 
+ geom_bar(stat = "identity", position = "dodge", width = 0.5, fill = "pink")+
+  geom_errorbar(aes(ymin=lower.CL, ymax=upper.CL), 
+             width=.1, color = "gray26", 
+             position = position_dodge(0.6))+
+    theme_few()+
+    xlab("Target Accuracy") + ylab("Mean RT to Recognise Target") + 
+    ggtitle("RT to Recognise Target \nas a Function of Target Accuracy")
+
+@
+
+<<>>=
+## Effect of demasking target as a function of prime type
+
+DemaskTargetRT = group_by(RT_z_final, Subject, PrimeCondition)%>%
+  summarise_at(vars(zRTtarget), mean)
+
+Demask_Rmisc = summarySE(DemaskTargetRT, 
+                         measurevar = "zRTtarget",
+                         groupvars = "PrimeCondition")
+                         
+
+DemaskTargetRT$Subject <- as.factor(DemaskTargetRT$Subject)
+
+DemaskTarget_aov = aov(data = DemaskTargetRT, zRTtarget ~ PrimeCondition + 
+                            Error (Subject/PrimeCondition))
+summary(DemaskTarget_aov)
+
+library(multcomp)
+library(knitr)
+options(contrasts = c('contr.sum', 'contr.poly'))
+
+prime_lsm = lsmeans::lsmeans(DemaskTarget_aov, "PrimeCondition")
+prime_effect = cld(prime_lsm, alpha = 0.05, 
+                adjust = "tukey", details = TRUE)
+
+
+plot_prime = summary(prime_lsm)
+plot_prime <- as.data.frame(plot_prime)
+ggplot(Demask_Rmisc, aes(x = PrimeCondition, y = zRTtarget)) + 
+ geom_bar(stat = "identity", position = "dodge", width = 0.5, fill = "yellow")+
+  geom_errorbar(aes(ymin=zRTtarget - ci, ymax=zRTtarget + ci), 
+             width=.1, color = "gray26", 
+             position = position_dodge(0.6))+
+    theme_few()+
+    xlab("Prime Condition") + ylab("Mean RT to Demask Target") + 
+    ggtitle("RT to Demask Target \nas a Function of Prime Condition")
+
+@
+
+
+<<>>=
+
+plot_targetdef <- as.data.frame(plot_targetdef)
+ggplot(plot_targetdef, aes(x = PrimeCondition, y = lsmean)) + 
+ geom_bar(stat = "identity", position = "dodge", width = 0.5, fill = "pink")+
+  geom_errorbar(aes(ymin=lower.CL, ymax=upper.CL), 
+             width=.1, color = "gray26", 
+             position = position_dodge(0.6))+
+    theme_few()+
+    xlab("PrimeCondition") + ylab("Mean z-RT") + 
+    ggtitle("RT to Retrieve Target by Prime Condition")
+@
+\section {Raw RT plots for Nicole}
+
+<<>>=
+RTrecognisePrime_Acc = group_by(prime_without, TargetFirstResponseAccuracy)%>%
+  summarise_at(vars(RTrecognisePrime), mean)
+
+acc_0 = subset(prime_without, prime_without$TargetFirstResponseAccuracy == '0')
+acc_1 = subset(prime_without, prime_without$TargetFirstResponseAccuracy == '1')
+
+RTrecognisePrime_Acc$Error = c(qnorm(0.995)*(sd(acc_0$RTrecognisePrime))/sqrt(nrow(acc_0)),
+                               qnorm(0.995)*(sd(acc_1$RTrecognisePrime))/sqrt(nrow(acc_1)))
+
+RTrecognisePrime_Acc$CIlower = RTrecognisePrime_Acc$RTrecognisePrime - RTrecognisePrime_Acc$Error
+RTrecognisePrime_Acc$CIupper = RTrecognisePrime_Acc$RTrecognisePrime + RTrecognisePrime_Acc$Error
+RTrecognisePrime_Acc$TargetFirstResponseAccuracy = as.factor(RTrecognisePrime_Acc$TargetFirstResponseAccuracy)
+ggplot(RTrecognisePrime_Acc, aes(x = TargetFirstResponseAccuracy, y = RTrecognisePrime)) + 
+ geom_bar(stat = "identity", position = "dodge", width = 0.5, fill = "pink")+
+  geom_errorbar(aes(ymin=CIlower, ymax=CIupper), 
+             width=.1, color = "gray26", 
+             position = position_dodge(0.6))+
+    theme_few()+
+    xlab("Target Accuracy") + ylab("Mean RT to Recognise Prime") + 
+    ggtitle("RT to Recognise Prime \nas a Function of Target Accuracy")
+
+@
+
+<<>>=
+## Demasking Target as a function of Target Accuracy
+
+
+RTrecogniseTarget_Acc = group_by(prime_without, TargetFirstResponseAccuracy)%>%
+  summarise_at(vars(RTrecogniseTarget), mean)
+
+acc_0 = subset(prime_without, prime_without$TargetFirstResponseAccuracy == '0')
+acc_1 = subset(prime_without, prime_without$TargetFirstResponseAccuracy == '1')
+
+RTrecogniseTarget_Acc$Error = c(qnorm(0.995)*(sd(acc_0$RTrecogniseTarget))/sqrt(nrow(acc_0)),
+                               qnorm(0.995)*(sd(acc_1$RTrecogniseTarget))/sqrt(nrow(acc_1)))
+
+RTrecogniseTarget_Acc$CIlower = RTrecogniseTarget_Acc$RTrecogniseTarget - RTrecogniseTarget_Acc$Error
+RTrecogniseTarget_Acc$CIupper = RTrecogniseTarget_Acc$RTrecogniseTarget + RTrecogniseTarget_Acc$Error
+RTrecogniseTarget_Acc$TargetFirstResponseAccuracy = as.factor(RTrecogniseTarget_Acc$TargetFirstResponseAccuracy)
+ggplot(RTrecogniseTarget_Acc, aes(x = TargetFirstResponseAccuracy, y = RTrecogniseTarget)) + 
+ geom_bar(stat = "identity", position = "dodge", width = 0.5, fill = "pink")+
+  geom_errorbar(aes(ymin=CIlower, ymax=CIupper), 
+             width=.1, color = "gray26", 
+             position = position_dodge(0.6))+
+    theme_few()+
+    xlab("Target Accuracy") + ylab("Mean RT to Recognise Prime") + 
+    ggtitle("RT to Recognise Prime \nas a Function of Target Accuracy")
+
+@
+
+\end{document}

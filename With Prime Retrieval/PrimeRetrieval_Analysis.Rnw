@@ -1,0 +1,300 @@
+\documentclass[a4paper]{article}
+\usepackage{Sweave}
+\usepackage{fixltx2e}
+
+\usepackage[margin=1.0in]{geometry}
+
+ \DefineVerbatimEnvironment{Sinput}{Verbatim} { frame = lines, fontshape = sl}
+\DefineVerbatimEnvironment{Soutput}{Verbatim}{frame=lines, fontshape = sl}
+
+\title{Prime Retrieval Study: Analysis}
+\author{Abhilasha Kumar}
+<<echo=FALSE>>=
+options(width=60)
+library(xtable)
+library(ggplot2)
+library(ggthemes)
+library(gridExtra)
+library(tidyr)
+library(sjPlot)
+@
+
+<<>>=
+sjp.setTheme(base = theme_few())
+@
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+ \maketitle
+
+\section{Reading File}
+
+<<>>=
+PrimeRetrieval <- read.csv("CompleteData_Removed.csv", header = TRUE, sep = ",")
+PrimeRetrieval <- subset(PrimeRetrieval, PrimeRetrieval$Subject != '10')
+
+##note: Completedata_Removed contains data without 12 low-accuracy items
+## Run analysis with CompleteData.csv if we need all 72 items
+library(dplyr)
+
+agg_condition <- group_by(PrimeRetrieval, PrimeCondition)%>%
+    summarise_each(funs(mean(., na.rm = TRUE)), TargetFirstResp_ACC)
+
+agg_sub_condition <-  group_by(PrimeRetrieval, Subject, PrimeCondition)%>%
+    summarise_each(funs(mean(., na.rm = TRUE)), TargetFirstResp_ACC)
+
+agg_sub_condition$Subject <- as.factor(agg_sub_condition$Subject)
+agg_sub_condition$PrimeCondition <- as.factor(agg_sub_condition$PrimeCondition)
+
+
+prime_aov = aov(data = agg_sub_condition, TargetFirstResp_ACC ~ PrimeCondition + 
+                                        Error(Subject/PrimeCondition))
+summary(prime_aov)
+
+@
+
+\section {Effect of Prime Retrieval}
+
+<<>>=
+PrimeRetrieval$PrimeFirstResp_ACC <- as.factor(as.character(PrimeRetrieval$PrimeFirstResp_ACC))
+PrimeRetrieval$PrimeFirstResp_ACC = sub("0", "Not Retrieved", PrimeRetrieval$PrimeFirstResp_ACC)
+PrimeRetrieval$PrimeFirstResp_ACC = sub("1", "Retrieved", PrimeRetrieval$PrimeFirstResp_ACC)
+PrimeRetrieval$PrimeFirstResp_ACC <- as.factor(as.character(PrimeRetrieval$PrimeFirstResp_ACC))
+
+PrimeRetrieval_Correct = subset(PrimeRetrieval, PrimeRetrieval$TargetFirstResp_ACC == "1")
+
+agg_target_correct = dplyr::group_by(PrimeRetrieval, Subject, TargetFirstResp_ACC)%>%
+    summarise(n = n())
+
+agg_primeret_alltrials = group_by(PrimeRetrieval, Subject, 
+                            PrimeFirstResp_ACC, TargetFirstResp_ACC)%>%
+    summarise(n = n())
+
+agg_primeret_correctonly = group_by(PrimeRetrieval_Correct, Subject, 
+                            PrimeFirstResp_ACC, TargetFirstResp_ACC)%>%
+    summarise(n = n())
+##ALL TRIALS
+
+merged_agg_primeret_all = merge(agg_target_correct, agg_primeret_alltrials, 
+                                by = c("Subject", "TargetFirstResp_ACC"))
+colnames(merged_agg_primeret_all) = c("Subject", "TargetAccuracy", "TotalTrials", 
+                                      "PrimeRetrieved", "Trials")
+
+merged_agg_primeret_all$Proportion = merged_agg_primeret_all$Trials/
+  merged_agg_primeret_all$TotalTrials
+
+##CORRECT TRIALS ONLY
+
+# merged_agg_primeret = merge(agg_target_correct, agg_primeret, by = "Subject")
+# merged_agg_primeret = subset(merged_agg_primeret, 
+#                              merged_agg_primeret$TargetFirstResp_ACC.x == "1")
+# merged_agg_primeret = merged_agg_primeret[, -2]
+# colnames(merged_agg_primeret) = c("Subject", "CorrectTrials", "PrimeRetrieved", 
+#                                   "TargetAcc", "NumCorrect")
+# 
+# merged_agg_primeret$MeanAccuracy = merged_agg_primeret$NumCorrect/merged_agg_primeret$CorrectTrials
+
+## NOTE: SUBJECT 20 has an empty cell for Not Retrieved i.e. there were no trials where they correctly retrieved the target but did not correctly retrieve the prime. 
+# So we set mean accuracy for that cell as mean of not retrieved 
+
+primeretrieved = subset(merged_agg_primeret_all, 
+                        merged_agg_primeret_all$PrimeRetrieved == "Retrieved")
+primenotretrieved = subset(merged_agg_primeret_all, 
+                           merged_agg_primeret_all$PrimeRetrieved == "Not Retrieved")
+
+mean_retrieved = mean(primeretrieved$Proportion)
+mean_notretrieved = mean(primenotretrieved$Proportion)
+
+merged_agg_primeret_all[176, ] = c("20","1", "10", "Not Retrieved", 
+                                   "0", mean_notretrieved)
+
+merged_agg_primeret_all$Subject = as.factor(as.character(merged_agg_primeret_all$Subject)) 
+merged_agg_primeret_all$Proportion = as.numeric(as.character(merged_agg_primeret_all$Proportion)) 
+merged_agg_primeret_all$TargetAccuracy = as.factor(as.character(merged_agg_primeret_all$TargetAccuracy)) 
+
+
+primeret_aov = aov(data = merged_agg_primeret_all, 
+                   Proportion ~ TargetAccuracy*PrimeRetrieved + 
+                                Error(Subject/(TargetAccuracy*PrimeRetrieved)))
+
+summary(primeret_aov)
+
+## NOTE: The main effect of Prime Retrieved is significant SPLIT BY TARGET ACC
+@
+
+\section {Effect of Prime Retrieved by Prime Condition}
+
+<<>>=
+#counting number of correct and incorrect trials per prime condition:
+agg_target_correct_primetype = group_by(PrimeRetrieval, Subject, PrimeCondition, 
+                                        TargetFirstResp_ACC)%>%
+    summarise(n = n())
+
+## Number of correct target trials ONLY per prime condition are calculated below:
+# agg_target_correct_primetype = subset(agg_target_correct_primetype, 
+#                                       agg_target_correct_primetype$TargetFirstResp_ACC == "1")
+
+## Note: Subjects 6 and 41 have one missing cell each, we fill it up with 0 trials
+
+agg_target_correct_primetype[351,] = c("6", "P", "1", "0")
+agg_target_correct_primetype[352,] = c("41", "R", "1", "0")
+## now we have the correct and incorrect trials in each prime condition. 
+## We now need these trials split by ret/notret for each prime condition
+
+maindata = group_by(PrimeRetrieval, Subject, PrimeCondition, PrimeFirstResp_ACC,  
+                                        TargetFirstResp_ACC)%>%
+    summarise(n = n())
+
+## we merge this with agg_target_correct to get everything in the same df
+
+finaldata = merge(maindata, agg_target_correct_primetype, 
+                  by = c("Subject", "PrimeCondition", "TargetFirstResp_ACC"))
+#finaldata = finaldata[,-c(4,6)]
+colnames(finaldata) = c("Subject", "PrimeCondition", "TargetAccuracy", 
+                        "PrimeRetrieval", "Trials", "TotalTrials")
+finaldata$TotalTrials = as.numeric(as.character(finaldata$TotalTrials))
+finaldata$Proportion = finaldata$Trials/finaldata$TotalTrials
+
+
+@
+
+<<>>=
+## Below, we calculate number of correct trials in Prime Ret/Not by PrimeCondition for each Subject
+## NOTE: dply drops missing rows, and we already have this data from earlier code. 
+## So we simply load that file
+
+primetype_primeret <- read.csv("agg_primeret_primetype.csv", header = TRUE, sep = ",")
+
+# remove Subject 10
+
+primetype_primeret = subset(primetype_primeret, primetype_primeret$Subject!= "10")
+
+# This data is in wide format. Convert to long:
+
+library(tidyr)
+prime_long <- primetype_primeret %>%
+  gather(Condition, MeanProportion, R_Retrieved, R_NotRetrieved,
+                                    P_Retrieved, P_NotRetrieved,
+                                    B_Retrieved, B_NotRetrieved,
+                                    U_Retrieved, U_NotRetrieved)
+         
+#ordered by subject
+prime_long <- prime_long[order(prime_long$Subject),]
+prime_long = separate(data = prime_long, 
+                              Condition, c("PrimeCondition", "PrimeRetrieved"), sep = "_" )
+
+## Note: Subjects 6 and 41 have two missing cells each, we fill it up with mean proportion 
+## in that condition
+
+mean_conditions = group_by(prime_long, PrimeCondition, PrimeRetrieved)%>%
+    summarise_each(funs(mean(., na.rm = TRUE)), MeanProportion)
+
+prime_long[43,] = c("6", "P", "Retrieved", "0.6219")
+prime_long[44,] = c("6", "P", "NotRetrieved", "0.3780")
+prime_long[297,] = c("41", "R", "Retrieved", "0.6224")
+prime_long[298,] = c("41", "R", "NotRetrieved", "0.3775")
+
+prime_long$Subject <- as.factor(as.character(prime_long$Subject))
+prime_long$PrimeRetrieved <- as.factor(as.character(prime_long$PrimeRetrieved))
+prime_long$PrimeCondition <- as.factor(as.character(prime_long$PrimeCondition))
+prime_long$MeanProportion <- as.numeric(as.character(prime_long$MeanProportion))
+
+main_aov <- aov(data = prime_long, MeanProportion ~ PrimeCondition*PrimeRetrieved + 
+                                    Error(Subject/(PrimeCondition*PrimeRetrieved)))
+summary(main_aov)
+
+@
+\section{Plotting}
+\subsection *{Prime Ret/Not by Prime Type}
+
+<<>>=
+library(Rmisc)
+agg_finaldata = summarySE(finaldata, 
+                      measurevar = "Proportion",
+                      groupvars = c("PrimeCondition", "TargetAccuracy","PrimeRetrieval"))
+
+library(ggplot2)
+library(ggthemes)
+agg_finaldata %>% mutate(TargetAccuracy = factor(TargetAccuracy, 
+                                                 levels = unique(TargetAccuracy),
+                    labels = c("Incorrect Target", "Correct Target")))%>%
+  ggplot(aes(x = PrimeCondition, y = Proportion, 
+                          group = PrimeRetrieval, 
+                          fill = PrimeRetrieval)) +  
+  geom_bar(stat = "identity", position = "dodge", width = 0.5)+
+   geom_errorbar(aes(ymin = Proportion - ci, ymax = Proportion + ci),
+                width=.05, position=position_dodge(.5)) +
+  facet_wrap(~TargetAccuracy)+
+  theme_few()+
+  scale_fill_wsj()+
+      xlab("PrimeCondition") + ylab("Proportion of Correct Trials") + 
+    ggtitle("Proportion of Correct Trials \n by Prime Condition and Retrieval") 
+
+
+
+
+
+@
+
+\subsection *{Mean Accuracy}
+<<>>=
+library(Rmisc)
+agg_acc = summarySE(agg_sub_condition, 
+                      measurevar = "TargetFirstResp_ACC",
+                      groupvars = c("PrimeCondition"))
+
+library(ggplot2)
+library(ggthemes)
+ggplot(agg_acc, aes(x = PrimeCondition, y = TargetFirstResp_ACC)) + 
+ geom_bar(stat = "identity", position = "dodge", width = 0.5, fill = "darkgoldenrod")+
+   geom_errorbar(aes(ymin = TargetFirstResp_ACC - ci, ymax = TargetFirstResp_ACC + ci),
+                width=.05, position=position_dodge(.5)) +
+     theme_few()+
+      xlab("PrimeCondition") + ylab("Mean Accuracy") + 
+    ggtitle("Mean Accuracy by Prime Condition") 
+
+@
+\subsection *{Prime Ret/Not}
+
+<<>>=
+library(Rmisc)
+agg_ret = summarySE(merged_agg_primeret_all, 
+                      measurevar = "Proportion",
+                      groupvars = c("TargetAccuracy", "PrimeRetrieved"))
+
+library(ggplot2)
+library(ggthemes)
+agg_ret %>% mutate(TargetAccuracy = factor(TargetAccuracy, 
+                                                 levels = unique(TargetAccuracy),
+                    labels = c("Incorrect Target", "Correct Target")))%>%
+ggplot(aes(x = PrimeRetrieved, y = Proportion, 
+                    group = TargetAccuracy, fill = TargetAccuracy)) + 
+ geom_bar(stat = "identity", position = "dodge", width = 0.5)+
+   geom_errorbar(aes(ymin = Proportion - ci, ymax = Proportion + ci),
+                width=.05, position=position_dodge(.5)) +
+     theme_few()+
+  scale_fill_colorblind()+
+      xlab("Prime Retrieval") + ylab("Mean Proportion of Trials") + 
+    ggtitle("Mean Proportion of \nCorrect/Incorrect Trials by Prime Retrieval") 
+@
+\subsection *{How Many Subjects}
+<<>>=
+### HOW MANY SUBJECTS SHOW THIS EFFECT OF PRIME RETRIEVAL?
+
+correct = merged_agg_primeret_all %>% filter(TargetAccuracy == "1")
+incorrect = merged_agg_primeret_all %>% filter(TargetAccuracy == "0")
+correct$Trials = as.numeric(as.character(correct$Trials))
+incorrect$Trials = as.numeric(as.character(incorrect$Trials))
+
+correct_main = correct[,c(1,4,5)]
+correct_wide = tidyr::spread(correct_main, PrimeRetrieved, Trials)
+sum(correct_wide$Retrieved > correct_wide$`Not Retrieved`)
+t.test(correct_wide$Retrieved, correct_wide$`Not Retrieved`, paired = TRUE)
+
+incorrect_main = incorrect[,c(1,4,5)]
+incorrect_wide = tidyr::spread(incorrect_main, PrimeRetrieved, Trials)
+sum(incorrect_wide$Retrieved < incorrect_wide$`Not Retrieved`)
+t.test(incorrect_wide$Retrieved, incorrect_wide$`Not Retrieved`, paired = TRUE)
+
+@
+
+\end{document}

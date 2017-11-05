@@ -1,0 +1,120 @@
+\documentclass[a4paper]{article}
+\usepackage{Sweave}
+\usepackage{fixltx2e}
+
+\usepackage[margin=1.0in]{geometry}
+
+ \DefineVerbatimEnvironment{Sinput}{Verbatim} { frame = lines, fontshape = sl}
+\DefineVerbatimEnvironment{Soutput}{Verbatim}{frame=lines, fontshape = sl}
+
+\title{TOT Prime Flash: Analysis}
+\author{Abhilasha Kumar}
+<<echo=FALSE>>=
+options(width=60)
+library(ggplot2)
+library(ggthemes)
+@
+\section {Reading and Formatting Data}
+
+<<>>=
+TOT = read.csv("CompiledPrimeFlash.csv", header = TRUE, sep = ",")
+@
+
+\section {Accuracy per Prime Condition}
+
+<<>>=
+library(dplyr)
+overall_acc = group_by(TOT) %>%
+  summarise_at(vars(TargetAccuracy), mean)
+
+prime_acc = group_by(TOT, PrimeCondition) %>%
+  summarise_at(vars(TargetAccuracy), mean)
+
+prime_subject_acc = group_by(TOT, Subject, PrimeCondition) %>%
+  summarise_at(vars(TargetAccuracy), mean)
+@
+
+\subsection *{ANOVA}
+
+<<>>=
+prime_subject_acc$PrimeCondition = as.factor(prime_subject_acc$PrimeCondition)
+prime_subject_acc$Subject = as.factor(prime_subject_acc$Subject)
+
+target_aov= aov(data = prime_subject_acc, TargetAccuracy ~ PrimeCondition +
+                                 Error(Subject/PrimeCondition))
+summary(target_aov)
+
+options(contrasts = c('contr.sum', 'contr.poly'))
+library(lsmeans)
+library(multcomp)
+imm_lsm = lsmeans::lsmeans(target_aov, c("PrimeCondition"))
+prime_effect = cld(imm_lsm, alpha = 0.05, 
+                adjust = "tukey", details = TRUE)
+library(knitr)
+kable(subset(prime_effect$comparisons,prime_effect$comparisons$p.value < 0.5 ))
+@
+
+\subsection {Target Accuracy Figure}
+
+<<>>=
+library(Rmisc)
+target_rmisc = summarySE(prime_subject_acc, 
+                      measurevar = "TargetAccuracy",
+                      groupvars = c("PrimeCondition"))
+library(ggplot2)
+library(ggthemes)
+ggplot(target_rmisc, aes(x = PrimeCondition, y = TargetAccuracy))+
+ geom_bar(stat = "identity", position = "dodge", width = 0.5, fill = "darkgoldenrod")+
+  geom_errorbar(aes(ymin = TargetAccuracy - ci, ymax = TargetAccuracy + ci),
+                width=.05, position=position_dodge(.5)) +
+  theme_few()+
+  xlab("Prime Condition") + ylab("Mean RT") + 
+  ggtitle("Target Accuracy by Prime Condition")
+@
+
+\section {State Analysis}
+
+<<>>=
+library(dplyr)
+overall_state = dplyr::group_by(TOT, State) %>%
+  summarize(count = n())
+
+prime_state = group_by(TOT, PrimeCondition, State) %>%
+  summarize(count = n())
+
+prime_subject_state = group_by(TOT, Subject, PrimeCondition, State) %>%
+  summarize(count = n())
+@
+
+\subsection *{Figure and ANOVA}
+
+<<>>=
+
+library(Rmisc)
+state_rmisc = summarySE(prime_subject_state, 
+                      measurevar = "count",
+                      groupvars = c("PrimeCondition", "State"))
+library(ggplot2)
+library(ggthemes)
+prime_state$State = as.factor(as.numeric(prime_state$State))
+prime_state %>% mutate(State = factor(State, levels = unique(State),
+                          labels = c("Know", "Dont Know", "TOT", "Other")))%>%
+  ggplot(aes(x = PrimeCondition, y = count, fill = State))+
+ geom_bar(stat = "identity", position = "dodge", width = 0.5)+
+ # geom_errorbar(aes(ymin = TargetAccuracy - ci, ymax = TargetAccuracy + ci),
+  #              width=.05, position=position_dodge(.5)) +
+  theme_few()+
+  xlab("Prime Condition") + ylab("Mean RT") + 
+  ggtitle("Target Accuracy by Prime Condition")
+
+prime_subject_state$PrimeCondition = as.factor(prime_subject_state$PrimeCondition)
+prime_subject_state$Subject = as.factor(prime_subject_state$Subject)
+prime_subject_state$State = as.factor(prime_subject_state$State)
+
+
+state_aov = aov(data = prime_subject_state, count ~ PrimeCondition*State + 
+                              Error(Subject/(PrimeCondition*State)))
+summary(state_aov)
+@
+
+\end{document}
