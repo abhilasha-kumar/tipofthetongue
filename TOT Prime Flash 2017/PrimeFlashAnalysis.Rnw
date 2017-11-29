@@ -140,7 +140,7 @@ prime_subject_state$PrimeCondition = as.factor(prime_subject_state$PrimeConditio
 prime_subject_state$Subject = as.factor(prime_subject_state$Subject)
 prime_subject_state$State = as.factor(prime_subject_state$State)
 
-
+##anova
 state_aov = aov(data = prime_subject_state, count ~ PrimeCondition*State + 
                               Error(Subject/(PrimeCondition*State)))
 summary(state_aov)
