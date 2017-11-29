@@ -1,0 +1,144 @@
+---
+title: "TOT Prime Flash Analysis"
+author: "Abhilasha Kumar"
+date: "November 28, 2017"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+options(width=60)
+library(ggplot2)
+library(ggthemes)
+```
+
+#Reading and Formatting Data
+
+```{r}
+TOT = read.csv("CompiledPrimeFlash.csv", header = TRUE, sep = ",")
+```
+
+#Accuracy per Prime Condition
+
+```{r}
+library(dplyr)
+overall_acc = group_by(TOT) %>%
+  summarise_at(vars(TargetAccuracy), mean)
+
+prime_acc = group_by(TOT, PrimeCondition) %>%
+  summarise_at(vars(TargetAccuracy), mean)
+
+prime_subject_acc = group_by(TOT, Subject, PrimeCondition) %>%
+  summarise_at(vars(TargetAccuracy), mean)
+```
+
+##ANOVA
+
+```{r}
+prime_subject_acc$PrimeCondition = as.factor(prime_subject_acc$PrimeCondition)
+prime_subject_acc$Subject = as.factor(prime_subject_acc$Subject)
+
+target_aov= aov(data = prime_subject_acc, TargetAccuracy ~ PrimeCondition +
+                                 Error(Subject/PrimeCondition))
+summary(target_aov)
+
+options(contrasts = c('contr.sum', 'contr.poly'))
+library(lsmeans)
+library(multcomp)
+imm_lsm = lsmeans::lsmeans(target_aov, c("PrimeCondition"))
+prime_effect = cld(imm_lsm, alpha = 0.05, 
+                adjust = "tukey", details = TRUE)
+library(knitr)
+kable(subset(prime_effect$comparisons,prime_effect$comparisons$p.value < 0.5 ))
+```
+
+#State Analysis
+
+```{r}
+library(dplyr)
+overall_state = dplyr::group_by(TOT, State) %>%
+  summarize(count = n())
+
+prime_state = group_by(TOT, PrimeCondition, State) %>%
+  summarize(count = n())
+
+prime_subject_state = group_by(TOT, Subject, PrimeCondition, State) %>%
+  summarize(count = n())
+```
+
+##State ANOVA
+```{r}
+prime_subject_state$PrimeCondition = as.factor(prime_subject_state$PrimeCondition)
+prime_subject_state$Subject = as.factor(prime_subject_state$Subject)
+prime_subject_state$State = as.factor(prime_subject_state$State)
+
+state_aov = aov(data = prime_subject_state, count ~ PrimeCondition*State + 
+                              Error(Subject/(PrimeCondition*State)))
+summary(state_aov)
+```
+
+#Figures
+
+##Target Accuracy Figure
+```{r, fig.align="center"}
+library(Rmisc)
+target_rmisc = summarySE(prime_subject_acc, 
+                      measurevar = "TargetAccuracy",
+                      groupvars = c("PrimeCondition"))
+library(ggplot2)
+library(ggthemes)
+ggplot(target_rmisc, aes(x = PrimeCondition, y = TargetAccuracy))+
+ geom_bar(stat = "identity", position = "dodge", width = 0.5, fill = "darkgoldenrod")+
+  geom_errorbar(aes(ymin = TargetAccuracy - ci, ymax = TargetAccuracy + ci),
+                width=.05, position=position_dodge(.5)) +
+  theme_few()+
+  xlab("Prime Condition") + ylab("Mean RT") + 
+  ggtitle("Target Accuracy by Prime Condition")
+```
+
+##Raw State Data
+```{r, fig.align="center"}
+library(Rmisc)
+state_overall = summarySE(prime_subject_state, 
+                      measurevar = "count",
+                      groupvars = c("State"))
+library(ggplot2)
+library(ggthemes)
+state_overall %>% mutate(State = factor(State, levels = unique(State),
+                          labels = c("Know", "Dont Know", 
+                                     "TOT", "Other")))%>%
+  ggplot(aes(x = State, y = count))+
+ geom_bar(stat = "identity", position = "dodge", 
+          width = 0.5, fill = "darkslategray3")+
+  geom_errorbar(aes(ymin = count - ci, ymax = count + ci),
+                width=.05, position=position_dodge(.5)) +
+  theme_few()+
+  xlab("State") + ylab("Mean Number of Trials") + 
+  ggtitle("State Data by Prime Condition")
+```
+
+##State by Prime Type
+
+```{r}
+library(Rmisc)
+state_rmisc = summarySE(prime_subject_state, 
+                      measurevar = "count",
+                      groupvars = c("PrimeCondition", "State"))
+library(ggplot2)
+library(ggthemes)
+prime_state$State = as.factor(as.numeric(prime_state$State))
+state_rmisc %>% mutate(State = factor(State, levels = unique(State),
+                          labels = c("Know", "Dont Know", 
+                                     "TOT", "Other")))%>%
+  ggplot(aes(x = PrimeCondition, y = count, fill = State))+
+ geom_bar(stat = "identity", position = "dodge", width = 0.5)+
+  geom_errorbar(aes(ymin = count - ci, ymax = count + ci),
+                width=.05, position=position_dodge(.5)) +
+  theme_few()+
+  xlab("Prime Condition") + ylab("Mean Number of Trials") + 
+  ggtitle("State Data by Prime Condition")
+```
+
