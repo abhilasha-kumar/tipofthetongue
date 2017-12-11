@@ -27,6 +27,9 @@ library(dplyr)
 overall_acc = group_by(TOT) %>%
   summarise_at(vars(TargetAccuracy), mean)
 
+overall_acc_subject = group_by(TOT, Subject) %>%
+  summarise_at(vars(TargetAccuracy), mean)
+
 prime_acc = group_by(TOT, PrimeCondition) %>%
   summarise_at(vars(TargetAccuracy), mean)
 
@@ -40,6 +43,7 @@ prime_subject_acc = group_by(TOT, Subject, PrimeCondition) %>%
 prime_subject_acc$PrimeCondition = as.factor(prime_subject_acc$PrimeCondition)
 prime_subject_acc$Subject = as.factor(prime_subject_acc$Subject)
 
+prime_subject_acc = prime_subject_acc %>% filter(!Subject %in% c(9,31,32))
 target_aov= aov(data = prime_subject_acc, TargetAccuracy ~ PrimeCondition +
                                  Error(Subject/PrimeCondition))
 summary(target_aov)
@@ -62,6 +66,9 @@ library(dplyr)
 overall_state = dplyr::group_by(TOT, State) %>%
   summarize(count = n())
 
+overall_state_subject = dplyr::group_by(TOT,Subject, State) %>%
+  summarize(count = n())
+
 prime_state = group_by(TOT, PrimeCondition, State) %>%
   summarize(count = n())
 
@@ -69,6 +76,31 @@ prime_subject_state = group_by(TOT, Subject, PrimeCondition, State) %>%
   summarize(count = n())
 @
 
+\subsection {Raw State ANOVA}
+
+<<>>=
+
+overall_state_subject$Subject = as.factor(overall_state_subject$Subject)
+overall_state_subject$State = as.factor(overall_state_subject$State)
+
+##anova
+state_aov = aov(data = prime_subject_state, count ~ State + 
+                              Error(Subject/(PrimeCondition*State)))
+summary(state_aov)
+@
+
+\subsection {State by prime ANOVA}
+<<>>=
+
+prime_subject_state$PrimeCondition = as.factor(prime_subject_state$PrimeCondition)
+prime_subject_state$Subject = as.factor(prime_subject_state$Subject)
+prime_subject_state$State = as.factor(prime_subject_state$State)
+
+##anova
+stateprime_aov = aov(data = prime_subject_state, count ~ PrimeCondition*State + 
+                              Error(Subject/(PrimeCondition*State)))
+summary(stateprime_aov)
+@
 \section{Figures}
 
 \subsection*{Target Accuracy Figure}
@@ -85,7 +117,7 @@ ggplot(target_rmisc, aes(x = PrimeCondition, y = TargetAccuracy))+
   geom_errorbar(aes(ymin = TargetAccuracy - ci, ymax = TargetAccuracy + ci),
                 width=.05, position=position_dodge(.5)) +
   theme_few()+
-  xlab("Prime Condition") + ylab("Mean RT") + 
+  xlab("Prime Condition") + ylab("Mean Accuracy") + 
   ggtitle("Target Accuracy by Prime Condition")
 @
 
@@ -133,17 +165,6 @@ state_rmisc %>% mutate(State = factor(State, levels = unique(State),
   ggtitle("State Data by Prime Condition")
 @
 
-\subsection {State ANOVA}
-<<>>=
 
-prime_subject_state$PrimeCondition = as.factor(prime_subject_state$PrimeCondition)
-prime_subject_state$Subject = as.factor(prime_subject_state$Subject)
-prime_subject_state$State = as.factor(prime_subject_state$State)
-
-##anova
-state_aov = aov(data = prime_subject_state, count ~ PrimeCondition*State + 
-                              Error(Subject/(PrimeCondition*State)))
-summary(state_aov)
-@
 
 \end{document}
