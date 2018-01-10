@@ -29,7 +29,7 @@ sjp.setTheme(base = theme_few())
 \section{Reading File}
 
 <<>>=
-PrimeRetrieval <- read.csv("CompleteData_Removed.csv", header = TRUE, sep = ",")
+PrimeRetrieval <- read.csv("CompleteYA_Removed.csv", header = TRUE, sep = ",")
 PrimeRetrieval <- subset(PrimeRetrieval, PrimeRetrieval$Subject != '10')
 
 ##note: Completedata_Removed contains data without 12 low-accuracy items
@@ -50,6 +50,16 @@ prime_aov = aov(data = agg_sub_condition, TargetFirstResp_ACC ~ PrimeCondition +
                                         Error(Subject/PrimeCondition))
 summary(prime_aov)
 
+participant_acc = group_by(PrimeRetrieval, Subject) %>%
+  summarise_at(vars(TargetFirstResp_ACC, PrimeFirstResp_ACC), mean)
+
+participant_acc$MeanAcc = (participant_acc$TargetFirstResp_ACC + 
+                          participant_acc$PrimeFirstResp_ACC)/2
+
+colnames(participant_acc) = c("Subject", "TargetAcc", "PrimeAcc", "MeanAcc")
+
+PrimeRetrieval = merge(PrimeRetrieval, participant_acc[,c(1,3,4)], 
+                       by = c("Subject"))
 @
 
 \section {Effect of Prime Retrieval}
@@ -71,10 +81,11 @@ agg_prime_correct = dplyr::group_by(PrimeRetrieval, Subject,
     summarise(n = n())
 colnames(agg_prime_correct) = c("Subject", "PrimeRetrieved", "PrimeTrials")
 
-agg_primeret_alltrials = group_by(PrimeRetrieval, Subject, 
+agg_primeret_alltrials = group_by(PrimeRetrieval, Subject, MeanAcc, PrimeAcc,
                             PrimeFirstResp_ACC, TargetFirstResp_ACC)%>%
     summarise(n = n())
-colnames(agg_primeret_alltrials) = c("Subject", "PrimeRetrieved", 
+colnames(agg_primeret_alltrials) = c("Subject", "MeanAcc", "PrimeAcc",
+                                     "PrimeRetrieved", 
                                      "TargetAccuracy", "Trials")
 
 ##ALL TRIALS
@@ -84,7 +95,8 @@ merged_agg_primeret_all = merge(agg_target_correct, agg_primeret_alltrials,
 
 
 # NOTE: SUBJECT 20 has an empty cell for Not Retrieved i.e. there were no trials where they correctly retrieved the target but did not correctly retrieve the prime. 
-merged_agg_primeret_all[176, ] = c("20", "1", "10", "Not Retrieved", 0)
+merged_agg_primeret_all[176, ] = c("20","1", "10", "0.3916667", "0.6166667",
+                                   "Not Retrieved", 0)
                                    
 
 merged_agg_primeret_all = merge(merged_agg_primeret_all, agg_prime_correct,
@@ -113,16 +125,77 @@ merged_agg_primeret_all$ProportionPrime = merged_agg_primeret_all$Trials/
 
 merged_agg_primeret_all$Subject = as.factor(as.character(merged_agg_primeret_all$Subject)) 
 merged_agg_primeret_all$TargetAccuracy = as.factor(as.character(merged_agg_primeret_all$TargetAccuracy)) 
+merged_agg_primeret_all$MeanAcc = as.numeric(as.character(merged_agg_primeret_all$MeanAcc))
 
 
 primeret_aov = aov(data = merged_agg_primeret_all, 
                    ProportionPrime ~ TargetAccuracy*PrimeRetrieved + 
-                                Error(Subject/(TargetAccuracy*PrimeRetrieved)))
+                          Error(Subject/(TargetAccuracy*PrimeRetrieved)))
 
 summary(primeret_aov)
 
+### LM with Mean Acc as a covariate
+
+## in agg data: 3 way not sig: IMPORTANT! It is not the case
+## that good subjects are driving this pattern
+
+library(lme4)
+library(lmerTest)
+model_acc = lmer(data = merged_agg_primeret_all, 
+                 ProportionPrime ~ TargetAccuracy*PrimeRetrieved*MeanAcc +
+                   (1|Subject))
+summary(model_acc)
+
+sjPlot::sjp.lmer(model_acc, type = "pred", vars = c("PrimeRetrieved", "TargetAccuracy"), facet.grid = FALSE)
+
 ## NOTE: The main effect of Prime Retrieved is significant SPLIT BY TARGET ACC
 @
+
+\subsection {Model Acc Plotting}
+<<fig=TRUE>>=
+fixed.frame <- merged_agg_primeret_all %>% 
+  dplyr::summarise(mean = mean(MeanAcc, na.rm = T), 
+            sd = sd(MeanAcc, na.rm = T))
+
+fixed.frame <-
+  data.frame(
+    expand.grid(
+      # here, you add values for your time variable and predictors
+      TargetAccuracy = c("0","1"),
+      PrimeRetrieved = c("Not Retrieved","Retrieved"),
+       MeanAcc = c(fixed.frame$mean-fixed.frame$sd,
+                     fixed.frame$mean,
+                     fixed.frame$mean+fixed.frame$sd))) 
+
+fixed.frame$pred = predict(model_acc, newdata = fixed.frame, re.form = NA)
+
+library(ggplot2)
+library(ggthemes)
+fixed.frame %>%
+mutate(MeanAccuracy = factor(MeanAcc, levels = unique(MeanAcc),
+                                 labels = c("-1SD Low performing Subjects", 
+                                            "0SD Mean Performing Subjects", 
+                                            "1SD High Performing Subjects")),
+        TargetAcc = factor(TargetAccuracy, levels = unique(TargetAccuracy),
+                           labels = c("Failed Retrieval", 
+                                      "Successful Retrieval"))) %>%
+  ggplot(aes(x = PrimeRetrieved, y = pred, 
+             fill = TargetAcc, group = TargetAcc)) +
+ geom_bar(stat = "identity", position = "dodge")+
+        labs(x = "Prime Retrieval", 
+             y = "Proportion of Trials",
+         title = "YA: Prime Retrieval by Target Accuracy") +
+  facet_wrap(~MeanAccuracy)+
+  theme_few()+
+  scale_fill_wsj()+
+    theme(axis.text = element_text(face = "bold", size = rel(1)),
+          axis.title = element_text(face = "bold", size = rel(1)),
+          legend.title = element_text(face = "bold", size = rel(1)),
+          plot.title = element_text(face = "bold", size = rel(1), hjust = .5))
+@
+
+@
+
 
 \section {Effect of Prime Retrieved by Prime Condition}
 
@@ -139,6 +212,18 @@ agg_prime_correct_primetype = group_by(PrimeRetrieval, Subject, PrimeCondition,
     summarise(n = n())
 colnames(agg_prime_correct_primetype) = c("Subject", "PrimeCondition",
                                            "PrimeRetrieval", "PrimeTrials")
+
+agg_prime_target_primetype = group_by(PrimeRetrieval, Subject, PrimeCondition, 
+                                        PrimeFirstResp_ACC, TargetFirstResp_ACC)%>%
+    summarise(n = n())
+colnames(agg_prime_target_primetype) = c("Subject", "PrimeCondition",
+                                           "PrimeRetrieval", "TargetAccuracy",
+                                         "SubTrials")
+merged_main = merge(agg_prime_correct_primetype,agg_prime_target_primetype,
+                    by = c("Subject", "PrimeCondition", "PrimeRetrieval" ))
+
+merged_main$Proportion = merged_main$SubTrials/merged_main$PrimeTrials
+
 
 ## Number of correct target trials ONLY per prime condition are calculated below:
 # agg_target_correct_primetype = subset(agg_target_correct_primetype, 
@@ -273,6 +358,33 @@ agg_finaldata_prime %>% mutate(TargetAccuracy = factor(TargetAccuracy,
     ggtitle("Target Trials \n by Prime Condition and Retrieval") 
 @
 
+\subsubsection*{Merged_Main figure}
+
+<<>>=
+library(Rmisc)
+agg_mergeddata_prime = summarySE(merged_main, 
+                      measurevar = "Proportion",
+                      groupvars = c("PrimeCondition", 
+                                    "PrimeRetrieval", "TargetAccuracy"))
+
+library(ggplot2)
+library(ggthemes)
+agg_mergeddata_prime %>% mutate(TargetAccuracy = factor(TargetAccuracy, 
+                                                 levels = unique(TargetAccuracy),
+                    labels = c("Incorrect Target", "Correct Target")))%>%
+  ggplot(aes(x = PrimeCondition, y = Proportion, 
+                          group = TargetAccuracy, 
+                          fill = TargetAccuracy)) +  
+  geom_bar(stat = "identity", position = "dodge", width = 0.5)+
+   geom_errorbar(aes(ymin = Proportion - ci, ymax = Proportion + ci),
+                width=.05, position=position_dodge(.5)) +
+  facet_wrap(~PrimeRetrieval)+
+  theme_few()+
+  scale_fill_wsj()+
+      xlab("PrimeCondition") + ylab("Number of Trials") + 
+    ggtitle("Target Trials \n by Prime Condition and Retrieval") 
+@
+
 \subsubsection *{How Many Subjects}
 <<>>=
 ### HOW MANY SUBJECTS SHOW THIS EFFECT OF PRIME RETRIEVAL BY PRIME TYPE?
@@ -340,6 +452,7 @@ notret_wide_u = tidyr::spread(notret_main_u, TargetAccuracy, Trials)
 sum(notret_wide_u$`1` < notret_wide_u$`0`, na.rm = TRUE)
 t.test(notret_wide_u$`1`, notret_wide_u$`0`, paired = TRUE)
 @
+
 
 \subsection *{Mean Accuracy}
 <<>>=
@@ -428,4 +541,171 @@ sum(notret_wide$`0` > notret_wide$`1`)
 t.test(notret_wide$`0`, notret_wide$`1`, paired = TRUE)
 @
 
+\section {Prime Demasking Analysis}
+
+<<>>=
+library(dplyr)
+colnames(PrimeRetrieval) = c("ID", "AgeGroup", "Subject", "Procedure", 
+                            "Prime", "Stimuli2", "PrimeCondition",
+                            "Trial", "PrimeDefResp", "PrimeFirstResp_ACC", 
+                            "PrimeDefRT", "PrimeRespRESP", "PrimeRespRT", 
+                            "Target", "TargetDefResp", "Accuracy",  
+                            "TargetDefRT", "TargetRespRESP", "TargetRespRT",
+                            "State", "StateRT",  
+                            "RTrecognisePrime", "RTrecogniseTarget",
+                            "PrimeAcc", "MeanAcc")
+primewith_firsttrim = subset(PrimeRetrieval, 
+                                 PrimeRetrieval$TargetDefRT > 300)
+
+## aggregate per subject all IVs and DVs
+meanRT = group_by(primewith_firsttrim, ID) %>%
+  summarise_at(vars(TargetDefRT, RTrecognisePrime, RTrecogniseTarget), mean)
+colnames(meanRT) = c("Subject", "MeanTargetRT", 
+                     "MeanRTrecogPrime", "MeanRTrecogTarget")
+
+sdRT = group_by(primewith_firsttrim, ID) %>%
+  summarise_at(vars(TargetDefRT, RTrecognisePrime, RTrecogniseTarget), sd)
+colnames(sdRT) = c("Subject", "sdTargetRT", 
+                     "sdRTrecogPrime", "sdRTrecogTarget")
+
+RT_agg = merge(meanRT, sdRT, by = "Subject")
+
+## merge aggregate info with long data
+primewith_z = merge(primewith_firsttrim, RT_agg, by = "Subject", all.x = T)
+
+## person and grand-mean centered scores using original and aggregate
+library(dplyr)
+primewith_z = primewith_z %>% mutate(zTargetRT = 
+                                        (TargetDefRT - MeanTargetRT)/sdTargetRT,
+                                           zPrimeRecogRT = 
+                                             (RTrecognisePrime - 
+                                                MeanRTrecogPrime)/sdRTrecogPrime,
+                                           zTargetRecogRT = 
+                                             (RTrecogniseTarget - 
+                                                MeanRTrecogTarget)/sdRTrecogTarget)
+                 
+## checking: subject level means should be zero
+
+sub_pic = group_by(primewith_z, Subject) %>%
+  summarise_at(vars(zTargetRT,zPrimeRecogRT, zTargetRecogRT), mean)
+
+@
+
+\section {Trimming z-RTs}
+
+<<>>=
+
+#Note: We are trimming based on PrimeRecog RT because that's the RT we care about most
+primewith_z_trimmed = subset(primewith_z, 
+                                primewith_z$zPrimeRecogRT < 3 & 
+                                  primewith_z$zPrimeRecogRT > -3)
+@
+
+\section {Repeating z-scoring}
+
+<<>>=
+## aggregate per subject all IVs and DVs
+meanRT = group_by(primewith_z_trimmed, ID) %>%
+  summarise_at(vars(TargetRT, RTrecognisePrime, RTrecogniseTarget), mean)
+colnames(meanRT) = c("Subject", "MeanTargetRT_trim", 
+                     "MeanRTrecogPrime_trim", "MeanRTrecogTarget_trim")
+
+sdRT = group_by(primewith_z_trimmed, ID) %>%
+  summarise_at(vars(TargetRT, RTrecognisePrime, RTrecogniseTarget), sd)
+colnames(sdRT) = c("Subject", "sdTargetRT_trim", 
+                     "sdRTrecogPrime_trim", "sdRTrecogTarget_trim")
+
+RT_agg = merge(meanRT, sdRT, by = "Subject")
+
+## merge aggregate info with long data
+primewith_final_z = merge(primewith_z_trimmed, 
+                             RT_agg, by = "Subject", all.x = T)
+
+## person and grand-mean centered scores using original and aggregate
+library(dplyr)
+primewith_final_z = primewith_final_z %>% mutate(zTargetRT_trim = 
+                                             (TargetDefRT - 
+                                                MeanTargetRT_trim)/sdTargetRT_trim,
+                                           zPrimeRecogRT_trim = 
+                                             (RTrecognisePrime - 
+                                      MeanRTrecogPrime_trim)/sdRTrecogPrime_trim,
+                                           zTargetRecogRT_trim = 
+                                             (RTrecogniseTarget - 
+                                      MeanRTrecogTarget_trim)/sdRTrecogTarget_trim)
+                 
+## checking: subject level means should be zero
+
+sub_pic = group_by(primewith_final_z, Subject) %>%
+  summarise_at(vars(zTargetRT_trim,zPrimeRecogRT_trim, zTargetRecogRT_trim), mean)
+
+@
+\section {Linear Models}
+
+<<>>=
+# Mean RT to retrieve Target as a function of Prime Condition
+
+# Effect of RT prime on Accuracy
+library(lme4)
+RTprime_acc_model = glmer(data = primewith_final_z, 
+                          Accuracy ~ zPrimeRecogRT_trim + 
+                            (1|Subject), family = binomial )
+summary(RTprime_acc_model)
+library(sjPlot)
+sjp.glmer(RTprime_acc_model, type = "pred", vars = "zPrimeRecogRT_trim")
+
+contrasts(primewith_final_z$PrimeCondition) = contr.treatment(n = 4)
+
+
+RTprime_acc_model_2 = glmer(data = primewith_final_z, 
+                          Accuracy ~ zPrimeRecogRT_trim*PrimeCondition + 
+                            (1|Subject), family = binomial )
+summary(RTprime_acc_model_2)
+
+RTprime_acc_model_3 = glmer(data = primewith_final_z, 
+                          Accuracy ~ zPrimeRecogRT_trim*PrimeAcc + 
+                            (1|Subject), family = binomial )
+summary(RTprime_acc_model_3)
+
+
+@
+
+\section {Plotting Model Fits}
+\subsection {Model 1}
+<<fig=TRUE>>=
+library(ggplot2)
+library(ggthemes)
+fixed.frame <- 
+  data.frame(expand.grid(zPrimeRecogRT_trim = seq(-3,3,0.5)))%>%
+  mutate(pred = predict(RTprime_acc_model, newdata = ., re.form = NA))
+
+fixed.frame %>%
+  ggplot(aes(x = zPrimeRecogRT_trim, y = pred)) +
+    geom_line(size = 1, color = "blue") + 
+    xlab("z-RT to Demask Prime") + ylab ("Mean Target Accuracy")+ 
+  ggtitle("Model Fit: Target Accuracy by Prime Demasking RT")+
+theme_few() +
+    theme(axis.text = element_text(face = "bold", size = rel(1.2)),
+          axis.title = element_text(face = "bold", size = rel(1.2)),
+          legend.title = element_text(face = "bold", size = rel(1.2)),
+          plot.title = element_text(face = "bold", size = rel(1.2), hjust = .5))
+@
+
+\subsection {Model 2}
+<<fig=TRUE>>=
+fixed.frame <- 
+  data.frame(expand.grid(zPrimeRecogRT_trim = seq(-3,3,0.5),
+                         PrimeCondition = c("B", "P", "R", "U")))%>%
+  mutate(pred = predict(RTprime_acc_model_3, newdata = ., re.form = NA))
+
+fixed.frame %>%
+  ggplot(aes(x = zPrimeRecogRT_trim, y = pred, color = PrimeCondition)) +
+    geom_line(size = 1) + 
+    xlab("z-RT to Demask Prime") + ylab ("Mean Target Accuracy")+ 
+  ggtitle("Model Fit: Target Accuracy by Prime Demasking RT")+
+theme_few() +
+    theme(axis.text = element_text(face = "bold", size = rel(1.2)),
+          axis.title = element_text(face = "bold", size = rel(1.2)),
+          legend.title = element_text(face = "bold", size = rel(1.2)),
+          plot.title = element_text(face = "bold", size = rel(1.2), hjust = .5))
+@
 \end{document}
