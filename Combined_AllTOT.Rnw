@@ -1,0 +1,104 @@
+\documentclass[a4paper]{article}
+\usepackage{Sweave}
+\usepackage{fixltx2e}
+
+\usepackage[margin=1.0in]{geometry}
+
+ \DefineVerbatimEnvironment{Sinput}{Verbatim} { frame = lines, fontshape = sl}
+\DefineVerbatimEnvironment{Soutput}{Verbatim}{frame=lines, fontshape = sl}
+
+\title{TOT Retrieval Project: Combined Analysis}
+\author{Abhilasha Kumar}
+<<echo=FALSE>>=
+options(width=60)
+library(ggplot2)
+library(ggthemes)
+@
+\section {Reading and Formatting Data}
+
+<<>>=
+TOT = read.csv("CombinedPrimeFlash_PrimeDemask_CSV.csv", header = TRUE, sep = ",")
+@
+
+\section {Accuracy per Prime Condition}
+
+<<>>=
+library(dplyr)
+overall_acc = group_by(TOT, Experiment) %>%
+  summarise_at(vars(TargetAccuracy), mean)
+
+overall_itemacc = group_by(TOT, Stimuli1) %>%
+  summarise_at(vars(TargetAccuracy), mean)
+
+#low_acc = overall_itemacc %>% filter(TargetAccuracy < .25)
+#low_acc = low_acc[order(low_acc$TargetAccuracy),]
+
+overall_acc_subject = group_by(TOT, Experiment, Subject) %>%
+  summarise_at(vars(TargetAccuracy), mean)
+
+prime_acc = group_by(TOT, Experiment, PrimeCondition) %>%
+  summarise_at(vars(TargetAccuracy), mean)
+
+prime_subject_acc = group_by(TOT, Experiment, Subject, PrimeCondition) %>%
+  summarise_at(vars(TargetAccuracy), mean)
+
+@
+
+\subsection *{ANOVA}
+
+<<>>=
+prime_subject_acc$Experiment = as.factor(prime_subject_acc$Experiment)
+prime_subject_acc$PrimeCondition = as.factor(prime_subject_acc$PrimeCondition)
+prime_subject_acc$Subject = as.factor(prime_subject_acc$Subject)
+
+exp_flash_demask = prime_subject_acc %>% filter(Experiment == "PrimeFlash" | 
+                                                  Experiment == "PrimeDemask")
+
+
+target_aov= aov(data = exp_flash_demask, TargetAccuracy ~ Experiment*PrimeCondition +
+                                 Error(Subject/PrimeCondition))
+summary(target_aov)
+
+options(contrasts = c('contr.sum', 'contr.poly'))
+library(lsmeans)
+library(multcomp)
+imm_lsm = lsmeans::lsmeans(target_aov, c("Experiment", "PrimeCondition"))
+prime_effect = cld(imm_lsm, alpha = 0.05, 
+                adjust = "tukey", details = TRUE, by = "PrimeCondition")
+library(knitr)
+kable(subset(prime_effect$comparisons,prime_effect$comparisons$p.value < 0.1 ))
+@
+
+\section{Figures}
+
+\subsection*{Target Accuracy Figure}
+
+<<fig=TRUE>>=
+library(Rmisc)
+target_rmisc = summarySE(prime_subject_acc, 
+                      measurevar = "TargetAccuracy",
+                      groupvars = c("Experiment","PrimeCondition"))
+library(ggplot2)
+library(ggthemes)
+target_rmisc %>% mutate(PrimeType = factor(PrimeCondition, 
+                                                 levels = unique(PrimeCondition),
+                    labels = c("Both", "Phonological", 
+                               "Semantic", "Unrelated"))) %>%
+ggplot(aes(x = Experiment, y = TargetAccuracy, 
+           group = PrimeType, fill = PrimeType))+
+ geom_bar(stat = "identity", position = "dodge", width = 0.5)+
+  geom_errorbar(aes(ymin = TargetAccuracy - ci, ymax = TargetAccuracy + ci),
+                width=.05, position=position_dodge(.5)) +
+  theme_few()+
+  scale_fill_gdocs()+
+  xlab("Experiment") + ylab("Mean Target Accuracy") + 
+  ggtitle("Target Accuracy by Prime Condition
+          Across the 4 Experiments") +
+    theme(axis.text = element_text(face = "bold", size = rel(1)),
+          axis.title = element_text(face = "bold", size = rel(1.2)),
+          legend.title = element_text(face = "bold", size = rel(1.2)),
+          plot.title = element_text(face = "bold", size = rel(1.4), hjust = .5))
+@
+
+
+\end{document}

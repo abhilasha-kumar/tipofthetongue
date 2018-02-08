@@ -181,13 +181,13 @@ mutate(MeanAccuracy = factor(MeanAcc, levels = unique(MeanAcc),
                                       "Successful Retrieval"))) %>%
   ggplot(aes(x = PrimeRetrieved, y = pred, 
              fill = TargetAcc, group = TargetAcc)) +
- geom_bar(stat = "identity", position = "dodge")+
+ geom_bar(stat = "identity", position = "dodge", color = "black")+
         labs(x = "Prime Retrieval", 
              y = "Proportion of Trials",
          title = "YA: Prime Retrieval by Target Accuracy") +
   facet_wrap(~MeanAccuracy)+
   theme_few()+
-  scale_fill_wsj()+
+  scale_fill_manual(values = c("black", "white"))+
     theme(axis.text = element_text(face = "bold", size = rel(1)),
           axis.title = element_text(face = "bold", size = rel(1)),
           legend.title = element_text(face = "bold", size = rel(1)),

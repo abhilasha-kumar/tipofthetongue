@@ -43,7 +43,8 @@ prime_subject_acc = group_by(TOT, Subject, PrimeCondition) %>%
 prime_subject_acc$PrimeCondition = as.factor(prime_subject_acc$PrimeCondition)
 prime_subject_acc$Subject = as.factor(prime_subject_acc$Subject)
 
-prime_subject_acc = prime_subject_acc %>% filter(!Subject %in% c(9,31,32))
+#prime_subject_acc = prime_subject_acc %>% filter(!Subject %in% c(9,31,32))
+# this is eliminating subjects <50 % accuracy
 target_aov= aov(data = prime_subject_acc, TargetAccuracy ~ PrimeCondition +
                                  Error(Subject/PrimeCondition))
 summary(target_aov)
@@ -112,13 +113,21 @@ target_rmisc = summarySE(prime_subject_acc,
                       groupvars = c("PrimeCondition"))
 library(ggplot2)
 library(ggthemes)
-ggplot(target_rmisc, aes(x = PrimeCondition, y = TargetAccuracy))+
+target_rmisc %>% mutate(PrimeType = factor(PrimeCondition, 
+                                                 levels = unique(PrimeCondition),
+                    labels = c("Both", "Phonological", 
+                               "Semantic", "Unrelated"))) %>%
+ggplot(aes(x = PrimeType, y = TargetAccuracy))+
  geom_bar(stat = "identity", position = "dodge", width = 0.5, fill = "darkgoldenrod")+
   geom_errorbar(aes(ymin = TargetAccuracy - ci, ymax = TargetAccuracy + ci),
                 width=.05, position=position_dodge(.5)) +
   theme_few()+
   xlab("Prime Condition") + ylab("Mean Accuracy") + 
-  ggtitle("Target Accuracy by Prime Condition")
+  ggtitle("Target Accuracy by Prime Condition") +
+    theme(axis.text = element_text(face = "bold", size = rel(1.2)),
+          axis.title = element_text(face = "bold", size = rel(1.2)),
+          legend.title = element_text(face = "bold", size = rel(1.2)),
+          plot.title = element_text(face = "bold", size = rel(1.4), hjust = .5))
 @
 
 \subsection *{Raw State Data}

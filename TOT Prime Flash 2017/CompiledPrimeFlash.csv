@@ -1295,3 +1295,1227 @@ Subject,Procedure[Block],Trial,Prime[Trial],PrimeCondition,Stimuli1,Target[Trial
 18,S6,62,W e a s l e y,B,70,W a t s o n ,{SHIFT}Watson{SPACE},3536,1,1815,{SHIFT}Watson{SPACE},3816,1,0
 18,S6,3,W a l k e r ,B,71,W a y n e,{SHIFT}Wayne{SPACE},3364,1,883,{SHIFT}Wayne{SPACE},2248,1,0
 18,S6,12,Y o s e m i t e ,B,72,Y e l l o w s t o n e,{SHIFT}Yosemite{SPACE},4626,1,1137,{SHIFT}Yellowstone{SPACE},5679,0,1
+19,S7,41,a b a n d o n,B,1,a b d i c a t e ,abdicate{SPACE},3754,1,761,abdicate{SPACE},2020,1,0
+19,S7,72,a b r o a d ,B,2,a b o r i g i n e,aboriginal{SPACE},6374,1,452,aboriginal{SPACE},2028,1,0
+19,S7,48,a v o i d,B,3,a b s t a i n,{SPACE},8997,2,306,abstain{SPACE},1981,0,0
+19,S7,3,a d v a n c e,B,4,a d v o c a t e ,advocate{SPACE},7356,1,9808,advocate{SPACE},2764,1,0
+19,S7,62,A u s t e n ,B,5,A l c o t t ,alcott{SPACE},5939,1,691,alcott{SPACE},1419,1,0
+19,S7,28,a b n o r m a l i t y,B,6,a n a c h r o n i s m,anomoly{SPACE},6916,3,697,anachronism{SPACE},3986,0,0
+19,S7,13,a c r o n y m,B,7,a n a g r a m,anagram{SPACE},5461,1,969,anagram{SPACE},1618,1,0
+19,S7,51,A l p s ,B,8,A n d e s,andes{SPACE},3773,1,379,andes{SPACE},976,1,0
+19,S7,8,A r i e l,B,9,A u r o r a ,aurora{SPACE},2808,1,607,aurora{SPACE},1900,1,0
+19,S7,74,B e i j i n g,B,10,B a n g k o k,{SPACE},1757,1,1265,bangkok{SPACE},1539,0,0
+19,S7,57,b a r g a i n,B,11,b a r t e r ,barter{SPACE},6383,1,317,barter{SPACE},1337,1,0
+19,S7,65,B u c k i n g h a m ,B,12,B e c k h a m,beckham{SPACE},6052,1,1584,beckham{SPACE},1574,1,0
+19,S7,24,b i l a t e r a l,B,13,b i n o m i a l ,,0,2,1704,binomial{SPACE},2937,0,0
+19,S7,26,c o r p s e ,B,14,c a r c a s s,carcaus{SPACE},5929,1,1435,carcass{SPACE},2235,1,0
+19,S7,42,C h r i s t i e ,B,15,C a r r o l l,carroll,9998,1,977,carroll{SPACE},1853,1,0
+19,S7,61,c a m o f l a u g e ,B,16,c h a m e l e o n,cham,9862,4,1193,chameleon{SPACE},2142,0,0
+19,S7,2,C h a m b e r l a i n,B,17,C h u r c h i l l,churchill{SPACE},4226,1,588,churchill{SPACE},2202,1,0
+19,S7,68,C o n r a d ,B,18,C l e m e n s,{SPACE},3072,2,235,clemens{SPACE},1442,0,0
+19,S7,35,i m p l e m e n t,U,19,c o n g r u e n t,{SPACE},5627,2,1768,congruent{SPACE},1764,0,0
+19,S7,75,J a c k m a n,U,20,C o n n e r y,connery{SPACE},5583,1,367,connery{SPACE},1454,1,0
+19,S7,33,l a b e l,U,21,c o v e n a n t ,{SPACE},5399,2,911,covenant{SPACE},1761,0,0
+19,S7,56,l o c k e t ,U,22,D a n t e,dante{SPACE},3711,1,399,dante{SPACE},985,1,0
+19,S7,59,M a n d a r i n ,U,23,d e f a u l t,{SPACE},5627,2,457,default{SPACE},2425,0,0
+19,S7,43,m e d i u m ,U,24,d e p l e t e,expunge{SPACE},6734,3,813,deplete{SPACE},1463,0,0
+19,S7,73,O n t a r i o,U,25,d i v e r g e,stretch{SPACE},6534,3,284,diverge{SPACE},1401,0,0
+19,S7,23,p l a c e b o,U,26,e c c e n t r i c,eccentric{SPACE},9577,4,4461,eccentric{SPACE},1827,1,0
+19,S7,64,p a r a d i g m ,U,27,e x o r c i s m ,exorcise{SPACE},8688,1,1131,exorcism{SPACE},2277,1,0
+19,S7,36,p r o m i s c u o u s,U,28,F a r a d a y,,0,2,1404,faraday{SPACE},2408,0,0
+19,S7,31,p r o d i g y,U,29,f o l i a g e,{SPACE},8598,2,341,foilage{SPACE},1672,0,0
+19,S7,9,p r o g n o s i s,U,30,G a r l a n d,garland{SPACE},7306,1,512,garland{SPACE},2114,1,0
+19,S7,76,r e s i g n ,U,31,g o s l i n g,gooseling,9281,4,1811,gosling{SPACE},1302,1,0
+19,S7,38,n a t i v e ,U,32,H a n c o c k,hancock{SPACE},3559,1,350,hancock{SPACE},1803,1,0
+19,S7,30,r e f u s e ,U,33,H e l s i n k i ,helsinki{SPACE},7366,4,5657,helsinki{SPACE},2046,1,0
+19,S7,71,c o n d o n e,U,34,h o i s t,lift{SPACE},5873,3,549,hoist{SPACE},2596,0,0
+19,S7,46,B r o n t e ,U,35,H u s s e i n,hussain{SPACE},8470,1,490,hussein{SPACE},1762,1,0
+19,S7,34,m i s p l a c e ,U,36,i d i o s y n c r a s y ,{SPACE},5621,2,483,idiosyncrasy{SPACE},2955,0,0
+19,S7,11,m e n t i o n,R,37,i n t e r j e c t,interrupt,9242,4,4238,interject{SPACE},2638,0,0
+19,S7,18,T y l e r,R,38,J a g g e r ,mcja,9981,4,1824,jagger{SPACE},1880,0,0
+19,S7,10,p e r j u r y,R,39,l i b e l,def,9624,4,6075,libel{SPACE},1264,0,0
+19,S7,5,v e r b o s e,R,40,l o q u a c i o u s ,{SPACE},9276,4,4509,loquacious{SPACE},3107,0,0
+19,S7,15,G a n d h i ,R,41,M a n d e l a,mandela{SPACE},2673,1,542,mandela{SPACE},1484,1,0
+19,S7,66,s p a r s e ,R,42,m e a g e r ,berfit{SPACE},8433,3,1590,meager{SPACE},1498,0,0
+19,S7,70,B o w i e,R,43,M e r c u r y,mercury{SPACE},4254,1,230,mercury{SPACE},1790,1,0
+19,S7,53,S h a k e s p e a r e,R,44,M i l l e r ,miller{SPACE},2687,1,459,miller{SPACE},1024,1,0
+19,S7,19,g r a t e,R,45,m i n c e,mince{SPACE},4423,1,521,mince{SPACE},1451,1,0
+19,S7,52,i n v a r i a b l e ,R,46,m o n o t o n y ,mundane{SPACE},9654,3,2775,monotony{SPACE},1871,0,0
+19,S7,37,H o u s t o n,R,47,M o n r o e ,monroe{SPACE},4593,1,540,monroe{SPACE},1194,1,0
+19,S7,55,M a d a g a s c a r ,R,48,N a i r o b i,{SPACE},4977,2,667,nairobi{SPACE},2723,0,0
+19,S7,40,i n v a l i d a t e ,R,49,n u l l i f y,,0,4,1255,nullify{SPACE},1816,0,0
+19,S7,29,B e r l i n ,R,50,N u r e m b e r g,neurembe,9928,4,1867,nuremberg{SPACE},2279,1,0
+19,S7,6,s e c r e t i v e,R,51,o b s c u r e,,0,4,2290,obscure{SPACE},2258,0,0
+19,S7,17,u n l i m i t e d,R,52,o m n i p o t e n t ,invinceable,6947,4,2391,omnipotent{SPACE},2387,0,0
+19,S7,49,f l a s h y ,R,53,o s t e n t a t i o u s ,arrogance{SPACE},7896,3,356,ostentatious{SPACE},2941,0,0
+19,S7,67,B o o t h,R,54,O s w a l d ,o,8825,4,3165,oswald{SPACE},2123,0,0
+19,S7,50,o t t e r,P,55,O t t a w a ,{SPACE},3871,4,3576,ottawa{SPACE},1702,0,0
+19,S7,25,p a n d a,P,56,p a n a c e a,miracle{SPACE},9627,3,989,panacea{SPACE},2867,0,0
+19,S7,44,p a r a c h u t e,P,57,p a r a g o n,{SPACE},6680,2,1144,paragon{SPACE},1702,0,0
+19,S7,7,p o l y g o n,P,58,p o l y g a m y ,polygamy{SPACE},4658,1,841,polygamy{SPACE},2549,1,0
+19,S7,22,p r e c a r i o u s ,P,59,p r e c o c i o u s ,prodigy{SPACE},8923,3,1819,precocious{SPACE},2500,0,0
+19,S7,54,p r o f e s s o r,P,60,p r o p h e c y ,p,9877,4,1752,prophecy{SPACE},1923,0,0
+19,S7,4,s o f a ,P,61,S e o u l,{SPACE},2438,1,3404,seoul{SPACE},1165,0,0
+19,S7,12,s h i p ,P,62,S h a w ,,0,2,705,shaw{SPACE},2228,0,0
+19,S7,27,s i z z l e ,P,63,S i c i l y ,{SPACE},3372,1,2075,sicily{SPACE},1542,0,0
+19,S7,16,s k y s c r a p e r ,P,64,S k y w a l k e r,skywalker{SPACE},4413,1,287,skywalker{SPACE},2026,1,0
+19,S7,63,s u r v i v o r ,P,65,s u r r o g a t e,surrogate{SPACE},4591,1,425,surrogate{SPACE},1722,1,0
+19,S7,21,t h o r n y ,P,66,T h o r e a u,whitman,6120,3,827,thoreau{SPACE},1549,0,0
+19,S7,45,t i p,P,67,t i c,{SPACE},8190,2,574,tic{SPACE},808,0,0
+19,S7,69,t u r m e r i c ,P,68,t s u n a m i,tsunami{SPACE},3652,1,422,tsunami{SPACE},2239,1,0
+19,S7,32,T u r n e r ,P,69,T u r i n g ,turing{SPACE},8240,1,606,turing{SPACE},1228,1,0
+19,S7,14,W a t t ,P,70,W a t s o n ,watson{SPACE},2590,1,302,watson{SPACE},1038,1,0
+19,S7,47,w a k e ,P,71,W a y n e,wayne{SPACE},2919,1,313,wayne{SPACE},1058,1,0
+19,S7,60,Y e s t e r d a y,P,72,Y e l l o w s t o n e,yellowstone{SPACE},3841,1,316,yellowstone{SPACE},1928,1,0
+20,S8,36,a b a n d o n,B,1,a b d i c a t e ,abdicate,8934,3,3094,abdicate{SPACE},3094,1,0
+20,S8,8,a b r o a d ,B,2,a b o r i g i n e,abor,9409,1,2690,aborigine{SPACE},7446,1,0
+20,S8,69,a v o i d,B,3,a b s t a i n,{SPACE},8038,3,4669,abstain{SPACE},2282,0,0
+20,S8,47,a d v a n c e,B,4,a d v o c a t e ,advocate{SPACE},7057,1,435,advocate{SPACE},7499,1,0
+20,S8,17,A u s t e n ,B,5,A l c o t t ,{SPACE},5505,2,1136,alcott{SPACE},2888,0,0
+20,S8,74,a b n o r m a l i t y,B,6,a n a c h r o n i s m,,0,2,2969,anachronism{SPACE},4302,0,0
+20,S8,30,a c r o n y m,B,7,a n a g r a m,,0,4,3552,anagram{SPACE},6129,0,0
+20,S8,26,A l p s ,B,8,A n d e s,an{INSERT}des{SPACE},6672,1,766,andes{SPACE},2114,1,0
+20,S8,21,A r i e l,B,9,A u r o r a ,aurora{SPACE},5065,1,1664,aurora{SPACE},2645,1,0
+20,S8,61,B e i j i n g,B,10,B a n g k o k,bangkok,8652,1,2243,bangkok{SPACE},45780,1,0
+20,S8,29,b a r g a i n,B,11,b a r t e r ,barter{SPACE},6655,1,705,barter{SPACE},4261,1,0
+20,S8,40,B u c k i n g h a m ,B,12,B e c k h a m,{SPACE},5588,2,1627,beckham{SPACE},5993,0,0
+20,S8,45,b i l a t e r a l,B,13,b i n o m i a l ,v,9903,3,3507,binomial{SPACE},2341,0,0
+20,S8,7,c o r p s e ,B,14,c a r c a s s,,0,4,2860,carcass{SPACE},2255,0,0
+20,S8,68,C h r i s t i e ,B,15,C a r r o l l,,0,4,3258,carroll{SPACE},5839,0,0
+20,S8,70,c a m o f l a u g e ,B,16,c h a m e l e o n,chameleon{SPACE},6842,1,1207,chameleon{SPACE},5357,1,0
+20,S8,11,C h a m b e r l a i n,B,17,C h u r c h i l l,churchhill{SPACE},9796,3,3075,churchhill{SPACE},6308,1,0
+20,S8,25,C o n r a d ,B,18,C l e m e n s,{SPACE},4319,2,840,clemens{SPACE},2743,0,0
+20,S8,41,m u r d e r ,U,19,c o n g r u e n t,{SPACE},3849,2,1956,congruent{SPACE},4935,0,0
+20,S8,66,m i l i t a r y ,U,20,C o n n e r y,{SPACE},3548,2,981,connery{SPACE},2413,0,0
+20,S8,76,m i l k ,U,21,c o v e n a n t ,{SPACE},4324,2,795,covenant{SPACE},2425,0,0
+20,S8,3,m o n o p o l y ,U,22,D a n t e,{SPACE},9671,2,3749,dante{SPACE},4728,0,0
+20,S8,6,M o n a r c h,U,23,d e f a u l t,defa,9782,1,4919,default{SPACE},4743,0,0
+20,S8,31,n a r r a t e,U,24,d e p l e t e,,0,3,5563,"deplete{,}{SPACE}",4101,0,0
+20,S8,49,S a i g o n ,U,25,d i v e r g e,,0,4,1303,diverge{SPACE},3144,0,0
+20,S8,4,S h e l l e y,U,26,e c c e n t r i c,mys,9689,4,6748,eccentric{SPACE},4522,0,0
+20,S8,5,S w i t z e r l a n d,U,27,e x o r c i s m ,exorcism{SPACE},6567,1,7292,exorcism{SPACE},6744,1,0
+20,S8,51,S o l o ,U,28,F a r a d a y,tesla,6657,3,2500,faraday{SPACE},2820,0,0
+20,S8,59,s u b s t i t u t e ,U,29,f o l i a g e,foliage{SPACE},7488,1,894,foliage{SPACE},11576,1,0
+20,S8,65,T o l s t o y,U,30,G a r l a n d,{SPACE},8131,2,1635,garland{SPACE},2219,0,0
+20,S8,28,p u z z l e ,U,31,g o s l i n g,duckling,6527,3,2094,gosling{SPACE},3062,0,0
+20,S8,32,H i m a l a y a s,U,32,H a n c o c k,mas,9479,3,3758,hancock{SPACE},5164,0,0
+20,S8,44,C i n d e r e l l a ,U,33,H e l s i n k i ,{SPACE},5962,2,351,helsinki{SPACE},6719,0,0
+20,S8,63,V i e t n a m,U,34,h o i s t,{SPACE},4834,2,2722,hoist{SPACE},1219,0,0
+20,S8,16,t a r i f f ,U,35,H u s s e i n,a,6682,4,1784,hussein{SPACE},2936,0,0
+20,S8,22,M e s s i,U,36,i d i o s y n c r a s y ,,0,2,972,idiosyncrasy{SPACE},4940,0,0
+20,S8,60,m e n t i o n,R,37,i n t e r j e c t,,0,2,6631,interject{SPACE},3406,0,0
+20,S8,24,T y l e r,R,38,J a g g e r ,{SPACE},5189,2,1945,jagger{SPACE},2991,0,0
+20,S8,10,p e r j u r y,R,39,l i b e l,libel{SPACE},9784,1,1219,libel{SPACE},1797,1,0
+20,S8,23,v e r b o s e,R,40,l o q u a c i o u s ,volaq,9804,4,6940,loquacious{SPACE},8533,0,0
+20,S8,34,G a n d h i ,R,41,M a n d e l a,,0,4,2334,mandela{SPACE},2153,0,0
+20,S8,54,s p a r s e ,R,42,m e a g e r ,blan,7849,3,1998,meager{SPACE},4431,0,0
+20,S8,13,B o w i e,R,43,M e r c u r y,,7989,2,2199,mercury{SPACE},2709,0,0
+20,S8,33,S h a k e s p e a r e,R,44,M i l l e r ,{SPACE},4143,2,1403,miller{SPACE},2566,0,0
+20,S8,53,g r a t e,R,45,m i n c e,mince{SPACE},9489,1,889,mince{SPACE},2870,1,0
+20,S8,52,i n v a r i a b l e ,R,46,m o n o t o n y ,{SPACE},5985,2,1321,monotony{SPACE},5415,0,0
+20,S8,37,H o u s t o n,R,47,M o n r o e ,,0,2,2071,monroe{SPACE},3484,0,0
+20,S8,35,M a d a g a s c a r ,R,48,N a i r o b i,,0,3,819,nairobi{SPACE},5537,0,0
+20,S8,55,i n v a l i d a t e ,R,49,n u l l i f y,invalidate{SPACE},9090,3,2204,nullify{SPACE},4038,0,1
+20,S8,12,B e r l i n ,R,50,N u r e m b e r g,aushwi,9706,1,2138,nuremberg{SPACE},5771,0,0
+20,S8,43,s e c r e t i v e,R,51,o b s c u r e,,0,3,1466,obscure{SPACE},2989,0,0
+20,S8,73,u n l i m i t e d,R,52,o m n i p o t e n t ,{SPACE},6824,3,1225,omnipotent{SPACE},3016,0,0
+20,S8,56,f l a s h y ,R,53,o s t e n t a t i o u s ,,0,2,4382,ostentatious{SPACE},7518,0,0
+20,S8,27,B o o t h,R,54,O s w a l d ,booth{SPACE},6154,1,236,oswald{SPACE},3827,0,1
+20,S8,57,o t t e r,P,55,O t t a w a ,tor,9299,4,2883,ottawa{SPACE},5770,0,0
+20,S8,75,p a n d a,P,56,p a n a c e a,{SPACE},6165,2,731,panacea{SPACE},2881,0,0
+20,S8,14,p a r a c h u t e,P,57,p a r a g o n,,0,4,2837,paragon{SPACE},4933,0,0
+20,S8,9,p o l y g o n,P,58,p o l y g a m y ,polygamy{SPACE},9476,1,1457,polygamy{SPACE},7030,1,0
+20,S8,72,p r e c a r i o u s ,P,59,p r e c o c i o u s ,prod,9908,1,6547,precotious{SPACE},7982,0,0
+20,S8,18,p r o f e s s o r,P,60,p r o p h e c y ,premonition,9770,3,7534,prophecy{SPACE},3991,0,0
+20,S8,15,s o f a ,P,61,S e o u l,{SPACE},4604,2,762,seoul{SPACE},5287,0,0
+20,S8,64,s h i p ,P,62,S h a w ,{SPACE},3791,2,492,{SPACE},5017,0,0
+20,S8,19,s i z z l e ,P,63,S i c i l y ,miami,9888,3,4847,sicily{SPACE},4213,0,0
+20,S8,48,s k y s c r a p e r ,P,64,S k y w a l k e r,skywalker{SPACE},9051,1,935,skywalker{SPACE},3820,1,0
+20,S8,46,s u r v i v o r ,P,65,s u r r o g a t e,surrogate{SPACE},4492,1,1273,surrogate{SPACE},2761,1,0
+20,S8,50,t h o r n y ,P,66,T h o r e a u,{SPACE},6541,3,2066,thoreau{SPACE},5199,0,0
+20,S8,62,t i p,P,67,t i c,,0,4,7565,tic{SPACE},6791,0,0
+20,S8,38,t u r m e r i c ,P,68,t s u n a m i,tsunami{SPACE},8442,1,302,tsunami{SPACE},6992,1,0
+20,S8,2,T u r n e r ,P,69,T u r i n g ,{SPACE},9136,2,6234,turing{SPACE},3264,0,0
+20,S8,67,W a t t ,P,70,W a t s o n ,watson,6230,1,568,watson{SPACE},4186,1,0
+20,S8,42,w a k e ,P,71,W a y n e,wayne{SPACE},6054,1,2482,wayne{SPACE},2431,1,0
+20,S8,71,Y e s t e r d a y,P,72,Y e l l o w s t o n e,mount{SPACE},8776,4,2335,yellowstone{SPACE},3642,0,0
+21,S9,52,a b a n d o n,B,1,a b d i c a t e ,{SPACE},5239,2,215,abdicate{SPACE},1610,0,0
+21,S9,12,a b r o a d ,B,2,a b o r i g i n e,{SPACE},4635,2,1107,aborigine{SPACE},2602,0,0
+21,S9,14,a v o i d,B,3,a b s t a i n,,0,2,1819,abstain{SPACE},2063,0,0
+21,S9,74,a d v a n c e,B,4,a d v o c a t e ,{SPACE},6598,2,1144,advocate{SPACE},1577,0,0
+21,S9,45,A u s t e n ,B,5,A l c o t t ,{SPACE},2590,2,271,alcott{SPACE},1350,0,0
+21,S9,47,a b n o r m a l i t y,B,6,a n a c h r o n i s m,{SPACE},8822,2,232,anachronism{SPACE},3224,0,0
+21,S9,3,a c r o n y m,B,7,a n a g r a m,{SPACE},9547,2,338,anagram{SPACE},2129,0,0
+21,S9,28,A l p s ,B,8,A n d e s,andes{SPACE},6603,1,634,andes{SPACE},1350,1,0
+21,S9,34,A r i e l,B,9,A u r o r a ,{SPACE},6909,2,339,aurora{SPACE},2170,0,0
+21,S9,48,B e i j i n g,B,10,B a n g k o k,bangkok{SPACE},6065,1,716,bangkok{SPACE},1995,1,0
+21,S9,64,b a r g a i n,B,11,b a r t e r ,{SPACE},6689,2,306,barter{SPACE},1100,0,0
+21,S9,50,B u c k i n g h a m ,B,12,B e c k h a m,,0,2,3086,beckham{SPACE},4393,0,0
+21,S9,42,b i l a t e r a l,B,13,b i n o m i a l ,equation{SPACE},8426,1,1056,binomial{SPACE},1462,0,0
+21,S9,72,c o r p s e ,B,14,c a r c a s s,{SPACE},7804,2,269,carcas{SPACE},2054,0,0
+21,S9,36,C h r i s t i e ,B,15,C a r r o l l,{SPACE},4945,3,268,caroll{SPACE},1374,0,0
+21,S9,32,c a m o f l a u g e ,B,16,c h a m e l e o n,chamellion{SPACE},8463,1,195,chameleon{SPACE},2310,1,0
+21,S9,54,C h a m b e r l a i n,B,17,C h u r c h i l l,churchill{SPACE},8957,1,1130,churchill{SPACE},1696,1,0
+21,S9,8,C o n r a d ,B,18,C l e m e n s,{SPACE},3774,2,204,clemens{SPACE},2180,0,0
+21,S9,37,n u m b n e s s ,U,19,c o n g r u e n t,{SPACE},9940,2,298,congruent{SPACE},2099,0,0
+21,S9,63,n e u r a l ,U,20,C o n n e r y,{SPACE},5266,2,402,connery{SPACE},1875,0,0
+21,S9,60,o b s t r u c t ,U,21,c o v e n a n t ,{SPACE},5270,4,180,covenant{SPACE},1302,0,0
+21,S9,66,o m n i v o r e ,U,22,D a n t e,dante{SPACE},3809,1,637,dante{SPACE},1016,1,0
+21,S9,4,o s t e o p o r o s i s ,U,23,d e f a u l t,{SPACE},9607,2,219,default{SPACE},2130,0,0
+21,S9,38,o s m o s i s,U,24,d e p l e t e,{SPACE},5431,2,286,deplete{SPACE},1357,0,0
+21,S9,33,t w i t c h ,U,25,d i v e r g e,divide,6211,3,1290,diverge{SPACE},1386,0,0
+21,S9,15,t y p h o o n,U,26,e c c e n t r i c,different{SPACE},8517,3,7542,eccentric{SPACE},1988,0,0
+21,S9,11,T e s l a,U,27,e x o r c i s m ,exorcise{SPACE},9142,1,606,exorcism{SPACE},2787,1,0
+21,S9,27,W e a s l e y,U,28,F a r a d a y,coul,9708,1,1681,faraday{SPACE},1728,0,0
+21,S9,5,W a l k e r ,U,29,f o l i a g e,folia,9911,1,3083,foliage{SPACE},2478,0,0
+21,S9,40,Y o s e m i t e ,U,30,G a r l a n d,{SPACE},4517,2,357,garland{SPACE},1598,0,0
+21,S9,24,e q u a t i o n ,U,31,g o s l i n g,{SPACE},4264,2,832,gosling{SPACE},1757,0,0
+21,S9,62,s k e l e t o n ,U,32,H a n c o c k,jefferso,9691,3,1234,hancock{SPACE},2495,0,0
+21,S9,70,R o w l i n g,U,33,H e l s i n k i ,{SPACE},7227,2,422,helsinki{SPACE},1627,0,0
+21,S9,68,g e c k o,U,34,h o i s t,ha,9875,3,5385,hoist{SPACE},1125,0,0
+21,S9,71,T h a t c h e r ,U,35,H u s s e i n,{SPACE},5654,2,995,hussein{SPACE},1468,0,0
+21,S9,6,S a w y e r ,U,36,i d i o s y n c r a s y ,,0,2,1720,idiosyncracy{SPACE},10948,0,0
+21,S9,9,m e n t i o n,R,37,i n t e r j e c t,{SPACE},8342,2,979,interject{SPACE},2731,0,0
+21,S9,25,T y l e r,R,38,J a g g e r ,,0,4,709,jagger{SPACE},1558,0,0
+21,S9,53,p e r j u r y,R,39,l i b e l,{SPACE},8453,2,268,libel{SPACE},1003,0,0
+21,S9,69,v e r b o s e,R,40,l o q u a c i o u s ,loquacious,7701,1,1913,loquacious{SPACE},2035,1,0
+21,S9,59,G a n d h i ,R,41,M a n d e l a,mandela{SPACE},6425,1,228,mandela{SPACE},1343,1,0
+21,S9,10,s p a r s e ,R,42,m e a g e r ,sparce{SPACE},6343,1,1480,meager{SPACE},1877,0,1
+21,S9,65,B o w i e,R,43,M e r c u r y,mercury{SPACE},4880,1,303,mercury{SPACE},1422,1,0
+21,S9,44,S h a k e s p e a r e,R,44,M i l l e r ,dickens{SPACE},8688,3,357,miller{SPACE},1250,0,0
+21,S9,49,g r a t e,R,45,m i n c e,mince{SPACE},5860,1,485,mince{SPACE},1013,1,0
+21,S9,29,i n v a r i a b l e ,R,46,m o n o t o n y ,monotomy{SPACE},9691,1,781,monotony{SPACE},1570,1,0
+21,S9,46,H o u s t o n,R,47,M o n r o e ,monroe{SPACE},7819,1,715,monroe{SPACE},1307,1,0
+21,S9,73,M a d a g a s c a r ,R,48,N a i r o b i,nami,9996,3,1470,nairobi{SPACE},1429,0,0
+21,S9,43,i n v a l i d a t e ,R,49,n u l l i f y,{SPACE},7431,4,2423,nullify{SPACE},1532,0,0
+21,S9,18,B e r l i n ,R,50,N u r e m b e r g,nuremburg{SPACE},7712,1,820,nuremburg{SPACE},2898,1,0
+21,S9,26,s e c r e t i v e,R,51,o b s c u r e,,0,2,1014,obscure{SPACE},2166,0,0
+21,S9,23,u n l i m i t e d,R,52,o m n i p o t e n t ,omnipotent{SPACE},7261,1,725,omnipotent{SPACE},2550,1,0
+21,S9,51,f l a s h y ,R,53,o s t e n t a t i o u s ,{SPACE},8810,2,222,ostentatious{SPACE},2330,0,0
+21,S9,35,B o o t h,R,54,O s w a l d ,oswald{SPACE},9903,1,761,oswald{SPACE},1823,1,0
+21,S9,31,o t t e r,P,55,O t t a w a ,quebec{SPACE},6141,1,1689,ottowa{SPACE},1724,0,0
+21,S9,67,p a n d a,P,56,p a n a c e a,{SPACE},5421,2,212,panacea{SPACE},1441,0,0
+21,S9,30,p a r a c h u t e,P,57,p a r a g o n,exemplar,7345,3,770,paragon{SPACE},1389,0,0
+21,S9,16,p o l y g o n,P,58,p o l y g a m y ,polygamy,6561,1,1204,polygamy{SPACE},2699,1,0
+21,S9,21,p r e c a r i o u s ,P,59,p r e c o c i o u s ,prodigy,9827,3,1332,precocious{SPACE},2820,0,0
+21,S9,76,p r o f e s s o r,P,60,p r o p h e c y ,prophacy{SPACE},9642,1,234,prophecy{SPACE},2129,1,0
+21,S9,19,s o f a ,P,61,S e o u l,seoul{SPACE},4629,1,495,seoul{SPACE},1585,1,0
+21,S9,2,s h i p ,P,62,S h a w ,{SPACE},7885,2,3515,shaw{SPACE},2569,0,0
+21,S9,55,s i z z l e ,P,63,S i c i l y ,{SPACE},7923,2,451,sicily{SPACE},1218,0,0
+21,S9,41,s k y s c r a p e r ,P,64,S k y w a l k e r,skywalker{SPACE},7068,1,749,skywalker{SPACE},3038,1,0
+21,S9,13,s u r v i v o r ,P,65,s u r r o g a t e,surogate,4503,1,4587,surrogate{SPACE},4402,1,0
+21,S9,75,t h o r n y ,P,66,T h o r e a u,emerson{SPACE},4486,1,325,thoreau{SPACE},2031,0,0
+21,S9,57,t i p,P,67,t i c,tic{SPACE},6036,1,769,tic{SPACE},815,1,0
+21,S9,61,t u r m e r i c ,P,68,t s u n a m i,tsunami{SPACE},7260,1,452,tsunami{SPACE},1902,1,0
+21,S9,7,T u r n e r ,P,69,T u r i n g ,turing{SPACE},5536,1,690,turing{SPACE},1466,1,0
+21,S9,56,W a t t ,P,70,W a t s o n ,watson{SPACE},2943,1,387,watson{SPACE},995,1,0
+21,S9,17,w a k e ,P,71,W a y n e,wayne{SPACE},4487,1,679,wayne{SPACE},1424,1,0
+21,S9,22,Y e s t e r d a y,P,72,Y e l l o w s t o n e,yellowstone{SPACE},9579,1,5139,yellowstone{SPACE},2187,1,0
+22,S10,36,a b d o m e n,P,1,a b d i c a t e ,depose{SPACE},5019,3,993,abdicate{SPACE},1635,0,0
+22,S10,63,a b o r t i o n ,P,2,a b o r i g i n e,aborigines{SPACE},7250,1,1004,aborigine{SPACE},3919,1,0
+22,S10,52,a b s o l v e,P,3,a b s t a i n,{SPACE},4823,4,643,abstain{SPACE},6206,0,0
+22,S10,66,a d v e r b ,P,4,a d v o c a t e ,endorse{SPACE},6426,3,1271,advocate{SPACE},3119,0,0
+22,S10,11,a l c h e m y,P,5,A l c o t t ,{SPACE},2026,2,979,alcott{SPACE},3564,0,0
+22,S10,13,a n a e r o b i c,P,6,a n a c h r o n i s m,anachronistic{SPACE},8719,3,983,anachronism{SPACE},3365,1,0
+22,S10,71,a n a c o n d a ,P,7,a n a g r a m,{SPACE},4399,2,418,anagram{SPACE},1376,0,0
+22,S10,12,a n d r o i d,P,8,A n d e s,{SPACE},3475,2,642,andes{SPACE},1170,0,0
+22,S10,76,A u s t r a l i a,P,9,A u r o r a ,{SPACE},2129,2,661,aurora{SPACE},1370,0,0
+22,S10,15,b a n i s t e r ,P,10,B a n g k o k,bangkok,6937,1,1419,bangkok{SPACE},2611,1,0
+22,S10,30,b a r t e n d e r,P,11,b a r t e r ,bartar{SPACE},4704,1,474,bartar{SPACE},1437,1,0
+22,S10,21,B e c k e t t,P,12,B e c k h a m,beckham{SPACE},4464,1,1024,bekcham{SPACE},1530,1,0
+22,S10,73,b i a n n u a l ,P,13,b i n o m i a l ,forumla{SPACE},4744,3,1931,binomial{SPACE},2043,0,0
+22,S10,64,c a n v a s ,P,14,c a r c a s s,carcass{SPACE},5450,1,909,carcass{SPACE},1598,1,0
+22,S10,23,c a r a v a n,P,15,C a r r o l l,{SPACE},1998,2,1193,caroll{SPACE},1621,0,0
+22,S10,14,c a m e l,P,16,c h a m e l e o n,chameleon{SPACE},4102,1,728,chameleon{SPACE},2149,1,0
+22,S10,75,C h a r l e s,P,17,C h u r c h i l l,churchill{SPACE},7915,1,985,churchill{SPACE},1874,1,0
+22,S10,25,c o m m e n c e ,P,18,C l e m e n s,{SPACE},3121,4,2313,clements{SPACE},2615,0,0
+22,S10,7,c o m p a t i b l e ,B,19,c o n g r u e n t,identical{SPACE},6684,1,348,congruent{SPACE},1737,0,0
+22,S10,43,C r u i s e ,B,20,C o n n e r y,{SPACE},2814,4,844,conway{SPACE},7075,0,0
+22,S10,53,c o n t r a c t ,B,21,c o v e n a n t ,covenant{SPACE},3560,1,377,covenant{SPACE},1587,1,0
+22,S10,29,D e v i l,B,22,D a n t e,{SPACE},7164,4,1178,dante{SPACE},1386,0,0
+22,S10,51,d e f e c t ,B,23,d e f a u l t,default{SPACE},4473,1,1163,defualt{SPACE},1087,1,0
+22,S10,6,d e l e t e ,B,24,d e p l e t e,exhaust{SPACE},4879,1,653,deplete{SPACE},1902,0,0
+22,S10,57,d i f f e r ,B,25,d i v e r g e,diverge{SPACE},4130,1,461,diverge{SPACE},1439,1,0
+22,S10,8,e r r a t i c,B,26,e c c e n t r i c,quirky{SPACE},9839,3,936,eccentric{SPACE},1434,0,0
+22,S10,74,e x i l e,B,27,e x o r c i s m ,excersism{SPACE},8292,1,2723,exorcism{SPACE},1818,1,0
+22,S10,65,F e y n m a n,B,28,F a r a d a y,joule{SPACE},6567,3,1277,faraday{SPACE},2165,0,0
+22,S10,55,f o r e s t ,B,29,f o l i a g e,brush{SPACE},4574,3,1785,foliage{SPACE},1715,0,0
+22,S10,38,G a r n e r ,B,30,G a r l a n d,{SPACE},2541,2,736,garland{SPACE},2560,0,0
+22,S10,27,g o b b l e ,B,31,g o s l i n g,{SPACE},5780,2,603,gosling{SPACE},2331,0,0
+22,S10,32,H o o v e r ,B,32,H a n c o c k,hancok,9760,1,3878,hancock{SPACE},2101,1,0
+22,S10,70,H o l l a n d,B,33,H e l s i n k i ,{SPACE},2387,2,2541,helsinki{SPACE},1787,0,0
+22,S10,60,h e a v e,B,34,h o i s t,{SPACE},3801,4,692,hoist{SPACE},1546,0,0
+22,S10,10,H i t l e r ,B,35,H u s s e i n,hussein{SPACE},6308,1,1990,hussein{SPACE},1736,1,0
+22,S10,59,i n d i v i d u a l i s m,B,36,i d i o s y n c r a s y ,idiosyncra,9851,1,1294,idiosyncracy{SPACE},2800,1,0
+22,S10,3,o t t e r,U,37,i n t e r j e c t,interject{SPACE},7873,3,3741,interject{SPACE},3894,1,0
+22,S10,9,p a n d a,U,38,J a g g e r ,{SPACE},9485,2,1525,jagger{SPACE},2511,0,0
+22,S10,62,p a r a c h u t e,U,39,l i b e l,,0,4,2073,libel{SPACE},1726,0,0
+22,S10,47,p o l y g o n,U,40,l o q u a c i o u s ,loquacious{SPACE},5039,4,632,loquaciuous{SPACE},4604,1,0
+22,S10,44,p r e c a r i o u s ,U,41,M a n d e l a,mandela{SPACE},3909,1,908,mandela{SPACE},1710,1,0
+22,S10,45,p r o f e s s o r,U,42,m e a g e r ,dearth{SPACE},9266,3,1365,meager{SPACE},1318,0,0
+22,S10,69,a b a n d o n,U,43,M e r c u r y,{SPACE},3670,2,695,mercury{SPACE},3363,0,0
+22,S10,19,a b r o a d ,U,44,M i l l e r ,{SPACE},5790,4,2517,miller{SPACE},2016,0,0
+22,S10,17,a v o i d,U,45,m i n c e,mince{SPACE},3492,1,400,mince{ENTER}{SPACE},1801,1,0
+22,S10,34,a d v a n c e,U,46,m o n o t o n y ,monotony{SPACE},6235,1,575,monotony{SPACE},1476,1,0
+22,S10,37,A u s t e n ,U,47,M o n r o e ,{SPACE},9597,4,1153,monroe{SPACE},1641,0,0
+22,S10,26,a b n o r m a l i t y,U,48,N a i r o b i,{SPACE},4232,2,817,nairobi{SPACE},1456,0,0
+22,S10,18,p a r a l l e l ,U,49,n u l l i f y,nullify{SPACE},3662,1,289,nullify{SPACE},1903,1,0
+22,S10,28,B r o s n a n,U,50,N u r e m b e r g,nuremberg{SPACE},5753,1,1311,nuremberg{SPACE},1989,1,0
+22,S10,48,p r o t o c o l ,U,51,o b s c u r e,secret{SPACE},7894,4,691,obscure{SPACE},2422,0,0
+22,S10,24,H o m e r,U,52,o m n i p o t e n t ,omnipotent{SPACE},6830,1,988,omnipotent{SPACE},4313,1,0
+22,S10,67,s u r r e n d e r,U,53,o s t e n t a t i o u s ,opulent{SPACE},8008,4,2866,ostentatious{SPACE},3133,0,0
+22,S10,68,c o n s u m e,U,54,O s w a l d ,oswald{SPACE},3478,1,1200,oswald{SPACE},1844,1,0
+22,S10,31,T o r o n t o,R,55,O t t a w a ,t,9985,4,3285,ottawa{SPACE},1936,0,0
+22,S10,40,r e m e d y ,R,56,p a n a c e a,{SPACE},6355,4,2533,panacea{SPACE},3412,0,0
+22,S10,49,i d e a l,R,57,p a r a g o n,prototype{SPACE},8015,3,1559,paragon{SPACE},2378,0,0
+22,S10,35,m a r r i a g e ,R,58,p o l y g a m y ,polygamy{SPACE},4267,1,1088,polugamy{SPACE},2206,1,0
+22,S10,33,a d v a n c e d ,R,59,p r e c o c i o u s ,precocious{SPACE},7050,1,970,precocious{SPACE},1957,1,0
+22,S10,54,f o r e c a s t ,R,60,p r o p h e c y ,premonition{SPACE},6863,1,390,prophecy{SPACE},2003,0,0
+22,S10,42,T o k y o,R,61,S e o u l,{SPACE},1443,1,3573,seoul{SPACE},1777,0,0
+22,S10,2,W i l d e,R,62,S h a w ,{SPACE},8468,2,2552,shaw{SPACE},1204,0,0
+22,S10,22,C o r s i c a,R,63,S i c i l y ,cicily{SPACE},8539,3,4559,sicily{SPACE},2072,1,0
+22,S10,72,L e i a ,R,64,S k y w a l k e r,skywalker{SPACE},4149,1,996,skywalker{SPACE},2837,1,0
+22,S10,56,m i d w i f e,R,65,s u r r o g a t e,surrogate{SPACE},5098,1,249,surrogate{SPACE},1569,1,0
+22,S10,50,E m e r s o n,R,66,T h o r e a u,thoreau{SPACE},6101,1,651,thoreau{SPACE},2366,1,0
+22,S10,5,j e r k ,R,67,t i c,jerk{SPACE},8076,3,1698,tic{SPACE},1082,0,1
+22,S10,16,h u r r i c a n e,R,68,t s u n a m i,tsunami{SPACE},4868,1,720,tsunami{SPACE},1309,1,0
+22,S10,41,H a w k i n g,R,69,T u r i n g ,turing{SPACE},5539,1,458,turing{SPACE},1306,1,0
+22,S10,61,D o y l e,R,70,W a t s o n ,watson{SPACE},3449,1,1103,watson{SPACE},2365,1,0
+22,S10,46,K e n t ,R,71,W a y n e,wayne{SPACE},3402,1,1221,wayne{SPACE},920,1,0
+22,S10,4,G l a c i e r,R,72,Y e l l o w s t o n e,yellowstone{SPACE},5937,1,975,yellowstone{SPACE},2306,1,0
+23,S11,72,a b d o m e n,P,1,a b d i c a t e ,,0,4,1347,abdicate{SPACE},2721,0,0
+23,S11,14,a b o r t i o n ,P,2,a b o r i g i n e,,0,2,2113,aborigine{SPACE},2325,0,0
+23,S11,26,a b s o l v e,P,3,a b s t a i n,,0,4,2667,abstain{SPACE},2059,0,0
+23,S11,70,a d v e r b ,P,4,a d v o c a t e ,{SPACE},4889,4,1086,advocate{SPACE},2664,0,0
+23,S11,3,a l c h e m y,P,5,A l c o t t ,,0,4,1664,alcott{SPACE},2142,0,0
+23,S11,18,a n a e r o b i c,P,6,a n a c h r o n i s m,,0,2,1739,anachronism{SPACE},2695,0,0
+23,S11,2,a n a c o n d a ,P,7,a n a g r a m,anagram{SPACE},7520,1,4713,anagram{SPACE},2503,1,0
+23,S11,34,a n d r o i d,P,8,A n d e s,andes{SPACE},5878,1,3977,andes{SPACE},999,1,0
+23,S11,12,A u s t r a l i a,P,9,A u r o r a ,aurora{SPACE},4090,1,1099,aurora{SPACE},1501,1,0
+23,S11,35,b a n i s t e r ,P,10,B a n g k o k,bangkok,8816,4,2947,bangkok{SPACE},2205,1,0
+23,S11,41,b a r t e n d e r,P,11,b a r t e r ,barter{SPACE},5078,1,884,barter{SPACE},1298,1,0
+23,S11,7,B e c k e t t,P,12,B e c k h a m,{SPACE},7852,2,1242,beckham{SPACE},2937,0,0
+23,S11,43,b i a n n u a l ,P,13,b i n o m i a l ,binomi,9616,3,2099,binomial{SPACE},3496,1,0
+23,S11,63,c a n v a s ,P,14,c a r c a s s,carcass{SPACE},6549,1,1167,carcass{SPACE},1797,1,0
+23,S11,21,c a r a v a n,P,15,C a r r o l l,{SPACE},7305,4,314,carrol{SPACE},2536,0,0
+23,S11,27,c a m e l,P,16,c h a m e l e o n,chamele,9871,1,1427,chameleon{SPACE},3367,1,0
+23,S11,53,C h a r l e s,P,17,C h u r c h i l l,{SPACE},6467,3,1425,churchill{SPACE},1696,0,0
+23,S11,32,c o m m e n c e ,P,18,C l e m e n s,{SPACE},2383,2,971,clemens{SPACE},1696,0,0
+23,S11,67,c o m p a t i b l e ,B,19,c o n g r u e n t,,0,4,2433,congruent{SPACE},1577,0,0
+23,S11,55,C r u i s e ,B,20,C o n n e r y,{SPACE},2142,2,818,conerry{SPACE},1765,0,0
+23,S11,5,c o n t r a c t ,B,21,c o v e n a n t ,,0,2,1840,covenant{SPACE},2541,0,0
+23,S11,16,D e v i l,B,22,D a n t e,,0,4,1272,dante{SPACE},1604,0,0
+23,S11,73,d e f e c t ,B,23,d e f a u l t,,0,2,1362,defau{;}t{SPACE},1971,0,0
+23,S11,9,d e l e t e ,B,24,d e p l e t e,,0,4,3157,deplete{SPACE},2277,0,0
+23,S11,69,d i f f e r ,B,25,d i v e r g e,,0,2,4258,diverge{SPACE},1737,0,0
+23,S11,60,e r r a t i c,B,26,e c c e n t r i c,,0,2,1507,eccentric{SPACE},2963,0,0
+23,S11,36,e x i l e,B,27,e x o r c i s m ,exorcism,8061,3,2080,exorcism{SPACE},2517,1,0
+23,S11,15,F e y n m a n,B,28,F a r a d a y,,0,4,1412,faraday{SPACE},3836,0,0
+23,S11,54,f o r e s t ,B,29,f o l i a g e,,0,4,2405,foliage{SPACE},2005,0,0
+23,S11,30,G a r n e r ,B,30,G a r l a n d,{SPACE},3219,2,626,garland{SPACE},1837,0,0
+23,S11,25,g o b b l e ,B,31,g o s l i n g,,0,2,1307,gosling{SPACE},2000,0,0
+23,S11,64,H o o v e r ,B,32,H a n c o c k,,0,1,2615,hancocl{SPACE},2135,0,0
+23,S11,24,H o l l a n d,B,33,H e l s i n k i ,{SPACE},4824,2,783,helsinki{SPACE},2796,0,0
+23,S11,33,h e a v e,B,34,h o i s t,lift,9842,3,3461,hoist{SPACE},2313,0,0
+23,S11,75,H i t l e r ,B,35,H u s s e i n,,0,1,2502,hussein{SPACE},1891,0,0
+23,S11,40,i n d i v i d u a l i s m,B,36,i d i o s y n c r a s y ,,0,2,1388,idiosyncracy{SPACE},5114,0,0
+23,S11,51,s o f a ,U,37,i n t e r j e c t,{SPACE},8641,4,195,interject{SPACE},3814,0,0
+23,S11,50,s h i p ,U,38,J a g g e r ,{SPACE},9704,2,901,jagger{SPACE},1147,0,0
+23,S11,68,s i z z l e ,U,39,l i b e l,lible{SPACE},3630,1,1119,libel{SPACE},1430,1,0
+23,S11,10,s k y s c r a p e r ,U,40,l o q u a c i o u s ,{SPACE},8882,4,1820,loquacious{SPACE},3092,0,0
+23,S11,13,s u r v i v o r ,U,41,M a n d e l a,{SPACE},4438,1,3067,mandela{SPACE},1958,0,0
+23,S11,29,t h o r n y ,U,42,m e a g e r ,{SPACE},7512,2,818,meager{SPACE},1350,0,0
+23,S11,19,a c r o n y m,U,43,M e r c u r y,{SPACE},9302,2,993,mercury{SPACE},1952,0,0
+23,S11,4,A l p s ,U,44,M i l l e r ,{SPACE},3584,2,1251,miller{SPACE},2005,0,0
+23,S11,44,A r i e l,U,45,m i n c e,mince{SPACE},3020,1,945,mince{SPACE},1543,1,0
+23,S11,65,B e i j i n g,U,46,m o n o t o n y ,onerous,5512,3,2603,monotony{SPACE},2159,0,0
+23,S11,56,b a r g a i n,U,47,M o n r o e ,monroe,8357,1,1096,monroe{SPACE},1338,1,0
+23,S11,49,B u c k i n g h a m ,U,48,N a i r o b i,{SPACE},8724,2,900,nairobi{SPACE},2199,0,0
+23,S11,47,s p l i t,U,49,n u l l i f y,{SPACE},6978,4,2382,nullify{SPACE},1574,0,0
+23,S11,28,b i z a r r e,U,50,N u r e m b e r g,,0,2,3762,nuremburg{SPACE},2167,0,0
+23,S11,57,p o s s e s s i o n ,U,51,o b s c u r e,{SPACE},6296,4,1979,{SPACE},1647,0,0
+23,S11,37,N e w t o n ,U,52,o m n i p o t e n t ,omniscient,8970,4,2669,omnipotent{SPACE},2934,0,0
+23,S11,45,v e g e t a t i o n ,U,53,o s t e n t a t i o u s ,{SPACE},5982,2,157,ostentacious{SPACE},5798,0,0
+23,S11,22,H e p b u r n,U,54,O s w a l d ,,0,4,1280,oswald{SPACE},2304,0,0
+23,S11,11,T o r o n t o,R,55,O t t a w a ,,0,2,1544,ottawa{SPACE},2798,0,0
+23,S11,59,r e m e d y ,R,56,p a n a c e a,,0,3,1575,panacea{SPACE},1530,0,0
+23,S11,6,i d e a l,R,57,p a r a g o n,,0,4,3765,paragon{SPACE},2570,0,0
+23,S11,17,m a r r i a g e ,R,58,p o l y g a m y ,polygamy{SPACE},4937,1,1196,polygamy{SPACE},2664,1,0
+23,S11,71,a d v a n c e d ,R,59,p r e c o c i o u s ,,0,1,1243,precociuos{SPACE},2506,0,0
+23,S11,62,f o r e c a s t ,R,60,p r o p h e c y ,,0,4,2834,prophecy{SPACE},1765,0,0
+23,S11,76,T o k y o,R,61,S e o u l,{SPACE},8559,2,819,seoul{SPACE},1643,0,0
+23,S11,42,W i l d e,R,62,S h a w ,,0,2,869,shaw{SPACE},1380,0,0
+23,S11,38,C o r s i c a,R,63,S i c i l y ,,0,4,2097,sicily{SPACE},1128,0,0
+23,S11,46,L e i a ,R,64,S k y w a l k e r,skywalker{SPACE},6218,1,752,skywalker{SPACE},2044,1,0
+23,S11,52,m i d w i f e,R,65,s u r r o g a t e,surrogate{SPACE},3710,1,860,surrogate{SPACE},2326,1,0
+23,S11,61,E m e r s o n,R,66,T h o r e a u,{SPACE},2009,2,754,thoreau{SPACE},1428,0,0
+23,S11,48,j e r k ,R,67,t i c,tic{SPACE},3453,1,1060,tic{SPACE},988,1,0
+23,S11,74,h u r r i c a n e,R,68,t s u n a m i,tsunami{SPACE},5211,1,581,tsunami{SPACE},1895,1,0
+23,S11,66,H a w k i n g,R,69,T u r i n g ,,0,4,1971,turing{SPACE},2157,0,0
+23,S11,8,D o y l e,R,70,W a t s o n ,boyle{SPACE},9392,3,2056,watson{SPACE},2840,0,0
+23,S11,23,K e n t ,R,71,W a y n e,,0,2,2927,wayne{SPACE},1900,0,0
+23,S11,31,G l a c i e r,R,72,Y e l l o w s t o n e,{SPACE},3707,2,713,yellowstone{SPACE},3733,0,0
+24,S12,24,a b d o m e n,P,1,a b d i c a t e ,,0,4,812,abdicate{SPACE},1818,0,0
+24,S12,76,a b o r t i o n ,P,2,a b o r i g i n e,{SPACE},5921,2,1010,aborigine{SPACE},2842,0,0
+24,S12,59,a b s o l v e,P,3,a b s t a i n,abstain{SPACE},8366,1,1130,abstain{SPACE},1673,1,0
+24,S12,61,a d v e r b ,P,4,a d v o c a t e ,,0,4,537,advocate{SPACE},2037,0,0
+24,S12,63,a l c h e m y,P,5,A l c o t t ,little{SPACE},4415,3,1365,alcott{SPACE},1781,0,0
+24,S12,5,a n a e r o b i c,P,6,a n a c h r o n i s m,anacronism{SPACE},8742,1,1141,anacronism{SPACE},3802,1,0
+24,S12,6,a n a c o n d a ,P,7,a n a g r a m,,0,2,2261,anagram{SPACE},2215,0,0
+24,S12,37,a n d r o i d,P,8,A n d e s,andes{SPACE},5851,1,814,andes{SPACE},1511,1,0
+24,S12,50,A u s t r a l i a,P,9,A u r o r a ,,0,4,365,auroa{SPACE},1804,0,0
+24,S12,69,b a n i s t e r ,P,10,B a n g k o k,{SPACE},3684,2,947,bangkok{SPACE},3718,0,0
+24,S12,9,b a r t e n d e r,P,11,b a r t e r ,barder,9920,1,4020,barter{SPACE},3313,1,0
+24,S12,51,B e c k e t t,P,12,B e c k h a m,beck,9161,4,2332,beckham{ENTER}{SPACE},3364,0,0
+24,S12,22,b i a n n u a l ,P,13,b i n o m i a l ,,0,4,1754,binomial{SPACE},2007,0,0
+24,S12,29,c a n v a s ,P,14,c a r c a s s,carcas{SPACE},4599,1,918,carcas{SPACE},1797,1,0
+24,S12,65,c a r a v a n,P,15,C a r r o l l,{SPACE},3447,2,1646,caroll{SPACE},1594,0,0
+24,S12,23,c a m e l,P,16,c h a m e l e o n,chameleon{SPACE},8557,1,1138,chameleon{SPACE},3726,1,0
+24,S12,34,C h a r l e s,P,17,C h u r c h i l l,chandler{ENTER},9521,3,1317,churchill{ENTER}{SPACE},4905,0,0
+24,S12,43,c o m m e n c e ,P,18,C l e m e n s,clemens{SPACE},5389,1,1105,clemens{SPACE},2247,1,0
+24,S12,73,c o m p a t i b l e ,B,19,c o n g r u e n t,matching{SPACE},7751,3,2105,congruent{SPACE},3146,0,0
+24,S12,42,C r u i s e ,B,20,C o n n e r y,car,9955,4,1863,connery{SPACE},1508,0,0
+24,S12,26,c o n t r a c t ,B,21,c o v e n a n t ,co,9777,4,2501,covenant{SPACE},2146,0,0
+24,S12,53,D e v i l,B,22,D a n t e,dante{SPACE},4855,1,908,dante{SPACE},911,1,0
+24,S12,75,d e f e c t ,B,23,d e f a u l t,{SPACE},4526,2,880,default{SPACE},3800,0,0
+24,S12,49,d e l e t e ,B,24,d e p l e t e,deplete{SPACE},6817,1,1074,deplete{SPACE},1721,1,0
+24,S12,47,d i f f e r ,B,25,d i v e r g e,diverge{SPACE},8575,1,1140,diverge{SPACE},4478,1,0
+24,S12,67,e r r a t i c,B,26,e c c e n t r i c,eclectic,9863,1,1371,ecentric{SPACE},2111,0,0
+24,S12,64,e x i l e,B,27,e x o r c i s m ,purifying{SPACE},8898,2,2299,exorcism{SPACE},2281,0,0
+24,S12,25,F e y n m a n,B,28,F a r a d a y,joules{SPACE},8136,1,3947,faraday{SPACE},2143,0,0
+24,S12,70,f o r e s t ,B,29,f o l i a g e,folliage{SPACE},5122,1,958,foliage{SPACE},1745,1,0
+24,S12,74,G a r n e r ,B,30,G a r l a n d,{SPACE},3451,2,946,garland{SPACE},1776,0,0
+24,S12,33,g o b b l e ,B,31,g o s l i n g,,0,4,787,gosling{SPACE},3171,0,0
+24,S12,46,H o o v e r ,B,32,H a n c o c k,hancock{SPACE},5999,1,988,hancock{SPACE},2110,1,0
+24,S12,30,H o l l a n d,B,33,H e l s i n k i ,,0,2,1095,helsinki{ENTER}{SPACE},3863,0,0
+24,S12,28,h e a v e,B,34,h o i s t,hoist{SPACE},5209,1,1203,hoist{SPACE},2430,1,0
+24,S12,68,H i t l e r ,B,35,H u s s e i n,,0,2,2101,hussein{SPACE},2062,0,0
+24,S12,44,i n d i v i d u a l i s m,B,36,i d i o s y n c r a s y ,,0,2,1527,idiosyncrasy{SPACE},7824,0,0
+24,S12,2,t i p,U,37,i n t e r j e c t,,0,2,2159,interject{ENTER}{SPACE},3799,0,0
+24,S12,54,t u r m e r i c ,U,38,J a g g e r ,smith{SPACE},7949,3,1126,jagge{SPACE},1948,0,0
+24,S12,13,T u r n e r ,U,39,l i b e l,,0,4,1612,libel{SPACE},3548,0,0
+24,S12,11,W a t t ,U,40,l o q u a c i o u s ,,0,4,2343,loquatious{SPACE},3393,0,0
+24,S12,19,w a k e ,U,41,M a n d e l a,,0,2,1374,mandela{SPACE},1818,0,0
+24,S12,72,Y e s t e r d a y,U,42,m e a g e r ,{SPACE},8086,2,987,meager{SPACE},1206,0,0
+24,S12,16,b i l a t e r a l,U,43,M e r c u r y,murphy{SPACE},6171,1,1122,mercury{SPACE},2026,0,0
+24,S12,38,c o r p s e ,U,44,M i l l e r ,salamon{SPACE},8992,2,1605,miller{SPACE},1179,0,0
+24,S12,8,C h r i s t i e ,U,45,m i n c e,dice{SPACE},6103,1,1042,mince{SPACE},1232,0,0
+24,S12,32,c a m o f l a u g e ,U,46,m o n o t o n y ,monotone{SPACE},6850,1,1139,monotony{SPACE},4213,1,0
+24,S12,71,C h a m b e r l a i n,U,47,M o n r o e ,monroe{SPACE},4481,1,932,monroe{SPACE},1452,1,0
+24,S12,3,C o n r a d ,U,48,N a i r o b i,,0,2,1315,{SHIFT}Nairobi{SPACE},2370,0,0
+24,S12,55,p u p p y,U,49,n u l l i f y,denounce{SPACE},7638,3,1211,nullify{SPACE},1745,0,0
+24,S12,40,J e f f e r s o n,U,50,N u r e m b e r g,,8183,2,875,nurenburg{ENTER}{SPACE},4385,0,0
+24,S12,56,B u d a p e s t ,U,51,o b s c u r e,covert{SPACE},5330,3,2952,obscure{SPACE},2172,0,0
+24,S12,7,d r e d g e ,U,52,o m n i p o t e n t ,immortal{SPACE},9974,3,3625,omnipitant{ENTER}{SPACE},2828,0,0
+24,S12,48,S t a l i n ,U,53,o s t e n t a t i o u s ,boastful{SPACE},8687,3,1839,ostentatious{SPACE},4331,0,0
+24,S12,21,u n i q u e n e s s ,U,54,O s w a l d ,harvey{SPACE},5018,3,3626,oswald{SPACE},2348,0,0
+24,S12,27,T o r o n t o,R,55,O t t a w a ,,9172,4,1112,ottawa{SPACE},1885,0,0
+24,S12,41,r e m e d y ,R,56,p a n a c e a,,0,2,1575,panacea{SPACE},3306,0,0
+24,S12,18,i d e a l,R,57,p a r a g o n,,8721,2,1684,paragon{SPACE},2087,0,0
+24,S12,12,m a r r i a g e ,R,58,p o l y g a m y ,polygomy,9272,1,2427,polygamy{SPACE},2432,1,0
+24,S12,36,a d v a n c e d ,R,59,p r e c o c i o u s ,dev,9852,4,1920,precocious{SPACE},3562,0,0
+24,S12,4,f o r e c a s t ,R,60,p r o p h e c y ,foreshadow{SPACE},8669,1,1549,prophecy{SPACE},3059,0,0
+24,S12,62,T o k y o,R,61,S e o u l,seoul{SPACE},5899,1,940,seoul{SPACE},1776,1,0
+24,S12,66,W i l d e,R,62,S h a w ,m,9072,3,2867,shaw{SPACE},938,0,0
+24,S12,10,C o r s i c a,R,63,S i c i l y ,cicili{SPACE},8233,3,1817,sicilly{SPACE},3239,1,0
+24,S12,60,L e i a ,R,64,S k y w a l k e r,skywalker{SPACE},5181,1,1016,skywalker{SPACE},1932,1,0
+24,S12,45,m i d w i f e,R,65,s u r r o g a t e,midwife{SPACE},7277,4,1583,surrogate{ENTER}{SPACE},2223,0,1
+24,S12,31,E m e r s o n,R,66,T h o r e a u,,0,2,1600,thoreou{SPACE},3901,0,0
+24,S12,35,j e r k ,R,67,t i c,,0,2,2415,tic{SPACE},1309,0,0
+24,S12,17,h u r r i c a n e,R,68,t s u n a m i,tsunami{SPACE},7153,1,1176,tsunami{SPACE},1762,1,0
+24,S12,14,H a w k i n g,R,69,T u r i n g ,,0,2,3393,turing{SPACE},2426,0,0
+24,S12,52,D o y l e,R,70,W a t s o n ,,0,4,1149,watson{SPACE},1850,0,0
+24,S12,57,K e n t ,R,71,W a y n e,wayne{SPACE},6811,1,846,wayne{SPACE},1957,1,0
+24,S12,15,G l a c i e r,R,72,Y e l l o w s t o n e,yosemite{SPACE},5443,1,1349,yellow{SPACE},1141,0,0
+25,S1,37,r e s i g n ,R,1,a b d i c a t e ,stepdown{SPACE},5658,3,935,abdicate{SPACE},2401,0,0
+25,S1,62,n a t i v e ,R,2,a b o r i g i n e,aborigine{SPACE},5565,1,1246,aborigine{SPACE},3364,1,0
+25,S1,24,r e f u s e ,R,3,a b s t a i n,deny{SPACE},7817,3,1769,abstain{SPACE},3817,0,0
+25,S1,33,c o n d o n e,R,4,a d v o c a t e ,,0,3,2221,advocate{SPACE},2521,0,0
+25,S1,72,B r o n t e ,R,5,A l c o t t ,{SPACE},1917,2,121,{SHIFT}Alcott{SPACE},1218,0,0
+25,S1,44,m i s p l a c e ,R,6,a n a c h r o n i s m,f,9387,3,1326,anachronism{SPACE},2842,0,0
+25,S1,23,p u z z l e ,R,7,a n a g r a m,{SPACE},8829,4,484,anagram{SPACE},1931,0,0
+25,S1,46,H i m a l a y a s,R,8,A n d e s,{SPACE},3250,2,710,{SHIFT}Andes{SPACE},1437,0,0
+25,S1,53,C i n d e r e l l a ,R,9,A u r o r a ,aurora{SPACE},3178,1,833,aurora{SPACE},2214,1,0
+25,S1,17,V i e t n a m,R,10,B a n g k o k,{SHIFT}Ho,9309,4,3343,{SHIFT}Bangkok{SPACE},2147,0,0
+25,S1,18,t a r i f f ,R,11,b a r t e r ,barter{SPACE},5624,3,1574,barter{SPACE},1704,1,0
+25,S1,67,M e s s i,R,12,B e c k h a m,{SPACE},1888,2,318,{SHIFT}Beckham{SPACE},1920,0,0
+25,S1,61,e q u a t i o n ,R,13,b i n o m i a l ,,0,3,1643,binomial{SPACE},1969,0,0
+25,S1,55,s k e l e t o n ,R,14,c a r c a s s,{SHIFT}Fossil{SPACE},3933,3,1252,carcass{SPACE},2655,0,0
+25,S1,60,R o w l i n g,R,15,C a r r o l l,{SPACE},2671,3,475,{SHIFT}Carroll{SPACE},1980,0,0
+25,S1,41,g e c k o,R,16,c h a m e l e o n,chameleon{SPACE},5247,1,1021,chameleon{SPACE},3625,1,0
+25,S1,66,T h a t c h e r ,R,17,C h u r c h i l l,{SHIFT}Churchill{SPACE},7011,1,1814,{SHIFT}Churchill{SPACE},2575,1,0
+25,S1,12,S a w y e r ,R,18,C l e m e n s,{SPACE},7826,2,866,{SHIFT}Clemens{SPACE},2850,0,0
+25,S1,26,C o n g r e s s ,P,19,c o n g r u e n t,congruent{SPACE},6488,1,1282,congruent{SPACE},2209,1,0
+25,S1,75,C o b a i n ,P,20,C o n n e r y,{SPACE},2750,2,135,connery{SPACE},1675,0,0
+25,S1,28,c o n v e n i e n t ,P,21,c o v e n a n t ,{SPACE},8440,2,798,convenant{SPACE},4167,0,0
+25,S1,7,d a w n ,P,22,D a n t e,{SPACE},3957,2,618,{SHIFT}Dante{SPACE},1489,0,0
+25,S1,16,d i f f i c u l t,P,23,d e f a u l t,,0,3,2241,default{SPACE},1617,0,0
+25,S1,8,d e p t h,P,24,d e p l e t e,finish,9681,3,3588,deplete{SPACE},1803,0,0
+25,S1,11,d i g e s t ,P,25,d i v e r g e,diverge{SPACE},6064,1,3354,diverge{SPACE},1725,1,0
+25,S1,76,e c s t a t i c ,P,26,e c c e n t r i c,unique{SPACE},5411,3,426,eccentric{SPACE},2396,0,0
+25,S1,13,e x e r c i s e ,P,27,e x o r c i s m ,exorcist{SPACE},4343,1,940,exorcism{SPACE},2512,1,0
+25,S1,64,F a h r e n h e i t ,P,28,F a r a d a y,{SPACE},3972,2,312,{SHIFT}Faraday{SPACE},1948,0,0
+25,S1,74,f o l d i n g,P,29,f o l i a g e,,0,3,1072,foliage{SPACE},1936,0,0
+25,S1,70,g a r n i s h,P,30,G a r l a n d,{SPACE},4016,2,164,{SHIFT}garland{SPACE},2596,0,0
+25,S1,69,g o b l i n ,P,31,g o s l i n g,{SPACE},3401,2,150,gosling{SPACE},2174,0,0
+25,S1,10,h a n d l e ,P,32,H a n c o c k,,0,4,3102,{SHIFT}Hancock{SPACE},3593,0,0
+25,S1,30,h a n d k e r c h i e f ,P,33,H e l s i n k i ,{SPACE},2611,2,210,{SHIFT}Helsinki{SPACE},2052,0,0
+25,S1,6,h o l l y,P,34,h o i s t,,0,4,1443,hoist{SPACE},1777,0,0
+25,S1,35,h y m n ,P,35,H u s s e i n,{SHIFT}Hussein{SPACE},6305,1,1170,{SHIFT}Hussein{SPACE},1834,1,0
+25,S1,32,i d i o t,P,36,i d i o s y n c r a s y ,descriptor{SPACE},8892,3,1421,idiosyncrasy{SPACE},5075,0,0
+25,S1,51,i n t e r f e r e,B,37,i n t e r j e c t,interrupt{SPACE},6948,3,921,interject{SPACE},1971,0,0
+25,S1,54,J a c k s o n,B,38,J a g g e r ,{SPACE},3799,3,500,{SHIFT}Jagger{SPACE},1383,0,0
+25,S1,5,l i t i g a t e ,B,39,l i b e l,,0,2,2081,libel{SPACE},2758,0,0
+25,S1,27,l a c o n i c,B,40,l o q u a c i o u s ,,9686,4,3478,loquacious{SPACE},2833,0,0
+25,S1,31,M e n d e l ,B,41,M a n d e l a,{SHIFT}Mendela,9244,1,2095,{SHIFT}Mandela{SPACE},1833,1,0
+25,S1,14,m i n i m u m,B,42,m e a g e r ,,0,3,1864,meager{SPACE},1334,0,0
+25,S1,48,M c C a r t n e y,B,43,M e r c u r y,{SHIFT}Mercury{SPACE},4715,1,992,{SHIFT}Mercury{SPACE},1596,1,0
+25,S1,40,M e l v i l l e ,B,44,M i l l e r ,{SPACE},1889,2,143,miller{SPACE},1403,0,0
+25,S1,38,m a s h ,B,45,m i n c e,mince{SPACE},3657,1,540,mince{SPACE},1220,1,0
+25,S1,50,m o n o g a m y ,B,46,m o n o t o n y ,dull{SPACE},5443,3,1097,monotony{SPACE},2277,0,0
+25,S1,15,M a d o n n a,B,47,M o n r o e ,{SPACE},3549,2,869,{SHIFT}Monroe{SPACE},1468,0,0
+25,S1,57,N i l e ,B,48,N a i r o b i,{SPACE},7042,4,1891,nairobi{SPACE},2512,0,0
+25,S1,71,n e u t r a l i z e ,B,49,n u l l i f y,repeal{SPACE},7013,3,1207,nullify{SPACE},2018,0,0
+25,S1,21,N a z i s,B,50,N u r e m b e r g,,0,4,867,{SHIFT}Nuremburg{SPACE},2920,0,0
+25,S1,43,o p a q u e ,B,51,o b s c u r e,{SPACE},6424,3,3124,obscure{SPACE},1716,0,0
+25,S1,59,o m n i s c i e n t ,B,52,o m n i p o t e n t ,{SPACE},6175,3,1734,omnipotent{SPACE},2991,0,0
+25,S1,56,o b v i o u s,B,53,o s t e n t a t i o u s ,{SPACE},5854,2,435,ostentatious{SPACE},2777,0,0
+25,S1,29,O s a m a,B,54,O s w a l d ,{SPACE},6244,3,263,{SHIFT}Oswald{SPACE},2176,0,0
+25,S1,65,a b d o m e n,U,55,O t t a w a ,,0,4,1037,{SHIFT}Ottawa{SPACE},1525,0,0
+25,S1,34,a b o r t i o n ,U,56,p a n a c e a,{SPACE},5550,3,991,panacea{SPACE},2040,0,0
+25,S1,45,a b s o l v e,U,57,p a r a g o n,model{SPACE},5776,3,1241,paragon{SPACE},1992,0,0
+25,S1,4,a d v e r b ,U,58,p o l y g a m y ,polygamy{SPACE},6219,1,1392,polygamy{SPACE},2488,1,0
+25,S1,63,a l c h e m y,U,59,p r e c o c i o u s ,gifted{SPACE},4995,3,492,precocious{SPACE},4317,0,0
+25,S1,68,a n a e r o b i c,U,60,p r o p h e c y ,{SPACE},7309,3,1299,prophecy{SPACE},1982,0,0
+25,S1,25,c o m p a t i b l e ,U,61,S e o u l,{SHIFT}Seoul{SPACE},4181,1,1121,{SHIFT}Seoul{SPACE},1045,1,0
+25,S1,36,C r u i s e ,U,62,S h a w ,{SPACE},2252,2,315,shaw{SPACE},1598,0,0
+25,S1,19,c o n t r a c t ,U,63,S i c i l y ,{SPACE},3295,2,801,sicily{SPACE},2668,0,0
+25,S1,47,D e v i l,U,64,S k y w a l k e r,{SHIFT}Skywalker{SPACE},5536,1,418,{SHIFT}Skywalker{SPACE},1900,1,0
+25,S1,9,d e f e c t ,U,65,s u r r o g a t e,surrogate{SPACE},4142,1,956,surrogate{SPACE},1883,1,0
+25,S1,42,d e l e t e ,U,66,T h o r e a u,{SHIFT}{SHIFT}Thoreao{SPACE},8253,3,1499,{SHIFT}Thoreao{SPACE},2348,1,0
+25,S1,3,m e n t i o n,U,67,t i c,,0,2,1652,tic{SPACE},1967,0,0
+25,S1,52,T y l e r,U,68,t s u n a m i,tsunami{SPACE},4847,1,462,tsunami{SPACE},2685,1,0
+25,S1,73,p e r j u r y,U,69,T u r i n g ,,0,4,1153,{SHIFT}turing{SPACE},1652,0,0
+25,S1,22,v e r b o s e,U,70,W a t s o n ,{SHIFT}Watson{SPACE},4619,1,1237,{SHIFT}Watson{SPACE},2404,1,0
+25,S1,2,G a n d h i ,U,71,W a y n e,{SHIFT}Wayne{SPACE},5673,4,4613,{SHIFT}Wayne{SPACE},1655,1,0
+25,S1,49,s p a r s e ,U,72,Y e l l o w s t o n e,{SPACE},5560,3,392,{SHIFT}Yellowstone{SPACE},4065,0,0
+26,S2,8,r e s i g n ,R,1,a b d i c a t e ,{SPACE},5328,4,1989,abdicate{SPACE},2974,0,0
+26,S2,49,n a t i v e ,R,2,a b o r i g i n e,a,9635,4,2412,aboringine{SPACE},4092,0,0
+26,S2,66,r e f u s e ,R,3,a b s t a i n,refuse{SPACE},6267,3,1471,abstain{SPACE},2491,0,1
+26,S2,30,c o n d o n e,R,4,a d v o c a t e ,campaign{SPACE},7991,1,1765,advocate{SPACE},2653,0,0
+26,S2,44,B r o n t e ,R,5,A l c o t t ,,0,4,3068,{SHIFT}Alcott{SPACE},2734,0,0
+26,S2,71,m i s p l a c e ,R,6,a n a c h r o n i s m,artifact{SPACE},9729,3,1358,anacronism{SPACE},3958,0,0
+26,S2,50,p u z z l e ,R,7,a n a g r a m,,0,4,1600,anagram{SPACE},2820,0,0
+26,S2,53,H i m a l a y a s,R,8,A n d e s,{SHIFT}Appilacians{SPACE},9801,3,1845,{SHIFT}Andes{SPACE},2041,0,0
+26,S2,40,C i n d e r e l l a ,R,9,A u r o r a ,{SHIFT}Arora{SPACE},6106,1,1409,{SHIFT}Aurora{SPACE},3651,1,0
+26,S2,70,V i e t n a m,R,10,B a n g k o k,{SPACE},1842,2,578,{SHIFT}Bangkok{SPACE},4213,0,0
+26,S2,73,t a r i f f ,R,11,b a r t e r ,barter{SPACE},8869,3,1528,barter{SPACE},2625,1,0
+26,S2,59,M e s s i,R,12,B e c k h a m,{SPACE},3496,2,884,{SHIFT}Beckham{SPACE},3673,0,0
+26,S2,2,e q u a t i o n ,R,13,b i n o m i a l ,equation{SPACE},6185,1,1537,binomial{SPACE},3817,0,1
+26,S2,3,s k e l e t o n ,R,14,c a r c a s s,carcass{SPACE},5265,1,1263,carcass{SPACE},2994,1,0
+26,S2,5,R o w l i n g,R,15,C a r r o l l,{SPACE},3630,2,4614,{SHIFT}Carroll{SPACE},4239,0,0
+26,S2,27,g e c k o,R,16,c h a m e l e o n,camillion{SPACE},8705,1,2647,chameleon{SPACE},5493,1,0
+26,S2,17,T h a t c h e r ,R,17,C h u r c h i l l,{SHIFT}Churchill{SPACE},7595,4,1989,{SHIFT}Churchill{SPACE},3363,1,0
+26,S2,6,S a w y e r ,R,18,C l e m e n s,{SPACE},5354,2,2010,{SHIFT}Clemens{SPACE},3656,0,0
+26,S2,9,C o n g r e s s ,P,19,c o n g r u e n t,simi,9774,4,2883,congruent{SPACE},3353,0,0
+26,S2,46,C o b a i n ,P,20,C o n n e r y,{SPACE},3595,2,1153,{SHIFT}Connery{SPACE},3127,0,0
+26,S2,18,c o n v e n i e n t ,P,21,c o v e n a n t ,{SPACE},8993,4,559,covenant{SPACE},4866,0,0
+26,S2,38,d a w n ,P,22,D a n t e,{SPACE},6297,2,1335,{SHIFT}Dante{SPACE},2702,0,0
+26,S2,12,d i f f i c u l t,P,23,d e f a u l t,{SPACE},7353,2,477,default{SPACE},2810,0,0
+26,S2,10,d e p t h,P,24,d e p l e t e,diminsh{SPACE},9028,3,2403,deplete{SPACE},3978,0,0
+26,S2,72,d i g e s t ,P,25,d i v e r g e,,0,4,1076,diverge{SPACE},2948,0,0
+26,S2,22,e c s t a t i c ,P,26,e c c e n t r i c,eccentric,9707,3,2634,eccentric{SPACE},3258,1,0
+26,S2,55,e x e r c i s e ,P,27,e x o r c i s m ,{SPACE},8716,2,461,exorcism{SPACE},6789,0,0
+26,S2,47,F a h r e n h e i t ,P,28,F a r a d a y,{SHIFT}W,9456,4,2260,{SHIFT}Faraday{SPACE},3067,0,0
+26,S2,7,f o l d i n g,P,29,f o l i a g e,branch,9863,4,6970,foliage{SPACE},2617,0,0
+26,S2,51,g a r n i s h,P,30,G a r l a n d,{SPACE},2647,2,629,{SHIFT}Garland{SPACE},3890,0,0
+26,S2,74,g o b l i n ,P,31,g o s l i n g,goo,9905,1,1748,goosling{SPACE},3070,0,0
+26,S2,13,h a n d l e ,P,32,H a n c o c k,{SHIFT}Hancock{SPACE},9554,3,2040,{SHIFT}Hancock{SPACE},3213,1,0
+26,S2,43,h a n d k e r c h i e f ,P,33,H e l s i n k i ,{SPACE},4202,2,808,{CONTROL}{SHIFT}Helsinki{SPACE},5642,0,0
+26,S2,31,h o l l y,P,34,h o i s t,raise{SPACE},4972,1,1274,hoist{SPACE},4617,0,0
+26,S2,36,h y m n ,P,35,H u s s e i n,{SPACE},7929,4,1044,{SHIFT}Hussein{SPACE},2659,0,0
+26,S2,14,i d i o t,P,36,i d i o s y n c r a s y ,personal,9651,3,3835,idiosincracy{SPACE},5310,0,0
+26,S2,67,i n t e r f e r e,B,37,i n t e r j e c t,interrupt{SPACE},8724,3,1623,interject{SPACE},3979,0,0
+26,S2,33,J a c k s o n,B,38,J a g g e r ,{SPACE},3934,2,836,{SHIFT}Jagger{SPACE},2294,0,0
+26,S2,28,l i t i g a t e ,B,39,l i b e l,{SPACE},7128,4,809,libel{SPACE},1857,0,0
+26,S2,76,l a c o n i c,B,40,l o q u a c i o u s ,talkative{SPACE},7948,3,1462,loquacious{SPACE},5178,0,0
+26,S2,16,M e n d e l ,B,41,M a n d e l a,{SPACE},7725,2,1527,{SHIFT}Mandela{SPACE},2553,0,0
+26,S2,63,m i n i m u m,B,42,m e a g e r ,futile,8907,3,2049,meager{SPACE},1915,0,0
+26,S2,42,M c C a r t n e y,B,43,M e r c u r y,{SPACE},2937,2,721,{SHIFT}Mercury{SPACE},2819,0,0
+26,S2,35,M e l v i l l e ,B,44,M i l l e r ,{SPACE},1977,2,1268,{SHIFT}Miller{SPACE},2394,0,0
+26,S2,65,m a s h ,B,45,m i n c e,dices{SPACE},8288,1,1355,mince{SPACE},2384,0,0
+26,S2,15,m o n o g a m y ,B,46,m o n o t o n y ,malencoly{SPACE},8780,3,1043,monotony{SPACE},4192,0,0
+26,S2,52,M a d o n n a,B,47,M o n r o e ,{SHIFT}{SHIFT}Monroe{SPACE},6715,1,1515,{SHIFT}Monroe{SPACE},3862,1,0
+26,S2,61,N i l e ,B,48,N a i r o b i,{SPACE},3254,2,1001,{SHIFT}Nairobi{SPACE},2700,0,0
+26,S2,56,n e u t r a l i z e ,B,49,n u l l i f y,denunce{SPACE},6083,1,2205,nullify{SPACE},3231,0,0
+26,S2,54,N a z i s,B,50,N u r e m b e r g,{SHIFT}Nerenberg{SPACE},8289,1,1182,{SHIFT}{SHIFT}Nuremberg{SPACE},4957,1,0
+26,S2,37,o p a q u e ,B,51,o b s c u r e,unsee,9971,4,1618,obscure{SPACE},3367,0,0
+26,S2,11,o m n i s c i e n t ,B,52,o m n i p o t e n t ,{SPACE},6817,4,608,omnipotent{SPACE},3736,0,0
+26,S2,23,o b v i o u s,B,53,o s t e n t a t i o u s ,ostebntatious{SPACE},8670,1,3097,ostentatious{SPACE},3834,1,0
+26,S2,26,O s a m a,B,54,O s w a l d ,{SHIFT}{SPACE},4804,3,1871,{SHIFT}Oswald{SPACE},3376,0,0
+26,S2,62,a n a c o n d a ,U,55,O t t a w a ,{SHIFT}Quebec{SPACE},4937,1,1125,{SHIFT}Ottawa{SPACE},2854,0,0
+26,S2,24,a n d r o i d,U,56,p a n a c e a,{SPACE},8416,4,3367,panacea{SPACE},3108,0,0
+26,S2,29,A u s t r a l i a,U,57,p a r a g o n,upitom,9792,1,1971,paragon{SPACE},2998,0,0
+26,S2,57,b a n i s t e r ,U,58,p o l y g a m y ,poligomy{SPACE},8739,1,1211,poligamy{SPACE},3373,1,0
+26,S2,32,b a r t e n d e r,U,59,p r e c o c i o u s ,{SPACE},8914,4,1365,precocious{SPACE},4555,0,0
+26,S2,19,B e c k e t t,U,60,p r o p h e c y ,foreshadow,9763,1,2579,prophecy{SPACE},3103,0,0
+26,S2,68,d i f f e r ,U,61,S e o u l,{SPACE},2352,2,699,{SHIFT}Seoul{SPACE},3033,0,0
+26,S2,34,e r r a t i c,U,62,S h a w ,{SPACE},3074,2,476,{SHIFT}Shaw{SPACE},2015,0,0
+26,S2,41,e x i l e,U,63,S i c i l y ,{SPACE},6007,2,1877,sicily{SPACE},2770,0,0
+26,S2,69,F e y n m a n,U,64,S k y w a l k e r,{SHIFT}{SHIFT}Skywalker{SPACE},7591,3,1521,{SHIFT}Skywalker{SPACE},3948,1,0
+26,S2,75,f o r e s t ,U,65,s u r r o g a t e,serogate{SPACE},9977,1,1100,surrogate{SPACE},3475,1,0
+26,S2,48,G a r n e r ,U,66,T h o r e a u,{SPACE},5144,2,1578,{SHIFT}Thoreau{SPACE},3614,0,0
+26,S2,25,B o w i e,U,67,t i c,te,9985,2,3316,tic{SPACE},1754,0,0
+26,S2,64,S h a k e s p e a r e,U,68,t s u n a m i,sunami{SPACE},6318,1,1306,tsunami{SPACE},3208,1,0
+26,S2,21,g r a t e,U,69,T u r i n g ,{SPACE},7991,2,1487,{SHIFT}{SHIFT}Turing{SPACE},2883,0,0
+26,S2,4,i n v a r i a b l e ,U,70,W a t s o n ,{SPACE},3921,4,2555,{SHIFT}Watson{SPACE},3023,0,0
+26,S2,45,H o u s t o n,U,71,W a y n e,{SHIFT}{SHIFT},9099,4,1567,{SHIFT}Wayne{SPACE},2039,0,0
+26,S2,60,M a d a g a s c a r ,U,72,Y e l l o w s t o n e,{SPACE},4124,2,1563,{SHIFT}Yellowstone{SPACE},4586,0,0
+27,S3,14,r e s i g n ,R,1,a b d i c a t e ,,0,4,2606,abdicate{ENTER}{SPACE},4267,0,0
+27,S3,3,n a t i v e ,R,2,a b o r i g i n e,{SPACE},5157,2,535,aborigene{SPACE},5398,0,0
+27,S3,62,r e f u s e ,R,3,a b s t a i n,,0,2,3927,ABSTAIN{SPACE},1599,0,0
+27,S3,21,c o n d o n e,R,4,a d v o c a t e ,{SPACE},4803,2,1462,advocatwe{SPACE},2601,0,0
+27,S3,10,B r o n t e ,R,5,A l c o t t ,{SPACE},4713,2,783,alcott{SPACE},2596,0,0
+27,S3,15,m i s p l a c e ,R,6,a n a c h r o n i s m,{SPACE},5492,2,647,anachronism{SPACE},5085,0,0
+27,S3,70,p u z z l e ,R,7,a n a g r a m,ANOGRAM{SPACE},6606,1,1491,"ANAGRAM{,}{SPACE}",2090,1,0
+27,S3,9,H i m a l a y a s,R,8,A n d e s,andes{ENTER}{SPACE},7400,1,619,andes{SPACE},1463,1,0
+27,S3,65,C i n d e r e l l a ,R,9,A u r o r a ,BELLA{SPACE},6348,3,1834,AUORA{SPACE},2202,0,0
+27,S3,51,V i e t n a m,R,10,B a n g k o k,BANGCOK{SPACE},6902,1,1409,BANGCOK{SPACE},2601,1,0
+27,S3,50,t a r i f f ,R,11,b a r t e r ,BARTER{SPACE},6424,1,1956,BARTER{SPACE},1727,1,0
+27,S3,56,M e s s i,R,12,B e c k h a m,{SPACE},2969,2,1129,BECKAM{SPACE},4037,0,0
+27,S3,32,e q u a t i o n ,R,13,b i n o m i a l ,{SPACE},5139,4,642,binomia{;}{SPACE},2585,0,0
+27,S3,6,s k e l e t o n ,R,14,c a r c a s s,carcus{SPACE},5997,1,1696,carcas{ENTER}{SPACE},4054,1,0
+27,S3,61,R o w l i n g,R,15,C a r r o l l,{SPACE},2350,2,1273,CARROL{SPACE},2581,0,0
+27,S3,71,g e c k o,R,16,c h a m e l e o n,CHAM{INSERT}{INSERT}ELEON{SPACE},8324,1,1243,CHAMELEON{SPACE},2757,1,0
+27,S3,33,T h a t c h e r ,R,17,C h u r c h i l l,churchill{SPACE},7350,1,1915,churchill{SPACE},3178,1,0
+27,S3,29,S a w y e r ,R,18,C l e m e n s,,0,4,2393,clemens{SPACE},2138,0,0
+27,S3,76,C o n g r e s s ,P,19,c o n g r u e n t,{SPACE},4893,2,1421,CONGRUENT{SPACE},3302,0,0
+27,S3,18,C o b a i n ,P,20,C o n n e r y,,0,4,2262,connery{SPACE},2698,0,0
+27,S3,2,c o n v e n i e n t ,P,21,c o v e n a n t ,commandment{SPACE},5747,1,1870,covenant{SPACE},2914,0,0
+27,S3,42,d a w n ,P,22,D a n t e,{SPACE},3616,2,852,d{CAPSLOCK}ANTE{SPACE},2882,0,0
+27,S3,11,d i f f i c u l t,P,23,d e f a u l t,,0,4,4145,default{ENTER}{SPACE},2814,0,0
+27,S3,30,d e p t h,P,24,d e p l e t e,{SPACE},6319,2,1263,deplete{SPACE},3485,0,0
+27,S3,22,d i g e s t ,P,25,d i v e r g e,{SPACE},8726,4,320,diverge{ENTER}{SPACE},2639,0,0
+27,S3,52,e c s t a t i c ,P,26,e c c e n t r i c,{SPACE},3111,2,1294,ECENTRIC{SPACE},1751,0,0
+27,S3,19,e x e r c i s e ,P,27,e x o r c i s m ,exorcism{SPACE},6342,1,1896,exocism{SPACE},2648,1,0
+27,S3,38,F a h r e n h e i t ,P,28,F a r a d a y,{SPACE},4744,2,1099,faraday{SPACE},3786,0,0
+27,S3,23,f o l d i n g,P,29,f o l i a g e,{SPACE},4302,2,981,folliage{SPACE},2888,0,0
+27,S3,55,g a r n i s h,P,30,G a r l a n d,{SPACE},4267,2,192,GARLAND{SPACE},3303,0,0
+27,S3,24,g o b l i n ,P,31,g o s l i n g,{SPACE},7853,2,1211,goosling{SPACE},5541,0,0
+27,S3,73,h a n d l e ,P,32,H a n c o c k,HANCOCK{SPACE},7516,1,1689,HANCOCK{SPACE},2160,1,0
+27,S3,59,h a n d k e r c h i e f ,P,33,H e l s i n k i ,{SPACE},1337,2,1073,HELSINKI{SPACE},2663,0,0
+27,S3,54,h o l l y,P,34,h o i s t,{SPACE},9134,4,1540,HOIST{SPACE},1411,0,0
+27,S3,37,h y m n ,P,35,H u s s e i n,husaine,9389,4,1489,husein{SPACE},1866,1,0
+27,S3,4,i d i o t,P,36,i d i o s y n c r a s y ,{SPACE},7551,2,1598,idosyncracy{ENTER}{SPACE},5752,0,0
+27,S3,40,i n t e r f e r e,B,37,i n t e r j e c t,{SPACE},4612,2,1329,interject{SPACE},2257,0,0
+27,S3,41,J a c k s o n,B,38,J a g g e r ,tyler,9972,4,1749,jagger{SPACE},4096,0,0
+27,S3,43,l i t i g a t e ,B,39,l i b e l,{SPACE},7096,2,1206,LIBEL{SPACE},3708,0,0
+27,S3,25,l a c o n i c,B,40,l o q u a c i o u s ,{SPACE},4647,2,1218,loqucious{SPACE},4425,0,0
+27,S3,53,M e n d e l ,B,41,M a n d e l a,MANDELA{SPACE},6040,1,1492,MANDELA{SPACE},1501,1,0
+27,S3,17,m i n i m u m,B,42,m e a g e r ,{SPACE},6292,2,683,meager{ENTER}{SPACE},2476,0,0
+27,S3,69,M c C a r t n e y,B,43,M e r c u r y,{SPACE},5508,2,1112,{SPACE},1184,0,0
+27,S3,47,M e l v i l l e ,B,44,M i l l e r ,{ALT}{SPACE},2802,2,969,MILLER{SPACE},1813,0,0
+27,S3,13,m a s h ,B,45,m i n c e,mince{SPACE},9136,1,1479,mince{SPACE},1545,1,0
+27,S3,75,m o n o g a m y ,B,46,m o n o t o n y ,MONOTONY{SPACE},5448,1,1356,MONOTONY{SPACE},2085,1,0
+27,S3,35,M a d o n n a,B,47,M o n r o e ,manroe{SPACE},8417,1,1527,manroe{SPACE},2500,1,0
+27,S3,31,N i l e ,B,48,N a i r o b i,{SPACE},3739,2,1066,{SPACE},634,0,0
+27,S3,5,n e u t r a l i z e ,B,49,n u l l i f y,{SPACE},8989,3,191,nulify{SPACE},3053,0,0
+27,S3,27,N a z i s,B,50,N u r e m b e r g,{SPACE},6206,4,2914,nurenberg{SPACE},2590,0,0
+27,S3,72,o p a q u e ,B,51,o b s c u r e,{SPACE},2702,2,1289,OBSCURE{SPACE},2237,0,0
+27,S3,16,o m n i s c i e n t ,B,52,o m n i p o t e n t ,{SPACE},5748,2,719,omnipotent{ENTER}{SPACE},4833,0,0
+27,S3,64,o b v i o u s,B,53,o s t e n t a t i o u s ,{SPACE},2179,2,921,OSTENTATIOUS{SPACE},4861,0,0
+27,S3,48,O s a m a,B,54,O s w a l d ,OSWALD{SPACE},9095,1,1219,OSWALD{SPACE},3087,1,0
+27,S3,7,b i a n n u a l ,U,55,O t t a w a ,cubec,5802,1,2311,ottawa{ENTER}{SPACE},3838,0,0
+27,S3,60,c a n v a s ,U,56,p a n a c e a,REMEDY{SPACE},4767,1,1061,REMEDY{SPACE},2037,0,0
+27,S3,74,c a r a v a n,U,57,p a r a g o n,{SPACE},3712,2,896,PARAGON{SPACE},2649,0,0
+27,S3,45,c a m e l,U,58,p o l y g a m y ,POLIGO,9548,1,5382,POLIGOMY{SPACE},2601,1,0
+27,S3,28,C h a r l e s,U,59,p r e c o c i o u s ,2,9490,2,289,precocious{SPACE},4673,0,0
+27,S3,57,c o m m e n c e ,U,60,p r o p h e c y ,{SPACE},6944,2,1463,PROPHECY{SPACE},1858,0,0
+27,S3,12,g o b b l e ,U,61,S e o u l,piyong,9306,3,3944,seol{ENTER}{SPACE},2613,0,0
+27,S3,49,H o o v e r ,U,62,S h a w ,{SPACE},2137,2,1040,SHAW{SPACE},1879,0,0
+27,S3,26,H o l l a n d,U,63,S i c i l y ,amalfi{SPACE},9450,3,7190,{SPACE},2068,0,0
+27,S3,67,h e a v e,U,64,S k y w a l k e r,SKYWALKER{SPACE},5934,2,508,SKYWALKER{SPACE},2614,1,0
+27,S3,46,H i t l e r ,U,65,s u r r o g a t e,SURROGATE{SPACE},5194,1,1531,SURROGATE{SPACE},2046,1,0
+27,S3,66,i n d i v i d u a l i s m,U,66,T h o r e a u,{SPACE},3510,2,684,THOREAU{SPACE},2787,0,0
+27,S3,68,i n v a l i d a t e ,U,67,t i c,{SPACE},8502,2,1208,TIC{SPACE},1291,0,0
+27,S3,63,B e r l i n ,U,68,t s u n a m i,{SPACE},2953,2,1081,TSUNAMI{SPACE},1775,0,0
+27,S3,36,s e c r e t i v e,U,69,T u r i n g ,{SPACE},4808,4,363,turing{SPACE},1668,0,0
+27,S3,44,u n l i m i t e d,U,70,W a t s o n ,WATSON{SPACE},3851,1,1189,WATSON{SPACE},2120,1,0
+27,S3,34,f l a s h y ,U,71,W a y n e,wayne{SPACE},4048,1,1396,wayne{SPACE},1740,1,0
+27,S3,8,B o o t h,U,72,Y e l l o w s t o n e,{SPACE},7351,2,540,yellow{SPACE},2202,0,0
+28,S4,7,C o n g r e s s ,U,1,a b d i c a t e ,,0,2,1656,abdicate{SPACE},2255,0,0
+28,S4,35,C o b a i n ,U,2,a b o r i g i n e,,0,2,1583,aborigine{SPACE},5300,0,0
+28,S4,36,c o n v e n i e n t ,U,3,a b s t a i n,,0,3,2884,abstain{SPACE},1536,0,0
+28,S4,37,d a w n ,U,4,a d v o c a t e ,argue{SPACE},6524,3,2665,advocate{SPACE},2440,0,0
+28,S4,43,d i f f i c u l t,U,5,A l c o t t ,,0,2,1597,alcott{SPACE},1853,0,0
+28,S4,42,d e p t h,U,6,a n a c h r o n i s m,,0,4,6530,anachronism{SPACE},3954,0,0
+28,S4,61,i n t e r f e r e,U,7,a n a g r a m,,0,2,1098,anagram{SPACE},2041,0,0
+28,S4,46,J a c k s o n,U,8,A n d e s,,0,2,474,andes{SPACE},1397,0,0
+28,S4,75,l i t i g a t e ,U,9,A u r o r a ,aurora{SPACE},6205,1,1015,aurora{SPACE},3682,1,0
+28,S4,60,l a c o n i c,U,10,B a n g k o k,,0,4,1005,bangkok{SPACE},2498,0,0
+28,S4,32,M e n d e l ,U,11,b a r t e r ,barter{SPACE},7142,1,1523,barter{SPACE},1201,1,0
+28,S4,14,m i n i m u m,U,12,B e c k h a m,,0,2,633,beckham{SPACE},4309,0,0
+28,S4,34,T o r o n t o,U,13,b i n o m i a l ,expression{SPACE},6753,1,1916,binomial{SPACE},2767,0,0
+28,S4,63,r e m e d y ,U,14,c a r c a s s,carcase{SPACE},8329,1,1493,carcass{SPACE},1684,1,0
+28,S4,53,i d e a l,U,15,C a r r o l l,{SPACE},3104,2,232,carroll{SPACE},2264,0,0
+28,S4,40,m a r r i a g e ,U,16,c h a m e l e o n,camil,9799,1,7179,chameleon{SPACE},5149,1,0
+28,S4,4,a d v a n c e d ,U,17,C h u r c h i l l,,0,2,3441,churchill{SPACE},2012,0,0
+28,S4,73,f o r e c a s t ,U,18,C l e m e n s,{SPACE},3845,2,127,clemens{SPACE},1887,0,0
+28,S4,33,p a r a l l e l ,R,19,c o n g r u e n t,duplicate{SPACE},9274,1,1196,duplicate{SPACE},7170,0,0
+28,S4,47,B r o s n a n,R,20,C o n n e r y,,0,2,912,connery{SPACE},1318,0,0
+28,S4,74,p r o t o c o l ,R,21,c o v e n a n t ,,0,4,2610,convanent{SPACE},1875,0,0
+28,S4,56,H o m e r,R,22,D a n t e,{SPACE},3314,2,97,{SHIFT}dante{SPACE},2641,0,0
+28,S4,54,s u r r e n d e r,R,23,d e f a u l t,,0,2,859,default{SPACE},3825,0,0
+28,S4,29,c o n s u m e,R,24,d e p l e t e,,0,4,1637,deplete{SPACE},1695,0,0
+28,S4,45,s p l i t,R,25,d i v e r g e,,0,3,2610,diverge{SPACE},1693,0,0
+28,S4,41,b i z a r r e,R,26,e c c e n t r i c,awkward,9101,3,1797,eccentic{SPACE},2622,0,0
+28,S4,57,p o s s e s s i o n ,R,27,e x o r c i s m ,,0,4,2960,exorcism{SPACE},2422,0,0
+28,S4,25,N e w t o n ,R,28,F a r a d a y,einstien{SPACE},9697,1,1582,faraday{SPACE},2677,0,0
+28,S4,18,v e g e t a t i o n ,R,29,f o l i a g e,leaves{SPACE},6985,1,3179,foliage{SPACE},2724,0,0
+28,S4,12,H e p b u r n,R,30,G a r l a n d,,0,4,3818,garland{SPACE},3088,0,0
+28,S4,24,p u p p y,R,31,g o s l i n g,duckling{SPACE},8395,3,2802,gosling{SPACE},3210,0,0
+28,S4,19,J e f f e r s o n,R,32,H a n c o c k,{SHIFT}Jefferson{SPACE},9696,1,1566,{SHIFT}Hancock{SPACE},2547,0,1
+28,S4,51,B u d a p e s t ,R,33,H e l s i n k i ,{SPACE},1932,2,207,heliski{SPACE},5728,0,0
+28,S4,55,d r e d g e ,R,34,h o i s t,,0,4,2035,hoist{SPACE},1638,0,0
+28,S4,72,S t a l i n ,R,35,H u s s e i n,{SPACE},5509,2,1241,hussein{SPACE},2581,0,0
+28,S4,49,u n i q u e n e s s ,R,36,i d i o s y n c r a s y ,dist,9890,3,2545,idiosyncrasy{SPACE},10965,0,0
+28,S4,27,i m p l e m e n t,P,37,i n t e r j e c t,,0,4,1880,interject{SPACE},3896,0,0
+28,S4,9,J a c k m a n,P,38,J a g g e r ,,0,2,1498,{SHIFT}Jagger{SPACE},2868,0,0
+28,S4,38,l a b e l,P,39,l i b e l,,0,2,1476,libel{SPACE},2148,0,0
+28,S4,8,l o c k e t ,P,40,l o q u a c i o u s ,talkative,9792,4,3569,loquacious{SPACE},3432,0,0
+28,S4,21,M a n d a r i n ,P,41,M a n d e l a,{SHIFT}{SHIFT}Mandela{SPACE},9297,1,1204,{SHIFT}Mandela{SPACE},3340,1,0
+28,S4,66,m e d i u m ,P,42,m e a g e r ,,0,2,1227,meager{SPACE},1736,0,0
+28,S4,2,m u r d e r ,P,43,M e r c u r y,,0,2,2157,{SHIFT}Mercury{SPACE},3231,0,0
+28,S4,67,m i l i t a r y ,P,44,M i l l e r ,{SPACE},2172,2,846,miller{SPACE},1611,0,0
+28,S4,13,m i l k ,P,45,m i n c e,,0,4,1727,mince{SPACE},1627,0,0
+28,S4,11,m o n o p o l y ,P,46,m o n o t o n y ,monotonous{SPACE},7300,1,1739,monotonous{SPACE},6024,1,0
+28,S4,48,M o n a r c h,P,47,M o n r o e ,monroe{SPACE},9593,1,1213,monroe{SPACE},1703,1,0
+28,S4,70,n a r r a t e,P,48,N a i r o b i,{SPACE},5584,2,864,nairobi{SPACE},2357,0,0
+28,S4,30,n u m b n e s s ,P,49,n u l l i f y,,0,2,1453,nulify{SPACE},1898,0,0
+28,S4,50,n e u r a l ,P,50,N u r e m b e r g,{SPACE},4991,2,791,nuremburg{SPACE},3073,0,0
+28,S4,26,o b s t r u c t ,P,51,o b s c u r e,,0,3,3492,obscure{SPACE},2865,0,0
+28,S4,68,o m n i v o r e ,P,52,o m n i p o t e n t ,,0,2,1336,omnipotent{SPACE},3194,0,0
+28,S4,3,o s t e o p o r o s i s ,P,53,o s t e n t a t i o u s ,,0,2,2058,ostentasious{SPACE},4325,0,0
+28,S4,23,o s m o s i s,P,54,O s w a l d ,,0,2,652,oswald{SPACE},3291,0,0
+28,S4,52,O n t a r i o,B,55,O t t a w a ,toronto{SPACE},7947,1,1092,ottowa{SPACE},4294,0,0
+28,S4,16,p l a c e b o,B,56,p a n a c e a,,0,2,1326,panacea{SPACE},2154,0,0
+28,S4,22,p a r a d i g m ,B,57,p a r a g o n,,0,4,2464,paragon{SPACE},1783,0,0
+28,S4,71,p r o m i s c u o u s,B,58,p o l y g a m y ,polithi,9614,3,2172,polygamy{SPACE},2183,0,0
+28,S4,15,p r o d i g y,B,59,p r e c o c i o u s ,pro,9821,4,2496,precocious{SPACE},2904,0,0
+28,S4,17,p r o g n o s i s,B,60,p r o p h e c y ,,0,2,2003,prophecy{SPACE},5376,0,0
+28,S4,6,S a i g o n ,B,61,S e o u l,,0,2,1755,{SHIFT}Seaoul{SPACE},2982,0,0
+28,S4,59,S h e l l e y,B,62,S h a w ,{SPACE},3377,2,238,shaw{SPACE},1179,0,0
+28,S4,31,S w i t z e r l a n d,B,63,S i c i l y ,,0,2,1138,sicily{SPACE},1728,0,0
+28,S4,65,S o l o ,B,64,S k y w a l k e r,skywalker{SPACE},6038,1,1165,skywalker{SPACE},2250,1,0
+28,S4,5,s u b s t i t u t e ,B,65,s u r r o g a t e,seragate{SPACE},8595,1,1941,surogate{SPACE},4035,1,0
+28,S4,69,T o l s t o y,B,66,T h o r e a u,{SPACE},2769,2,106,thoreau{SPACE},2791,0,0
+28,S4,10,t w i t c h ,B,67,t i c,,0,2,1627,tic{SPACE},2010,0,0
+28,S4,76,t y p h o o n,B,68,t s u n a m i,hurr,9540,1,2870,tsunami{SPACE},5800,0,0
+28,S4,44,T e s l a,B,69,T u r i n g ,,0,2,10285,turing{SPACE},1671,0,0
+28,S4,62,W e a s l e y,B,70,W a t s o n ,,0,4,1972,watson{SPACE},1179,0,0
+28,S4,28,W a l k e r ,B,71,W a y n e,,0,3,3843,wayne{SPACE},1389,0,0
+28,S4,64,Y o s e m i t e ,B,72,Y e l l o w s t o n e,,0,3,1647,yellowstone{SPACE},2767,0,0
+29,S5,22,d i g e s t ,U,1,a b d i c a t e ,{SPACE},8110,3,1762,abdicate{SPACE},1362,0,0
+29,S5,60,e c s t a t i c ,U,2,a b o r i g i n e,{SPACE},7425,2,272,aborigine{SPACE},1999,0,0
+29,S5,50,e x e r c i s e ,U,3,a b s t a i n,persistent{SPACE},6894,1,1653,abstain{SPACE},1624,0,0
+29,S5,24,F a h r e n h e i t ,U,4,a d v o c a t e ,support{SPACE},8998,1,1218,advocate{SPACE},1407,0,0
+29,S5,73,f o l d i n g,U,5,A l c o t t ,{SPACE},2349,2,345,alcott{SPACE},1200,0,0
+29,S5,41,g a r n i s h,U,6,a n a c h r o n i s m,{SPACE},8615,2,294,anachronism{SPACE},2048,0,0
+29,S5,37,M c C a r t n e y,U,7,a n a g r a m,{SPACE},7772,4,479,anagram{SPACE},1085,0,0
+29,S5,44,M e l v i l l e ,U,8,A n d e s,{SPACE},7273,4,338,andes{SPACE},671,0,0
+29,S5,16,m a s h ,U,9,A u r o r a ,{SPACE},3536,2,372,aurora{SPACE},1182,0,0
+29,S5,15,m o n o g a m y ,U,10,B a n g k o k,bangcock{SPACE},9264,1,932,bangcok{SPACE},2255,1,0
+29,S5,26,M a d o n n a,U,11,b a r t e r ,trade{SPACE},9077,2,79,barter{SPACE},877,0,0
+29,S5,46,N i l e ,U,12,B e c k h a m,,0,2,1400,beckham{SPACE},2526,0,0
+29,S5,30,T o k y o,U,13,b i n o m i a l ,produc,9981,4,2432,binomial{SPACE},2011,0,0
+29,S5,17,W i l d e,U,14,c a r c a s s,carcas{SPACE},3962,1,304,carcas{SPACE},1056,1,0
+29,S5,76,C o r s i c a,U,15,C a r r o l l,{SPACE},2593,2,129,carroll{SPACE},1843,0,0
+29,S5,25,L e i a ,U,16,c h a m e l e o n,camouflage{SPACE},7297,1,548,chameleon{SPACE},1757,0,0
+29,S5,9,m i d w i f e,U,17,C h u r c h i l l,{SPACE},7484,4,588,churchill{SPACE},1986,0,0
+29,S5,36,E m e r s o n,U,18,C l e m e n s,{SPACE},2457,2,211,clemens{SPACE},1181,0,0
+29,S5,67,p a r a l l e l ,R,19,c o n g r u e n t,{SPACE},8010,2,322,congruent{SPACE},1794,0,0
+29,S5,65,B r o s n a n,R,20,C o n n e r y,{SPACE},7634,2,187,connery{SPACE},1136,0,0
+29,S5,66,p r o t o c o l ,R,21,c o v e n a n t ,covenant{SPACE},5519,1,529,covenant{SPACE},2987,1,0
+29,S5,28,H o m e r,R,22,D a n t e,{SPACE},4351,2,152,dante{SPACE},769,0,0
+29,S5,59,s u r r e n d e r,R,23,d e f a u l t,bankrupt{SPACE},7038,2,481,default{SPACE},985,0,0
+29,S5,63,c o n s u m e,R,24,d e p l e t e,consume{SPACE},8488,3,1931,deplete{SPACE},1279,0,1
+29,S5,18,s p l i t,R,25,d i v e r g e,,0,2,1074,diverge{SPACE},1488,0,0
+29,S5,23,b i z a r r e,R,26,e c c e n t r i c,uniqueness{SPACE},7498,3,5190,eccentric{SPACE},1327,0,0
+29,S5,12,p o s s e s s i o n ,R,27,e x o r c i s m ,devil{SPACE},5383,3,2832,exorcism{SPACE},1943,0,0
+29,S5,45,N e w t o n ,R,28,F a r a d a y,einstein{SPACE},6723,1,1123,faraday{SPACE},1441,0,0
+29,S5,74,v e g e t a t i o n ,R,29,f o l i a g e,,0,2,799,foliage{SPACE},2234,0,0
+29,S5,6,H e p b u r n,R,30,G a r l a n d,{SPACE},3264,2,1270,garland{SPACE},1148,0,0
+29,S5,51,p u p p y,R,31,g o s l i n g,geese{SPACE},4306,3,2776,goosling{SPACE},1994,1,0
+29,S5,70,J e f f e r s o n,R,32,H a n c o c k,hancock{SPACE},4973,1,1608,hancock{SPACE},1371,1,0
+29,S5,68,B u d a p e s t ,R,33,H e l s i n k i ,{SPACE},1798,2,150,helsinki{SPACE},1630,0,0
+29,S5,75,d r e d g e ,R,34,h o i s t,heighten{SPACE},9515,3,3105,hoist{SPACE},786,0,0
+29,S5,55,S t a l i n ,R,35,H u s s e i n,,0,4,1266,hussain{SPACE},1918,0,0
+29,S5,13,u n i q u e n e s s ,R,36,i d i o s y n c r a s y ,uniqueness{SPACE},9156,3,3553,idiosyncracy{SPACE},3624,0,1
+29,S5,7,i m p l e m e n t,P,37,i n t e r j e c t,,0,3,5834,interject{SPACE},1910,0,0
+29,S5,11,J a c k m a n,P,38,J a g g e r ,{SPACE},2772,2,605,jagger{SPACE},1980,0,0
+29,S5,69,l a b e l,P,39,l i b e l,forge{SPACE},7721,3,1293,libel{SPACE},915,0,0
+29,S5,61,l o c k e t ,P,40,l o q u a c i o u s ,{SPACE},5513,2,189,loqacious{SPACE},3264,0,0
+29,S5,56,M a n d a r i n ,P,41,M a n d e l a,mandal{SPACE},7230,4,1078,mandela{SPACE},1391,0,0
+29,S5,62,m e d i u m ,P,42,m e a g e r ,poor{SPACE},6819,3,1308,meager{SPACE},1042,0,0
+29,S5,40,m u r d e r ,P,43,M e r c u r y,micheal{SPACE},6441,1,3667,mercury{SPACE},2181,0,0
+29,S5,21,m i l i t a r y ,P,44,M i l l e r ,{SPACE},3039,2,125,miller{SPACE},972,0,0
+29,S5,43,m i l k ,P,45,m i n c e,dice{SPACE},6550,3,622,mince{SPACE},913,0,0
+29,S5,52,m o n o p o l y ,P,46,m o n o t o n y ,monotony{SPACE},6163,1,315,monotony{SPACE},1459,1,0
+29,S5,3,M o n a r c h,P,47,M o n r o e ,monroe{SPACE},8269,2,1660,monroe{SPACE},2926,1,0
+29,S5,8,n a r r a t e,P,48,N a i r o b i,{SPACE},4491,2,1158,nairobi{SPACE},1708,0,0
+29,S5,42,n u m b n e s s ,P,49,n u l l i f y,illegal{SPACE},5259,3,2070,nullify{SPACE},1378,0,0
+29,S5,10,n e u r a l ,P,50,N u r e m b e r g,berlin,9962,2,3233,nuremburg{SPACE},1810,0,0
+29,S5,34,o b s t r u c t ,P,51,o b s c u r e,secret{SPACE},7083,3,2139,obscure{SPACE},1133,0,0
+29,S5,64,o m n i v o r e ,P,52,o m n i p o t e n t ,{SPACE},8583,2,153,omnipotent{SPACE},2392,0,0
+29,S5,29,o s t e o p o r o s i s ,P,53,o s t e n t a t i o u s ,{SPACE},6467,2,1136,ostentatious{SPACE},2587,0,0
+29,S5,27,o s m o s i s,P,54,O s w a l d ,{SPACE},3257,2,79,oswald{SPACE},1169,0,0
+29,S5,14,O n t a r i o,B,55,O t t a w a ,vancouver{SPACE},6777,1,3443,ottawa{SPACE},1104,0,0
+29,S5,2,p l a c e b o,B,56,p a n a c e a,,0,2,1186,panacea{SPACE},2190,0,0
+29,S5,38,p a r a d i g m ,B,57,p a r a g o n,,0,4,3121,paragon{SPACE},1479,0,0
+29,S5,35,p r o m i s c u o u s,B,58,p o l y g a m y ,polygamy{SPACE},4939,1,998,polygamy{SPACE},1830,1,0
+29,S5,53,p r o d i g y,B,59,p r e c o c i o u s ,prodigy{SPACE},5494,3,887,precocious{SPACE},2170,0,1
+29,S5,47,p r o g n o s i s,B,60,p r o p h e c y ,{SPACE},8450,2,199,prophecy{SPACE},1820,0,0
+29,S5,49,S a i g o n ,B,61,S e o u l,soul{SPACE},6627,1,3175,seoul{SPACE},985,1,0
+29,S5,4,S h e l l e y,B,62,S h a w ,{SPACE},3716,2,870,shaw{SPACE},1856,0,0
+29,S5,54,S w i t z e r l a n d,B,63,S i c i l y ,sicily{SPACE},7178,1,1765,sicily{SPACE},1035,1,0
+29,S5,32,S o l o ,B,64,S k y w a l k e r,skywalker{SPACE},6171,1,1121,skywalker{SPACE},1582,1,0
+29,S5,19,s u b s t i t u t e ,B,65,s u r r o g a t e,{SPACE},7569,2,397,surrogate{SPACE},1905,0,0
+29,S5,48,T o l s t o y,B,66,T h o r e a u,fre,9890,2,2258,thoreau{SPACE},3146,0,0
+29,S5,33,t w i t c h ,B,67,t i c,twitc,9912,2,1102,tic{SPACE},697,0,1
+29,S5,71,t y p h o o n,B,68,t s u n a m i,hurricane{SPACE},5327,1,1677,tsunami{SPACE},1278,0,0
+29,S5,57,T e s l a,B,69,T u r i n g ,{SPACE},5636,4,98,turing{SPACE},1130,0,0
+29,S5,72,W e a s l e y,B,70,W a t s o n ,{SPACE},5429,2,174,watson{SPACE},1049,0,0
+29,S5,5,W a l k e r ,B,71,W a y n e,,0,4,2486,wayne{SPACE},1356,0,0
+29,S5,31,Y o s e m i t e ,B,72,Y e l l o w s t o n e,yosemi{CONTROL}te{SPACE},8053,3,2156,yellowstone{SPACE},1733,0,1
+30,S6,11,g o b l i n ,U,1,a b d i c a t e ,renege{SPACE},9555,3,1944,abdicate{SPACE},3253,0,0
+30,S6,73,h a n d l e ,U,2,a b o r i g i n e,aboriginy,8436,1,1592,aborigine{SPACE},9342,1,0
+30,S6,12,h a n d k e r c h i e f ,U,3,a b s t a i n,,0,2,1357,abstain{SPACE},2152,0,0
+30,S6,43,h o l l y,U,4,a d v o c a t e ,beget,8920,3,1548,advocate{SPACE},2155,0,0
+30,S6,54,h y m n ,U,5,A l c o t t ,{SPACE},3277,2,2607,alcott{SPACE},2042,0,0
+30,S6,55,i d i o t,U,6,a n a c h r o n i s m,intemporal{SPACE},8034,3,2680,anachromatic{SPACE},6229,0,0
+30,S6,17,n e u t r a l i z e ,U,7,a n a g r a m,{SPACE},7521,2,1086,anagram{SPACE},1379,0,0
+30,S6,60,N a z i s,U,8,A n d e s,ar,8556,4,2223,andes{SPACE},1563,0,0
+30,S6,15,o p a q u e ,U,9,A u r o r a ,aurora{SPACE},3376,1,926,aurora{SPACE},1402,1,0
+30,S6,2,o m n i s c i e n t ,U,10,B a n g k o k,bankok,9313,2,8468,bangkok{SPACE},4961,1,0
+30,S6,30,o b v i o u s,U,11,b a r t e r ,switch,7554,3,1669,bar{SPACE},7573,0,0
+30,S6,75,O s a m a,U,12,B e c k h a m,{SPACE},4401,2,740,beckam{SPACE},3462,0,0
+30,S6,10,j e r k ,U,13,b i n o m i a l ,equation{SPACE},9675,1,1339,binomial{SPACE},3112,0,0
+30,S6,53,h u r r i c a n e,U,14,c a r c a s s,carcass{SPACE},4874,1,696,carcass{SPACE},1902,1,0
+30,S6,28,H a w k i n g,U,15,C a r r o l l,lewis,5218,4,1989,carroll{SPACE},1622,0,0
+30,S6,46,D o y l e,U,16,c h a m e l e o n,chemeleon,5077,1,792,chameleon{SPACE},3251,1,0
+30,S6,62,K e n t ,U,17,C h u r c h i l l,churchill{SPACE},4887,1,1221,churchill{SPACE},1913,1,0
+30,S6,27,G l a c i e r,U,18,C l e m e n s,{SPACE},3877,2,942,clemens{SPACE},1590,0,0
+30,S6,42,p a r a l l e l ,R,19,c o n g r u e n t,parallel,6964,3,1399,congruent{SPACE},3820,0,1
+30,S6,65,B r o s n a n,R,20,C o n n e r y,brown{SPACE},7475,3,3314,connery{SPACE},1080,0,0
+30,S6,5,p r o t o c o l ,R,21,c o v e n a n t ,{SPACE},5667,2,2848,convenant{SPACE},8153,0,0
+30,S6,23,H o m e r,R,22,D a n t e,{SPACE},2467,1,2185,dante{SPACE},1609,0,0
+30,S6,26,s u r r e n d e r,R,23,d e f a u l t,default{SPACE},5548,1,989,default{SPACE},2747,1,0
+30,S6,40,c o n s u m e,R,24,d e p l e t e,up,7544,4,1852,deplete{SPACE},2306,0,0
+30,S6,7,s p l i t,R,25,d i v e r g e,diverge{SPACE},7989,1,894,diverge{SPACE},1720,1,0
+30,S6,25,b i z a r r e,R,26,e c c e n t r i c,ob,7557,3,2441,eccentric{SPACE},2369,0,0
+30,S6,61,p o s s e s s i o n ,R,27,e x o r c i s m ,exor,9992,1,1579,exorcise{SPACE},10756,1,0
+30,S6,14,N e w t o n ,R,28,F a r a d a y,,0,4,7166,farady{SPACE},1488,0,0
+30,S6,38,v e g e t a t i o n ,R,29,f o l i a g e,greenry{SPACE},4716,3,1201,foliage{SPACE},1895,0,0
+30,S6,63,H e p b u r n,R,30,G a r l a n d,{SPACE},2822,2,892,garland{SPACE},1498,0,0
+30,S6,64,p u p p y,R,31,g o s l i n g,goosling,3163,3,1854,gosling{SPACE},2226,1,0
+30,S6,71,J e f f e r s o n,R,32,H a n c o c k,monroe,7922,3,3094,hancock{SPACE},2482,0,0
+30,S6,59,B u d a p e s t ,R,33,H e l s i n k i ,{SPACE},5055,2,758,helsinki{SPACE},2837,0,0
+30,S6,68,d r e d g e ,R,34,h o i s t,lift,5848,3,1106,raise{SPACE},9612,0,0
+30,S6,52,S t a l i n ,R,35,H u s s e i n,,0,1,4515,hussain{SPACE},1564,0,0
+30,S6,16,u n i q u e n e s s ,R,36,i d i o s y n c r a s y ,idiosyncracy{SPACE},8526,1,1183,idiocyncrasy{SPACE},7624,1,0
+30,S6,48,i m p l e m e n t,P,37,i n t e r j e c t,splurt,8893,3,1696,interject{SPACE},2831,0,0
+30,S6,76,J a c k m a n,P,38,J a g g e r ,{SPACE},3729,2,720,jagger{SPACE},1475,0,0
+30,S6,6,l a b e l,P,39,l i b e l,,0,2,1743,libel{SPACE},3516,0,0
+30,S6,47,l o c k e t ,P,40,l o q u a c i o u s ,verboise,5880,3,1707,loquacious{SPACE},2538,0,0
+30,S6,69,M a n d a r i n ,P,41,M a n d e l a,mugabe{SPACE},9184,3,1078,mandela{SPACE},2515,0,0
+30,S6,29,m e d i u m ,P,42,m e a g e r ,medi,8705,3,2035,meager{SPACE},1172,0,1
+30,S6,74,m u r d e r ,P,43,M e r c u r y,{SPACE},6207,2,676,mercury{SPACE},1907,0,0
+30,S6,34,m i l i t a r y ,P,44,M i l l e r ,{SPACE},2632,2,1073,miller{SPACE},1056,0,0
+30,S6,22,m i l k ,P,45,m i n c e,mince{SPACE},2647,1,773,mince{SPACE},1425,1,0
+30,S6,66,m o n o p o l y ,P,46,m o n o t o n y ,montoneity,9098,3,3037,monotony{SPACE},2981,1,0
+30,S6,51,M o n a r c h,P,47,M o n r o e ,monroe,8979,1,935,monroe{SPACE},1739,1,0
+30,S6,4,n a r r a t e,P,48,N a i r o b i,nair,9918,1,5010,nairobi{SPACE},3413,1,0
+30,S6,18,n u m b n e s s ,P,49,n u l l i f y,negate,9400,3,2347,nullify{SPACE},1880,0,0
+30,S6,21,n e u r a l ,P,50,N u r e m b e r g,{SPACE},8072,4,1132,nuremberg{SPACE},4152,0,0
+30,S6,32,o b s t r u c t ,P,51,o b s c u r e,o{SPACE},9234,4,2757,obscure{SPACE},3718,0,0
+30,S6,45,o m n i v o r e ,P,52,o m n i p o t e n t ,omnipotent,9803,1,2110,omnipotent{SPACE},2479,1,0
+30,S6,41,o s t e o p o r o s i s ,P,53,o s t e n t a t i o u s ,ostentacious{LEFTARROW},9647,1,2690,ostentatious{SPACE},5003,1,0
+30,S6,72,o s m o s i s,P,54,O s w a l d ,booth{SPACE},2808,2,847,booth{SPACE},1409,0,0
+30,S6,50,O n t a r i o,B,55,O t t a w a ,quebec,7943,1,1611,quebec{SPACE},1658,0,0
+30,S6,33,p l a c e b o,B,56,p a n a c e a,cureall{SPACE},5975,1,1639,panacea{SPACE},4650,0,0
+30,S6,35,p a r a d i g m ,B,57,p a r a g o n,para,9698,3,1846,paragon{SPACE},2366,0,0
+30,S6,19,p r o m i s c u o u s,B,58,p o l y g a m y ,bino,9767,4,3483,polygamous{SPACE},19706,0,0
+30,S6,3,p r o d i g y,B,59,p r e c o c i o u s ,prodig,7629,4,4465,precocious{SPACE},5547,0,1
+30,S6,67,p r o g n o s i s,B,60,p r o p h e c y ,prodig,8117,3,4265,prophesy{SPACE},2717,0,0
+30,S6,70,S a i g o n ,B,61,S e o u l,seoul{SPACE},4856,1,1606,seoul{SPACE},1624,1,0
+30,S6,8,S h e l l e y,B,62,S h a w ,{SPACE},4559,2,1162,shaw{SPACE},1025,0,0
+30,S6,37,S w i t z e r l a n d,B,63,S i c i l y ,sicily{SPACE},8105,1,1261,sicily{SPACE},2169,1,0
+30,S6,24,S o l o ,B,64,S k y w a l k e r,skywalker{SPACE},4659,1,1003,skywalker{SPACE},2028,1,0
+30,S6,13,s u b s t i t u t e ,B,65,s u r r o g a t e,p,6859,4,3199,surrogate{SPACE},1648,0,0
+30,S6,31,T o l s t o y,B,66,T h o r e a u,thoreau{SPACE},7793,1,706,thoreau{SPACE},1757,1,0
+30,S6,56,t w i t c h ,B,67,t i c,jerk,9067,3,1742,tic{SPACE},1565,0,0
+30,S6,49,t y p h o o n,B,68,t s u n a m i,typhoon,4278,3,1545,tsunami{SPACE},2849,0,1
+30,S6,44,T e s l a,B,69,T u r i n g ,{SPACE},4495,2,285,turing{SPACE},3221,0,0
+30,S6,36,W e a s l e y,B,70,W a t s o n ,watson{SPACE},4986,1,899,watson{SPACE},1029,1,0
+30,S6,9,W a l k e r ,B,71,W a y n e,{SPACE},6885,2,1309,wayne{SPACE},1515,0,0
+30,S6,57,Y o s e m i t e ,B,72,Y e l l o w s t o n e,yosemi,8682,1,1757,yellowstone{SPACE},2061,0,1
+31,S7,18,a b a n d o n,B,1,a b d i c a t e ,{SPACE},4476,4,1640,abdicate{SPACE},2254,0,0
+31,S7,16,a b r o a d ,B,2,a b o r i g i n e,{SPACE},6553,2,1438,aborigine{SPACE},3242,0,0
+31,S7,49,a v o i d,B,3,a b s t a i n,avoid{SPACE},6147,3,1782,abstain{SPACE},2103,0,1
+31,S7,47,a d v a n c e,B,4,a d v o c a t e ,{SPACE},5229,4,166,advocate{SPACE},2645,0,0
+31,S7,25,A u s t e n ,B,5,A l c o t t ,{SPACE},2316,2,549,alcott{SPACE},1459,0,0
+31,S7,5,a b n o r m a l i t y,B,6,a n a c h r o n i s m,{SPACE},6944,2,2694,anachronism{SPACE},3828,0,0
+31,S7,22,a c r o n y m,B,7,a n a g r a m,{SPACE},7311,4,1635,anagram{SPACE},1685,0,0
+31,S7,53,A l p s ,B,8,A n d e s,{SPACE},6187,4,209,andes{SPACE},905,0,0
+31,S7,4,A r i e l,B,9,A u r o r a ,,0,4,37205,{SHIFT}Aurora{SPACE},4165,0,0
+31,S7,10,B e i j i n g,B,10,B a n g k o k,{SPACE},5525,2,1689,bangkok{SPACE},2774,0,0
+31,S7,41,b a r g a i n,B,11,b a r t e r ,bargain{SPACE},7777,3,1766,barter{SPACE},1211,0,1
+31,S7,54,B u c k i n g h a m ,B,12,B e c k h a m,{SPACE},3329,2,117,beckhan{SPACE},2379,0,0
+31,S7,35,b i l a t e r a l,B,13,b i n o m i a l ,equation{SPACE},6009,1,1495,binomial{SPACE},1754,0,0
+31,S7,31,c o r p s e ,B,14,c a r c a s s,,0,2,1205,carcass{SPACE},1503,0,0
+31,S7,14,C h r i s t i e ,B,15,C a r r o l l,{SPACE},3108,2,251,carrol{SPACE},1848,0,0
+31,S7,66,c a m o f l a u g e ,B,16,c h a m e l e o n,{SPACE},7139,2,639,chameleon{SPACE},2497,0,0
+31,S7,76,C h a m b e r l a i n,B,17,C h u r c h i l l,{SPACE},2225,2,147,churchill{SPACE},2236,0,0
+31,S7,19,C o n r a d ,B,18,C l e m e n s,{SPACE},3342,2,1341,clemens{SPACE},1627,0,0
+31,S7,7,i m p l e m e n t,U,19,c o n g r u e n t,{SPACE},6275,2,708,congruent{SPACE},2923,0,0
+31,S7,52,J a c k m a n,U,20,C o n n e r y,{SPACE},2854,2,4580,connery{SPACE},1215,0,0
+31,S7,51,l a b e l,U,21,c o v e n a n t ,{SPACE},3631,2,131,covenant{SPACE},2042,0,0
+31,S7,13,l o c k e t ,U,22,D a n t e,{SPACE},3343,2,703,dante{SPACE},1286,0,0
+31,S7,44,M a n d a r i n ,U,23,d e f a u l t,{SPACE},5166,4,944,defualt{SPACE},2454,0,0
+31,S7,61,m e d i u m ,U,24,d e p l e t e,finish{SPACE},7673,3,750,deplete{SPACE},1701,0,0
+31,S7,8,O n t a r i o,U,25,d i v e r g e,{SPACE},6650,1,1948,diverge{SPACE},2528,0,0
+31,S7,6,p l a c e b o,U,26,e c c e n t r i c,{SPACE},5421,2,3076,eccentric{SPACE},4599,0,0
+31,S7,62,p a r a d i g m ,U,27,e x o r c i s m ,blessing{SPACE},6414,3,1389,{SPACE},2453,0,0
+31,S7,42,p r o m i s c u o u s,U,28,F a r a d a y,{SPACE},4600,2,723,faraday{SPACE},2326,0,0
+31,S7,34,p r o d i g y,U,29,f o l i a g e,leaves{SPACE},8490,1,1117,foliage{SPACE},1763,0,0
+31,S7,37,p r o g n o s i s,U,30,G a r l a n d,{SPACE},3585,2,950,garland{SPACE},2445,0,0
+31,S7,74,r e s i g n ,U,31,g o s l i n g,{SPACE},3860,2,90,goosling{SPACE},2300,0,0
+31,S7,50,n a t i v e ,U,32,H a n c o c k,{SPACE},7148,2,2537,hancock{SPACE},1784,0,0
+31,S7,71,r e f u s e ,U,33,H e l s i n k i ,{SPACE},1817,2,71,helsinki{SPACE},1679,0,0
+31,S7,9,c o n d o n e,U,34,h o i s t,raise{SPACE},6824,1,5709,hoist{SPACE},1793,0,0
+31,S7,36,B r o n t e ,U,35,H u s s e i n,{SPACE},2960,2,1406,hussein{SPACE},2342,0,0
+31,S7,17,m i s p l a c e ,U,36,i d i o s y n c r a s y ,,0,2,18709,idiosyncrasy{SPACE},3910,0,0
+31,S7,40,m e n t i o n,R,37,i n t e r j e c t,{SPACE},6399,4,1081,interject{SPACE},3293,0,0
+31,S7,24,T y l e r,R,38,J a g g e r ,{SPACE},4618,2,1312,jagger{SPACE},1187,0,0
+31,S7,12,p e r j u r y,R,39,l i b e l,{SPACE},6758,2,1155,libel{SPACE},1622,0,0
+31,S7,55,v e r b o s e,R,40,l o q u a c i o u s ,gregarious{SPACE},8358,1,1469,loquacious{SPACE},3592,0,0
+31,S7,45,G a n d h i ,R,41,M a n d e l a,{SPACE},5965,2,1789,mandela{SPACE},1372,0,0
+31,S7,72,s p a r s e ,R,42,m e a g e r ,{SPACE},4392,4,1003,meager{SPACE},1199,0,0
+31,S7,2,B o w i e,R,43,M e r c u r y,,0,4,13767,{SHIFT}Mercury{SPACE},3146,0,0
+31,S7,64,S h a k e s p e a r e,R,44,M i l l e r ,{SPACE},2890,2,239,miller{SPACE},1559,0,0
+31,S7,15,g r a t e,R,45,m i n c e,sli,9800,2,2498,mince{SPACE},1262,0,0
+31,S7,56,i n v a r i a b l e ,R,46,m o n o t o n y ,{SPACE},3999,2,521,monotomy{SPACE},4639,0,0
+31,S7,69,H o u s t o n,R,47,M o n r o e ,monroe{SPACE},5808,1,1160,monroe{SPACE},1097,1,0
+31,S7,30,M a d a g a s c a r ,R,48,N a i r o b i,{SPACE},5940,2,1827,nairobi{SPACE},1710,0,0
+31,S7,27,i n v a l i d a t e ,R,49,n u l l i f y,{SPACE},5108,2,714,nullify{SPACE},3388,0,0
+31,S7,60,B e r l i n ,R,50,N u r e m b e r g,{SPACE},5955,2,1380,nuremberg{SPACE},2299,0,0
+31,S7,26,s e c r e t i v e,R,51,o b s c u r e,mystery{SPACE},5049,1,1372,obscure{SPACE},2027,0,0
+31,S7,33,u n l i m i t e d,R,52,o m n i p o t e n t ,{SPACE},4139,2,825,omnipotent{SPACE},2751,0,0
+31,S7,48,f l a s h y ,R,53,o s t e n t a t i o u s ,{SPACE},5030,2,943,ostentatious{SPACE},2909,0,0
+31,S7,59,B o o t h,R,54,O s w a l d ,{SPACE},4204,4,1416,oswald{SPACE},3012,0,0
+31,S7,43,o t t e r,P,55,O t t a w a ,{SPACE},7569,4,172,ottawa{SPACE},2755,0,0
+31,S7,68,p a n d a,P,56,p a n a c e a,{SPACE},4582,2,525,panacea{SPACE},2187,0,0
+31,S7,3,p a r a c h u t e,P,57,p a r a g o n,,0,2,7798,paragon{SPACE},3365,0,0
+31,S7,73,p o l y g o n,P,58,p o l y g a m y ,{SPACE},4122,4,153,polygamy{SPACE},1973,0,0
+31,S7,11,p r e c a r i o u s ,P,59,p r e c o c i o u s ,learning{SPACE},9221,3,3266,precocious{SPACE},2851,0,0
+31,S7,32,p r o f e s s o r,P,60,p r o p h e c y ,{SPACE},8387,4,1446,prophecy{SPACE},2339,0,0
+31,S7,46,s o f a ,P,61,S e o u l,{SPACE},4001,2,840,seoul{SPACE},1731,0,0
+31,S7,65,s h i p ,P,62,S h a w ,{SPACE},2291,2,501,shaw{SPACE},842,0,0
+31,S7,63,s i z z l e ,P,63,S i c i l y ,{SPACE},5630,2,410,sicily{SPACE},1433,0,0
+31,S7,23,s k y s c r a p e r ,P,64,S k y w a l k e r,skywalker,9692,1,7234,skywalker{SPACE},2696,1,0
+31,S7,38,s u r v i v o r ,P,65,s u r r o g a t e,serrogate{SPACE},6806,1,1136,surrogate{SPACE},2470,1,0
+31,S7,75,t h o r n y ,P,66,T h o r e a u,{SPACE},2731,2,84,thoreau{SPACE},2362,0,0
+31,S7,67,t i p,P,67,t i c,{SPACE},6887,2,765,tic{SPACE},1059,0,0
+31,S7,21,t u r m e r i c ,P,68,t s u n a m i,{SPACE},4801,2,2034,tsunami{SPACE},2269,0,0
+31,S7,70,T u r n e r ,P,69,T u r i n g ,{SPACE},3084,2,147,turing{SPACE},1193,0,0
+31,S7,28,W a t t ,P,70,W a t s o n ,{SPACE},2517,2,606,watson{SPACE},1982,0,0
+31,S7,29,w a k e ,P,71,W a y n e,{SPACE},7461,2,483,wayne{SPACE},976,0,0
+31,S7,57,Y e s t e r d a y,P,72,Y e l l o w s t o n e,,0,4,3106,yellowstone{SPACE},2350,0,0
+32,S8,23,a b a n d o n,B,1,a b d i c a t e ,abandon{SPACE},3772,1,985,abdicate{SPACE},2165,0,1
+32,S8,68,a b r o a d ,B,2,a b o r i g i n e,{CAPSLOCK}A{CAPSLOCK}b,5893,3,3991,aborigine{SPACE},2573,0,0
+32,S8,27,a v o i d,B,3,a b s t a i n,,0,4,1220,abstain{SPACE},1887,0,0
+32,S8,52,a d v a n c e,B,4,a d v o c a t e ,,0,3,2815,{CAPSLOCK}A{CAPSLOCK}dvocate{SPACE},5036,0,0
+32,S8,8,A u s t e n ,B,5,A l c o t t ,{CAPSLOCK}A{CAPSLOCK}ustin{SPACE},4647,1,975,{CAPSLOCK}A{CAPSLOCK}lcott{SPACE},2007,0,1
+32,S8,73,a b n o r m a l i t y,B,6,a n a c h r o n i s m,,0,3,2665,anachoronism{SPACE},6456,0,0
+32,S8,30,a c r o n y m,B,7,a n a g r a m,{SPACE},5055,2,982,anagram{SPACE},1690,0,0
+32,S8,51,A l p s ,B,8,A n d e s,{CAPSLOCK}A{CAPSLOCK}pls{SPACE},2668,1,808,{CAPSLOCK}A{CAPSLOCK}ndes{SPACE},1566,0,1
+32,S8,37,A r i e l,B,9,A u r o r a ,{CAPSLOCK}{CAPSLOCK}{CAPSLOCK}B{CAPSLOCK}ell,9587,3,3382,{CAPSLOCK}A{CAPSLOCK}urora{SPACE},2173,0,0
+32,S8,54,B e i j i n g,B,10,B a n g k o k,{CAPSLOCK}{CAPSLOCK}{CAPSLOCK}S{CAPSLOCK}eoul,9807,3,2178,{CAPSLOCK}{CAPSLOCK}B{CAPSLOCK}angak{SPACE},4909,0,0
+32,S8,61,b a r g a i n,B,11,b a r t e r ,trade{SPACE},5066,1,912,{CAPSLOCK}B{CAPSLOCK}arter{SPACE},2261,0,0
+32,S8,40,B u c k i n g h a m ,B,12,B e c k h a m,{CAPSLOCK}B{CAPSLOCK}uckingham{SPACE},6511,2,2471,{CAPSLOCK}B{CAPSLOCK}eckam{SPACE},3740,0,1
+32,S8,47,b i l a t e r a l,B,13,b i n o m i a l ,bilateral{SPACE},5928,1,2073,{CAPSLOCK}B{CAPSLOCK}inomial{SPACE},2211,0,1
+32,S8,75,c o r p s e ,B,14,c a r c a s s,corpse{SPACE},3980,1,577,carcass{SPACE},1966,0,1
+32,S8,64,C h r i s t i e ,B,15,C a r r o l l,{CAPSLOCK}C{CAPSLOCK}hris,4431,3,2003,{CAPSLOCK}C{CAPSLOCK}arrol{SPACE},3085,0,1
+32,S8,35,c a m o f l a u g e ,B,16,c h a m e l e o n,,0,4,1753,chameleon{SPACE},3423,0,0
+32,S8,14,C h a m b e r l a i n,B,17,C h u r c h i l l,{SPACE},1836,2,1324,{CAPSLOCK}C{CAPSLOCK}hurchill{SPACE},3784,0,0
+32,S8,6,C o n r a d ,B,18,C l e m e n s,{CAPSLOCK}{CAPSLOCK}{SPACE},8579,2,1683,{CAPSLOCK}{CAPSLOCK}{CAPSLOCK}C{CAPSLOCK}lemens{SPACE},3344,0,0
+32,S8,45,m u r d e r ,U,19,c o n g r u e n t,similar{SPACE},9301,3,1269,congruent{SPACE},2332,0,0
+32,S8,38,m i l i t a r y ,U,20,C o n n e r y,{SPACE},6560,2,1078,{CAPSLOCK}C{CAPSLOCK}onnery{SPACE},2179,0,0
+32,S8,53,m i l k ,U,21,c o v e n a n t ,contr,8853,4,2424,convanant{SPACE},6284,0,0
+32,S8,26,m o n o p o l y ,U,22,D a n t e,{CAPSLOCK}D{CAPSLOCK}onte{SPACE},7322,1,960,{CAPSLOCK}D{CAPSLOCK}ante{SPACE},1956,1,0
+32,S8,42,M o n a r c h,U,23,d e f a u l t,{SPACE},8954,4,1321,default{SPACE},2807,0,0
+32,S8,16,n a r r a t e,U,24,d e p l e t e,,0,4,2630,{CAPSLOCK}{CAPSLOCK}deplete{SPACE},2455,0,0
+32,S8,17,S a i g o n ,U,25,d i v e r g e,,0,3,2527,diverge{SPACE},3679,0,0
+32,S8,60,S h e l l e y,U,26,e c c e n t r i c,{CAPSLOCK}{CAPSLOCK},8671,3,2675,{CAPSLOCK}E{CAPSLOCK}ccentric{SPACE},3170,0,0
+32,S8,11,S w i t z e r l a n d,U,27,e x o r c i s m ,{CAPSLOCK},3086,4,3584,{CAPSLOCK}{CAPSLOCK}{CAPSLOCK}E{CAPSLOCK}xorcism{SPACE},3529,0,0
+32,S8,76,S o l o ,U,28,F a r a d a y,{CAPSLOCK}J{CAPSLOCK}ewel{SPACE},8682,1,341,{CAPSLOCK}F{CAPSLOCK}araday{SPACE},3741,0,0
+32,S8,22,s u b s t i t u t e ,U,29,f o l i a g e,,0,4,2037,foliage{SPACE},1985,0,0
+32,S8,15,T o l s t o y,U,30,G a r l a n d,{CAPSLOCK}{CAPSLOCK}{CAPSLOCK}T{CAPSLOCK}olsoy{SPACE},9222,3,6057,G{CAPSLOCK}arland{SPACE},2260,0,1
+32,S8,34,p u z z l e ,U,31,g o s l i n g,,0,2,1362,gosling{SPACE},1928,0,0
+32,S8,46,H i m a l a y a s,U,32,H a n c o c k,{SPACE},7369,3,3116,H{CAPSLOCK}ancock{SPACE},2499,0,0
+32,S8,44,C i n d e r e l l a ,U,33,H e l s i n k i ,{CAPSLOCK}C{CAPSLOCK}in,3261,3,3952,H{CAPSLOCK}elsinki{SPACE},2464,0,1
+32,S8,4,V i e t n a m,U,34,h o i s t,{CAPSLOCK}{CAPSLOCK}{CAPSLOCK}C{CAPSLOCK}as,9850,3,3502,{CAPSLOCK}{CAPSLOCK}{CAPSLOCK}H{CAPSLOCK}oist{SPACE},2683,0,0
+32,S8,19,t a r i f f ,U,35,H u s s e i n,,0,2,1195,{CAPSLOCK}H{CAPSLOCK}uessein{SPACE},2067,0,0
+32,S8,48,M e s s i,U,36,i d i o s y n c r a s y ,{CAPSLOCK}P{CAPSLOCK}ersonality{SPACE},9893,1,828,{CAPSLOCK}I{CAPSLOCK}diosyncrisy{SPACE},7090,0,0
+32,S8,74,m e n t i o n,R,37,i n t e r j e c t,mention{SPACE},4083,1,947,interject{SPACE},2336,0,1
+32,S8,67,T y l e r,R,38,J a g g e r ,{CAPSLOCK}T{CAPSLOCK}yler{SPACE},5938,1,835,{CAPSLOCK}J{CAPSLOCK}agger{SPACE},3799,0,1
+32,S8,24,p e r j u r y,R,39,l i b e l,perjury{SPACE},3929,1,704,libel{SPACE},1513,0,1
+32,S8,65,v e r b o s e,R,40,l o q u a c i o u s ,verbose{SPACE},2537,1,1164,{CAPSLOCK}L{CAPSLOCK}oquacious{SPACE},3195,0,1
+32,S8,49,G a n d h i ,R,41,M a n d e l a,{CAPSLOCK}G{CAPSLOCK}handi{SPACE},5331,1,877,{CAPSLOCK}M{CAPSLOCK}andela{SPACE},3823,0,1
+32,S8,28,s p a r s e ,R,42,m e a g e r ,sparse{SPACE},3199,1,789,meager{SPACE},2510,0,1
+32,S8,50,B o w i e,R,43,M e r c u r y,{CAPSLOCK}B{CAPSLOCK}owie{SPACE},2892,1,879,M{CAPSLOCK}ercury{SPACE},3221,0,1
+32,S8,31,S h a k e s p e a r e,R,44,M i l l e r ,{CAPSLOCK}S{CAPSLOCK}hakespeare{SPACE},8049,1,1479,{CAPSLOCK}M{CAPSLOCK}iller{SPACE},2601,0,1
+32,S8,9,g r a t e,R,45,m i n c e,dice{SPACE},7793,1,1618,{CAPSLOCK}M{CAPSLOCK}ince{SPACE},1757,0,0
+32,S8,33,i n v a r i a b l e ,R,46,m o n o t o n y ,{SPACE},3853,2,791,monotony{SPACE},2539,0,0
+32,S8,57,H o u s t o n,R,47,M o n r o e ,{CAPSLOCK}M{CAPSLOCK}onroe{SPACE},7525,1,1025,{CAPSLOCK}M{CAPSLOCK}onroe{SPACE},2452,1,0
+32,S8,62,M a d a g a s c a r ,R,48,N a i r o b i,{SPACE},4389,2,759,{CAPSLOCK}N{CAPSLOCK}airobi{SPACE},2657,0,0
+32,S8,59,i n v a l i d a t e ,R,49,n u l l i f y,{CAPSLOCK}I{CAPSLOCK}nvalid{SPACE},5802,1,640,nulify{SPACE},1905,0,1
+32,S8,21,B e r l i n ,R,50,N u r e m b e r g,{CAPSLOCK}B{CAPSLOCK}erlin{SPACE},3421,1,1002,{CAPSLOCK}N{CAPSLOCK}uremburg{SPACE},3078,0,1
+32,S8,10,s e c r e t i v e,R,51,o b s c u r e,{CAPSLOCK}S{CAPSLOCK}ecretive{SPACE},6178,1,936,{CAPSLOCK}{CAPSLOCK}{CAPSLOCK}O{CAPSLOCK}bscure{SPACE},3941,0,1
+32,S8,2,u n l i m i t e d,R,52,o m n i p o t e n t ,{CAPSLOCK},6780,2,3887,omniponent{SPACE},3977,0,0
+32,S8,18,f l a s h y ,R,53,o s t e n t a t i o u s ,flashy{SPACE},5076,3,3927,ostentatious{SPACE},3134,0,1
+32,S8,12,B o o t h,R,54,O s w a l d ,{CAPSLOCK}{CAPSLOCK}{SPACE},4993,2,1530,{CAPSLOCK}O{CAPSLOCK}swald{SPACE},2387,0,0
+32,S8,69,o t t e r,P,55,O t t a w a ,{CAPSLOCK}O{CAPSLOCK}ntario{SPACE},4782,1,880,{CAPSLOCK}O{CAPSLOCK}ttawa{SPACE},1924,0,0
+32,S8,72,p a n d a,P,56,p a n a c e a,{SPACE},7715,2,1031,panacea{SPACE},2447,0,0
+32,S8,43,p a r a c h u t e,P,57,p a r a g o n,example{SPACE},9055,3,1850,paragon{SPACE},2470,0,0
+32,S8,36,p o l y g o n,P,58,p o l y g a m y ,polyemouris,8573,1,2144,polygamy{SPACE},3831,0,0
+32,S8,63,p r e c a r i o u s ,P,59,p r e c o c i o u s ,{SPACE},5791,2,150,precocious{SPACE},3593,0,0
+32,S8,55,p r o f e s s o r,P,60,p r o p h e c y ,premonition{SPACE},5755,3,1795,{CAPSLOCK}P{CAPSLOCK}rophecy{SPACE},3960,0,0
+32,S8,29,s o f a ,P,61,S e o u l,{SPACE},8195,2,1954,{CAPSLOCK}{CAPSLOCK}S{CAPSLOCK}eoul{SPACE},4295,0,0
+32,S8,71,s h i p ,P,62,S h a w ,{CAPSLOCK}S{CAPSLOCK}hip{SPACE},5347,1,733,{CAPSLOCK}S{CAPSLOCK}haw{SPACE},2227,0,1
+32,S8,25,s i z z l e ,P,63,S i c i l y ,{CAPSLOCK}{CAPSLOCK}{SPACE},9257,2,1003,{CAPSLOCK}S{CAPSLOCK}icily{SPACE},3973,0,0
+32,S8,66,s k y s c r a p e r ,P,64,S k y w a l k e r,{CAPSLOCK}W{CAPSLOCK},6819,4,2262,{CAPSLOCK}S{CAPSLOCK}kywalker{SPACE},4700,0,0
+32,S8,70,s u r v i v o r ,P,65,s u r r o g a t e,{CAPSLOCK}{CAPSLOCK}{CAPSLOCK}{CAPSLOCK}{CAPSLOCK}S{CAPSLOCK},9986,1,2021,{CAPSLOCK}S{CAPSLOCK}urrogate{SPACE},3230,0,0
+32,S8,56,t h o r n y ,P,66,T h o r e a u,{CAPSLOCK}T{CAPSLOCK}hornfield{SPACE},9070,3,1400,{CAPSLOCK}T{CAPSLOCK}horeau{SPACE},3632,0,0
+32,S8,7,t i p,P,67,t i c,{CAPSLOCK}T{CAPSLOCK},9552,1,2676,{CAPSLOCK}T{CAPSLOCK}ic{SPACE},1612,0,0
+32,S8,32,t u r m e r i c ,P,68,t s u n a m i,,0,4,1549,{CAPSLOCK}T{CAPSLOCK}sunami{SPACE},3056,0,0
+32,S8,3,T u r n e r ,P,69,T u r i n g ,{CAPSLOCK}T{CAPSLOCK}urner{SPACE},6141,2,5429,{CAPSLOCK}T{CAPSLOCK}uring{SPACE},3504,0,1
+32,S8,41,W a t t ,P,70,W a t s o n ,{SPACE},3517,2,581,{CAPSLOCK}W{CAPSLOCK}atson{SPACE},1932,0,0
+32,S8,13,w a k e ,P,71,W a y n e,,0,4,1296,{CAPSLOCK}W{CAPSLOCK}ayne{ENTER}{SPACE},1984,0,0
+32,S8,5,Y e s t e r d a y,P,72,Y e l l o w s t o n e,{CAPSLOCK}{CAPSLOCK}{CAPSLOCK}Y{CAPSLOCK}ellow{CAPSLOCK}{CAPSLOCK}sto,9863,3,4139,{CAPSLOCK}Y{CAPSLOCK}ellowstone{SPACE},2628,1,0
+33,S9,3,a b a n d o n,B,1,a b d i c a t e ,abdicate{SPACE},4420,1,1046,abdicate{SPACE},3545,1,0
+33,S9,5,a b r o a d ,B,2,a b o r i g i n e,aborgine{SPACE},6307,1,1156,aborigine{SPACE},5160,1,0
+33,S9,29,a v o i d,B,3,a b s t a i n,abstain{SPACE},4755,1,996,abstain{SPACE},2226,1,0
+33,S9,56,a d v a n c e,B,4,a d v o c a t e ,ab,9955,4,2103,advocate{SPACE},1993,0,0
+33,S9,38,A u s t e n ,B,5,A l c o t t ,{SHIFT}Alcott{SPACE},3632,1,1652,{SHIFT}Alcott{SPACE},2267,1,0
+33,S9,54,a b n o r m a l i t y,B,6,a n a c h r o n i s m,antediluvian,6286,1,1090,anachronism{SPACE},6016,0,0
+33,S9,72,a c r o n y m,B,7,a n a g r a m,palindrome,6714,4,1581,anagram{SPACE},2089,0,0
+33,S9,66,A l p s ,B,8,A n d e s,{SHIFT}Andes{SPACE},3993,1,749,{SHIFT}Andes{SPACE},2995,1,0
+33,S9,7,A r i e l,B,9,A u r o r a ,briar{SPACE},3799,1,1860,aurora{SPACE},3637,0,0
+33,S9,25,B e i j i n g,B,10,B a n g k o k,{SPACE},2705,2,1852,{SHIFT}{SHIFT}Bangkok{SPACE},6033,0,0
+33,S9,30,b a r g a i n,B,11,b a r t e r ,barter{SPACE},3699,1,739,barter{SPACE},1648,1,0
+33,S9,71,B u c k i n g h a m ,B,12,B e c k h a m,{SPACE},4123,2,1370,{SHIFT}Beckham{SPACE},3520,0,0
+33,S9,43,b i l a t e r a l,B,13,b i n o m i a l ,binomial{SPACE},5231,1,718,binomial{SPACE},2516,1,0
+33,S9,76,c o r p s e ,B,14,c a r c a s s,skeleton,6286,4,1905,carcass{SPACE},2700,0,0
+33,S9,48,C h r i s t i e ,B,15,C a r r o l l,carroll{SPACE},5076,1,1097,{SHIFT}Carroll{SPACE},2740,1,0
+33,S9,64,c a m o f l a u g e ,B,16,c h a m e l e o n,cameleon,5030,1,1497,chameleon{SPACE},4485,1,0
+33,S9,74,C h a m b e r l a i n,B,17,C h u r c h i l l,{SHIFT}Churchhill,7543,1,1034,{SHIFT}Churchill{SPACE},7434,1,0
+33,S9,44,C o n r a d ,B,18,C l e m e n s,{SHIFT}Clemens{SPACE},4569,1,1701,{SHIFT}Clemens{SPACE},2388,1,0
+33,S9,47,n u m b n e s s ,U,19,c o n g r u e n t,similar,8306,1,2581,congruent{SPACE},3381,0,0
+33,S9,57,n e u r a l ,U,20,C o n n e r y,{SPACE},3748,2,1235,{SHIFT}Connery{SPACE},2848,0,0
+33,S9,75,o b s t r u c t ,U,21,c o v e n a n t ,convenant{SPACE},6268,1,766,covenant{SPACE},6968,1,0
+33,S9,67,o m n i v o r e ,U,22,D a n t e,{SHIFT}Dante{SPACE},5939,1,948,{SHIFT}Dante{SPACE},1780,1,0
+33,S9,15,o s t e o p o r o s i s ,U,23,d e f a u l t,default{SPACE},5599,1,1230,default{SPACE},3539,1,0
+33,S9,22,o s m o s i s,U,24,d e p l e t e,waste,6259,4,4070,deplete{SPACE},2578,0,0
+33,S9,45,t w i t c h ,U,25,d i v e r g e,,0,4,1888,diverge{SPACE},1927,0,0
+33,S9,40,t y p h o o n,U,26,e c c e n t r i c,iconoclastic,4852,1,1559,eccentric{SPACE},3502,0,0
+33,S9,70,T e s l a,U,27,e x o r c i s m ,exorcism,7663,1,1378,exorcism{SPACE},3021,1,0
+33,S9,37,W e a s l e y,U,28,F a r a d a y,{SHIFT}Coulomb{SPACE},9489,1,1193,{SHIFT}Faraday{SPACE},2457,0,0
+33,S9,46,W a l k e r ,U,29,f o l i a g e,{SPACE},9364,4,5474,foliage{SPACE},2091,0,0
+33,S9,52,Y o s e m i t e ,U,30,G a r l a n d,garland{SPACE},8044,1,914,{SHIFT}Garland{SPACE},2101,1,0
+33,S9,42,e q u a t i o n ,U,31,g o s l i n g,gan,9903,1,1203,{SHIFT}gosling{SPACE},2877,0,0
+33,S9,9,s k e l e t o n ,U,32,H a n c o c k,hancock{SPACE},4854,1,5462,hancock{SPACE},2919,1,0
+33,S9,68,R o w l i n g,U,33,H e l s i n k i ,{SPACE},3320,2,952,{SHIFT}Helsinki{SPACE},3700,0,0
+33,S9,59,g e c k o,U,34,h o i s t,lift{SPACE},7238,4,1535,hoist{SPACE},2150,0,0
+33,S9,6,T h a t c h e r ,U,35,H u s s e i n,{SPACE},4459,2,2331,{SHIFT}Hussein{SPACE},3452,0,0
+33,S9,27,S a w y e r ,U,36,i d i o s y n c r a s y ,characteristic,7454,4,2306,idiosyncrasy{SPACE},5535,0,0
+33,S9,11,m e n t i o n,R,37,i n t e r j e c t,interru,9755,4,5358,interject{SPACE},3025,0,0
+33,S9,62,T y l e r,R,38,J a g g e r ,{SPACE},3380,2,1042,{SHIFT}jagger{SPACE},2250,0,0
+33,S9,35,p e r j u r y,R,39,l i b e l,defame,8247,4,2745,libel{SPACE},1876,0,0
+33,S9,33,v e r b o s e,R,40,l o q u a c i o u s ,verbose{SPACE},5543,4,1672,loquacious{SPACE},4052,0,1
+33,S9,17,G a n d h i ,R,41,M a n d e l a,mandela{SPACE},6404,1,1296,{SHIFT}Mandela{SPACE},1934,1,0
+33,S9,18,s p a r s e ,R,42,m e a g e r ,weak,6890,4,2974,meagre{SPACE},2650,0,0
+33,S9,49,B o w i e,R,43,M e r c u r y,{SPACE},2784,2,3031,{SHIFT}Mercury{SPACE},4150,0,0
+33,S9,8,S h a k e s p e a r e,R,44,M i l l e r ,miller{SPACE},4121,1,936,miller{SPACE},3818,1,0
+33,S9,60,g r a t e,R,45,m i n c e,puree{SPACE},9867,4,1427,mince{SPACE},3491,0,0
+33,S9,41,i n v a r i a b l e ,R,46,m o n o t o n y ,monto,9127,1,1643,monotony{SPACE},2992,0,0
+33,S9,73,H o u s t o n,R,47,M o n r o e ,{SHIFT}Monroe{SPACE},5968,1,847,{SHIFT}Monroe{SPACE},1930,1,0
+33,S9,32,M a d a g a s c a r ,R,48,N a i r o b i,{SPACE},4713,2,1118,{SHIFT}{LEFTARROW}{LEFTARROW}{LEFTARROW}{LEFTARROW}{LEFTARROW}{SHIFT}nairobi{SPACE},10021,0,0
+33,S9,51,i n v a l i d a t e ,R,49,n u l l i f y,{SHIFT}defau,9808,4,2595,nullify{SPACE},2352,0,0
+33,S9,61,B e r l i n ,R,50,N u r e m b e r g,{SHIFT}Nuremburg{SPACE},5854,1,1282,{SHIFT}Nuremburg{SPACE},4066,1,0
+33,S9,13,s e c r e t i v e,R,51,o b s c u r e,secret{SPACE},8537,1,1386,obscure{SPACE},2589,0,1
+33,S9,23,u n l i m i t e d,R,52,o m n i p o t e n t ,omnipotent,7876,1,1143,omnipotent{SPACE},4381,1,0
+33,S9,19,f l a s h y ,R,53,o s t e n t a t i o u s ,ostentatious,7897,1,1837,ostentacious{SPACE},4596,1,0
+33,S9,31,B o o t h,R,54,O s w a l d ,{SHIFT}Booth{SPACE},3338,4,2505,{SHIFT}Oswald{SPACE},3169,0,1
+33,S9,69,o t t e r,P,55,O t t a w a ,{SHIFT}Montreal,4917,2,1656,{SHIFT}{SHIFT}Ottawa{SPACE},3793,0,0
+33,S9,24,p a n d a,P,56,p a n a c e a,panacea{SPACE},4882,1,864,panacea{SPACE},2692,1,0
+33,S9,28,p a r a c h u t e,P,57,p a r a g o n,paragon{SPACE},4290,1,953,paragon{SPACE},2191,1,0
+33,S9,26,p o l y g o n,P,58,p o l y g a m y ,polygamy{SPACE},8767,1,1589,polygamy{SPACE},22197,1,0
+33,S9,55,p r e c a r i o u s ,P,59,p r e c o c i o u s ,precocious{SPACE},5342,1,552,precocious{SPACE},3797,1,0
+33,S9,14,p r o f e s s o r,P,60,p r o p h e c y ,prophecy{SPACE},9071,1,1193,prophecy{SPACE},2975,1,0
+33,S9,12,s o f a ,P,61,S e o u l,seoul{SPACE},7360,1,1238,seoul{SPACE},2634,1,0
+33,S9,36,s h i p ,P,62,S h a w ,{SHIFT}Shaw{SPACE},5107,1,967,{SHIFT}Shaw{SPACE},2709,1,0
+33,S9,34,s i z z l e ,P,63,S i c i l y ,sicily{SPACE},4886,1,1764,{SHIFT}Sicily{SPACE},2096,1,0
+33,S9,63,s k y s c r a p e r ,P,64,S k y w a l k e r,skywalker{SPACE},4792,1,635,skywalker{SPACE},3333,1,0
+33,S9,10,s u r v i v o r ,P,65,s u r r o g a t e,surrogate{SPACE},4234,1,1108,surrogate{SPACE},4324,1,0
+33,S9,4,t h o r n y ,P,66,T h o r e a u,thoreau{SPACE},5441,1,1239,thoreau{SPACE},3914,1,0
+33,S9,2,t i p,P,67,t i c,,0,1,2570,tic{SPACE},2996,0,0
+33,S9,53,t u r m e r i c ,P,68,t s u n a m i,tsunami{SPACE},5356,1,982,tsunami{SPACE},4848,1,0
+33,S9,16,T u r n e r ,P,69,T u r i n g ,turner{SPACE},4235,1,949,turring{SPACE},5705,0,1
+33,S9,21,W a t t ,P,70,W a t s o n ,{SHIFT}Watson{SPACE},5988,1,771,{SHIFT}Watson{SPACE},2444,1,0
+33,S9,65,w a k e ,P,71,W a y n e,wayne{SPACE},4789,1,1702,{SHIFT}Wayne{SPACE},1764,1,0
+33,S9,50,Y e s t e r d a y,P,72,Y e l l o w s t o n e,yosemite,6292,2,1208,{SHIFT}Yellowstone{SPACE},6319,0,0
+34,S10,54,a b d o m e n,P,1,a b d i c a t e ,abdicate{SPACE},4027,1,526,abdicate{SPACE},2847,1,0
+34,S10,14,a b o r t i o n ,P,2,a b o r i g i n e,{SPACE},8295,2,1891,aborigine{SPACE},2811,0,0
+34,S10,8,a b s o l v e,P,3,a b s t a i n,abstain{SPACE},4335,1,1157,abstain{SPACE},2779,1,0
+34,S10,45,a d v e r b ,P,4,a d v o c a t e ,,0,4,1218,advocate{SPACE},1606,0,0
+34,S10,23,a l c h e m y,P,5,A l c o t t ,{SPACE},2292,2,657,{SPACE},1153,0,0
+34,S10,21,a n a e r o b i c,P,6,a n a c h r o n i s m,{SPACE},6680,4,968,anachorism{SPACE},2611,0,0
+34,S10,41,a n a c o n d a ,P,7,a n a g r a m,{SPACE},5638,3,772,anagram{SPACE},2448,0,0
+34,S10,49,a n d r o i d,P,8,A n d e s,andes{SPACE},2856,1,989,andes{SPACE},3331,1,0
+34,S10,47,A u s t r a l i a,P,9,A u r o r a ,aurora{SPACE},3618,1,838,aurora{SPACE},1532,1,0
+34,S10,15,b a n i s t e r ,P,10,B a n g k o k,bankock,9842,1,2022,bangkok{SPACE},2780,1,0
+34,S10,74,b a r t e n d e r,P,11,b a r t e r ,barter{SPACE},4372,1,824,barter{SPACE},2956,1,0
+34,S10,57,B e c k e t t,P,12,B e c k h a m,{SPACE},4047,2,656,beckham{SPACE},4385,0,0
+34,S10,2,b i a n n u a l ,P,13,b i n o m i a l ,add,9984,2,2243,binomial{SPACE},2715,0,0
+34,S10,40,c a n v a s ,P,14,c a r c a s s,{SPACE},3822,4,361,carcas{SPACE},2681,0,0
+34,S10,70,c a r a v a n,P,15,C a r r o l l,{SPACE},2906,2,813,carroll{SPACE},1297,0,0
+34,S10,11,c a m e l,P,16,c h a m e l e o n,iguana{SPACE},4411,1,1565,chameleon{SPACE},4592,0,0
+34,S10,63,C h a r l e s,P,17,C h u r c h i l l,{SPACE},7407,4,433,churchill{SPACE},2064,0,0
+34,S10,44,c o m m e n c e ,P,18,C l e m e n s,{SPACE},2359,2,545,clemens{SPACE},2489,0,0
+34,S10,76,c o m p a t i b l e ,B,19,c o n g r u e n t,comparable{SPACE},6043,3,855,congruent{SPACE},3234,0,0
+34,S10,30,C r u i s e ,B,20,C o n n e r y,{SPACE},3423,2,460,connery{SPACE},1778,0,0
+34,S10,36,c o n t r a c t ,B,21,c o v e n a n t ,{SPACE},4382,2,640,covenant{SPACE},2909,0,0
+34,S10,16,D e v i l,B,22,D a n t e,{SPACE},4741,2,1225,dante{SPACE},2123,0,0
+34,S10,46,d e f e c t ,B,23,d e f a u l t,{SPACE},8433,4,86,default{SPACE},3495,0,0
+34,S10,22,d e l e t e ,B,24,d e p l e t e,deplete{SPACE},3907,1,1163,deplete{SPACE},2227,1,0
+34,S10,59,d i f f e r ,B,25,d i v e r g e,{SPACE},5219,2,1315,diverge{SPACE},1561,0,0
+34,S10,38,e r r a t i c,B,26,e c c e n t r i c,erratic{SPACE},8687,3,953,eccentric{SPACE},1775,0,0
+34,S10,6,e x i l e,B,27,e x o r c i s m ,,0,4,1865,exorcism{SPACE},3918,0,0
+34,S10,69,F e y n m a n,B,28,F a r a d a y,newton{SPACE},6264,1,1066,faraday{SPACE},1532,0,0
+34,S10,64,f o r e s t ,B,29,f o l i a g e,leaves{SPACE},3673,1,906,foliage{SPACE},3383,0,0
+34,S10,48,G a r n e r ,B,30,G a r l a n d,{SPACE},3834,2,1093,garland{SPACE},1797,0,0
+34,S10,33,g o b b l e ,B,31,g o s l i n g,{SPACE},6613,3,1784,gosling{SPACE},1257,0,0
+34,S10,52,H o o v e r ,B,32,H a n c o c k,jefferson{SPACE},6619,2,927,hancock{SPACE},2944,0,0
+34,S10,51,H o l l a n d,B,33,H e l s i n k i ,{SPACE},5807,2,1046,helsinki{SPACE},2318,0,0
+34,S10,34,h e a v e,B,34,h o i s t,waive,9780,3,1783,hoist{SPACE},1890,0,0
+34,S10,12,H i t l e r ,B,35,H u s s e i n,{SHIFT}Hussei{SPACE},4876,1,2954,{SHIFT}Hussein{SPACE},2711,1,0
+34,S10,3,i n d i v i d u a l i s m,B,36,i d i o s y n c r a s y ,personality{SPACE},5287,1,1652,idosyncrasy{SPACE},5823,0,0
+34,S10,28,o t t e r,U,37,i n t e r j e c t,{SPACE},7622,4,558,interject{SPACE},2851,0,0
+34,S10,68,p a n d a,U,38,J a g g e r ,{SPACE},2966,2,374,jagger{SPACE},2264,0,0
+34,S10,37,p a r a c h u t e,U,39,l i b e l,{SPACE},5008,3,745,libel{SPACE},1151,0,0
+34,S10,55,p o l y g o n,U,40,l o q u a c i o u s ,{SPACE},4613,4,543,loquacious{SPACE},2938,0,0
+34,S10,17,p r e c a r i o u s ,U,41,M a n d e l a,{SHIFT}{SHIFT}Mandela{SPACE},6864,1,1257,{SHIFT}mandela{SPACE},3044,1,0
+34,S10,42,p r o f e s s o r,U,42,m e a g e r ,{SPACE},9238,4,1274,meager{SPACE},1893,0,0
+34,S10,43,a b a n d o n,U,43,M e r c u r y,{SPACE},6388,3,338,mercury{SPACE},1896,0,0
+34,S10,73,a b r o a d ,U,44,M i l l e r ,joyce{SPACE},4784,1,578,miller{SPACE},1993,0,0
+34,S10,35,a v o i d,U,45,m i n c e,mince{SPACE},4034,1,899,mince{SPACE},1451,1,0
+34,S10,72,a d v a n c e,U,46,m o n o t o n y ,monotony{SPACE},5332,1,926,monotony{SPACE},1922,1,0
+34,S10,25,A u s t e n ,U,47,M o n r o e ,{SHIFT}Monroe{SPACE},6674,1,1092,{SHIFT}Monroe{SPACE},2277,1,0
+34,S10,4,a b n o r m a l i t y,U,48,N a i r o b i,{SPACE},6261,2,2536,narobi{SPACE},3557,0,0
+34,S10,50,p a r a l l e l ,U,49,n u l l i f y,annull{SPACE},8005,3,1613,nullify{SPACE},1670,0,0
+34,S10,71,B r o s n a n,U,50,N u r e m b e r g,{SPACE},5658,4,406,nurenberg{SPACE},4283,0,0
+34,S10,29,p r o t o c o l ,U,51,o b s c u r e,{SPACE},9528,3,719,obscure{SPACE},2489,0,0
+34,S10,9,H o m e r,U,52,o m n i p o t e n t ,omni,9955,4,2646,omnipotent{SPACE},3861,0,0
+34,S10,60,s u r r e n d e r,U,53,o s t e n t a t i o u s ,{SPACE},6614,3,1322,obstenatious{SPACE},3935,0,0
+34,S10,66,c o n s u m e,U,54,O s w a l d ,boothe{SPACE},5298,1,942,oswald{SPACE},2467,0,0
+34,S10,26,T o r o n t o,R,55,O t t a w a ,{SHIFT}Quebec{SPACE},6020,1,1409,ottawa{SPACE},2766,0,0
+34,S10,65,r e m e d y ,R,56,p a n a c e a,panacea{SPACE},5143,4,5177,panacea{SPACE},1891,1,0
+34,S10,31,i d e a l,R,57,p a r a g o n,{SPACE},9430,3,561,paragon{SPACE},2331,0,0
+34,S10,61,m a r r i a g e ,R,58,p o l y g a m y ,polygamy{SPACE},5255,1,629,polygamy{SPACE},3185,1,0
+34,S10,75,a d v a n c e d ,R,59,p r e c o c i o u s ,{SPACE},6463,4,360,precocious{SPACE},3455,0,0
+34,S10,18,f o r e c a s t ,R,60,p r o p h e c y ,premonition{SPACE},7056,3,1489,prophesy{SPACE},3413,0,0
+34,S10,19,T o k y o,R,61,S e o u l,seoul{SPACE},6643,1,853,seoul{SPACE},3146,1,0
+34,S10,62,W i l d e,R,62,S h a w ,{SPACE},3337,2,377,shaw{SPACE},1570,0,0
+34,S10,13,C o r s i c a,R,63,S i c i l y ,,9987,3,1558,sicily{SPACE},2265,0,0
+34,S10,53,L e i a ,R,64,S k y w a l k e r,han{SPACE},7457,3,2785,skywalker{SPACE},3237,0,0
+34,S10,67,m i d w i f e,R,65,s u r r o g a t e,surrogate{SPACE},3882,1,867,surrogate{SPACE},2179,1,0
+34,S10,24,E m e r s o n,R,66,T h o r e a u,{SPACE},6704,2,752,{SHIFT}Throeau{SPACE},4684,0,0
+34,S10,7,j e r k ,R,67,t i c,,0,3,4585,tic{ENTER}{SPACE},1638,0,0
+34,S10,27,h u r r i c a n e,R,68,t s u n a m i,tsunami{SPACE},3655,1,905,tsunami{SPACE},2078,1,0
+34,S10,10,H a w k i n g,R,69,T u r i n g ,,0,4,2099,turing{SPACE},2502,0,0
+34,S10,5,D o y l e,R,70,W a t s o n ,watson{SPACE},3069,1,1000,watson{SPACE},1494,1,0
+34,S10,32,K e n t ,R,71,W a y n e,4{SPACE},5896,4,1002,wayne{SPACE},4184,0,0
+34,S10,56,G l a c i e r,R,72,Y e l l o w s t o n e,yellowstone{SPACE},5388,1,1077,yellowstone{SPACE},2405,1,0
+35,S11,75,a b d o m e n,P,1,a b d i c a t e ,,0,2,992,abdicate{SPACE},1401,0,0
+35,S11,6,a b o r t i o n ,P,2,a b o r i g i n e,aboriginal{SPACE},5591,1,550,aborigine{SPACE},2077,1,0
+35,S11,62,a b s o l v e,P,3,a b s t a i n,abstain{SPACE},5575,4,1911,abstain{SPACE},951,1,0
+35,S11,14,a d v e r b ,P,4,a d v o c a t e ,,0,2,1170,advocate{SPACE},2019,0,0
+35,S11,60,a l c h e m y,P,5,A l c o t t ,{SPACE},3986,2,934,alcott{SPACE},967,0,0
+35,S11,16,a n a e r o b i c,P,6,a n a c h r o n i s m,artifact{SPACE},9074,3,1564,anachromism{SPACE},2356,0,0
+35,S11,33,a n a c o n d a ,P,7,a n a g r a m,anagram{SPACE},9475,1,748,anagram{SPACE},977,1,0
+35,S11,54,a n d r o i d,P,8,A n d e s,andes{SPACE},2304,1,940,andes{SPACE},751,1,0
+35,S11,74,A u s t r a l i a,P,9,A u r o r a ,aurora{SPACE},2884,1,327,aurora{SPACE},867,1,0
+35,S11,71,b a n i s t e r ,P,10,B a n g k o k,,0,2,2164,bangkok{SPACE},1941,0,0
+35,S11,9,b a r t e n d e r,P,11,b a r t e r ,barter{SPACE},3566,1,1189,barter{SPACE},1055,1,0
+35,S11,76,B e c k e t t,P,12,B e c k h a m,beckham{SPACE},3886,1,2038,beckham{SPACE},1317,1,0
+35,S11,31,b i a n n u a l ,P,13,b i n o m i a l ,{SPACE},8912,2,721,binomial{SPACE},1887,0,0
+35,S11,8,c a n v a s ,P,14,c a r c a s s,carcus{SPACE},7873,3,2798,carcass{SPACE},1219,1,0
+35,S11,7,c a r a v a n,P,15,C a r r o l l,carol{SPACE},3365,3,4564,carroll{SPACE},2491,1,0
+35,S11,30,c a m e l,P,16,c h a m e l e o n,chameleon{SPACE},4205,1,375,chameleon{SPACE},1673,1,0
+35,S11,34,C h a r l e s,P,17,C h u r c h i l l,churchill{SPACE},4055,1,392,churchill{SPACE},1653,1,0
+35,S11,27,c o m m e n c e ,P,18,C l e m e n s,{SPACE},5400,2,559,clemens{SPACE},1560,0,0
+35,S11,45,c o m p a t i b l e ,B,19,c o n g r u e n t,,0,2,926,congruent{SPACE},1433,0,0
+35,S11,73,C r u i s e ,B,20,C o n n e r y,{SPACE},4943,2,426,connery{SPACE},3096,0,0
+35,S11,35,c o n t r a c t ,B,21,c o v e n a n t ,{SPACE},6287,2,961,covenant{SPACE},1600,0,0
+35,S11,42,D e v i l,B,22,D a n t e,{SPACE},4414,2,352,dante{SPACE},993,0,0
+35,S11,57,d e f e c t ,B,23,d e f a u l t,default{SPACE},5136,1,467,default{SPACE},1958,1,0
+35,S11,55,d e l e t e ,B,24,d e p l e t e,deplete{SPACE},2879,1,611,deplete{SPACE},783,1,0
+35,S11,25,d i f f e r ,B,25,d i v e r g e,deviate{SPACE},5723,4,2325,diverge{SPACE},2239,0,0
+35,S11,47,e r r a t i c,B,26,e c c e n t r i c,bizarre{SPACE},8260,3,1662,eccentric{SPACE},1137,0,0
+35,S11,61,e x i l e,B,27,e x o r c i s m ,e,9774,4,1681,exorcism{SPACE},2180,0,0
+35,S11,32,F e y n m a n,B,28,F a r a d a y,{SPACE},5631,2,572,faraday{SPACE},2326,0,0
+35,S11,49,f o r e s t ,B,29,f o l i a g e,foliage{SPACE},4885,1,560,foliage{SPACE},1100,1,0
+35,S11,37,G a r n e r ,B,30,G a r l a n d,garland{SPACE},3711,1,382,garland{SPACE},943,1,0
+35,S11,15,g o b b l e ,B,31,g o s l i n g,gosling{SPACE},4253,1,437,gosling{SPACE},2861,1,0
+35,S11,68,H o o v e r ,B,32,H a n c o c k,hancock{SPACE},3802,1,726,hancock{SPACE},973,1,0
+35,S11,29,H o l l a n d,B,33,H e l s i n k i ,helsinki{SPACE},7000,2,827,helsinki{SPACE},1734,1,0
+35,S11,17,h e a v e,B,34,h o i s t,{SPACE},8544,2,769,hoist{SPACE},1195,0,0
+35,S11,2,H i t l e r ,B,35,H u s s e i n,saddam{SPACE},4261,1,1501,hussein{SPACE},2253,0,0
+35,S11,23,i n d i v i d u a l i s m,B,36,i d i o s y n c r a s y ,{SPACE},9564,2,737,idiosyncracy{SPACE},3070,0,0
+35,S11,41,s o f a ,U,37,i n t e r j e c t,2,9937,3,2709,interject{SPACE},1318,0,0
+35,S11,22,s h i p ,U,38,J a g g e r ,jagger{SPACE},3114,1,708,jagger{SPACE},1717,1,0
+35,S11,43,s i z z l e ,U,39,l i b e l,{SPACE},9014,4,595,libel{SPACE},1208,0,0
+35,S11,67,s k y s c r a p e r ,U,40,l o q u a c i o u s ,outgoing{SPACE},8481,3,1236,locquaious{SPACE},2702,0,0
+35,S11,5,s u r v i v o r ,U,41,M a n d e l a,mandela{SPACE},4670,1,933,mandela{SPACE},1160,1,0
+35,S11,10,t h o r n y ,U,42,m e a g e r ,wit,9874,2,1189,meager{SPACE},932,0,0
+35,S11,56,a c r o n y m,U,43,M e r c u r y,mercury{SPACE},8591,1,350,mercury{SPACE},1238,1,0
+35,S11,44,A l p s ,U,44,M i l l e r ,{SPACE},3908,2,539,miller{SPACE},1064,0,0
+35,S11,66,A r i e l,U,45,m i n c e,mince{SPACE},4210,1,1533,mince{SPACE},703,1,0
+35,S11,28,B e i j i n g,U,46,m o n o t o n y ,monotone{SPACE},8246,3,1748,monotony{SPACE},2849,1,0
+35,S11,36,b a r g a i n,U,47,M o n r o e ,monroe{SPACE},4812,1,317,monroe{SPACE},869,1,0
+35,S11,40,B u c k i n g h a m ,U,48,N a i r o b i,{SPACE},4301,2,980,nairobi{SPACE},1674,0,0
+35,S11,69,s p l i t,U,49,n u l l i f y,,0,2,1238,nullify{SPACE},1292,0,0
+35,S11,26,b i z a r r e,U,50,N u r e m b e r g,annenbu,9951,4,2050,nuremburg{SPACE},2884,0,0
+35,S11,11,p o s s e s s i o n ,U,51,o b s c u r e,,0,2,1552,obscure{SPACE},1723,0,0
+35,S11,70,N e w t o n ,U,52,o m n i p o t e n t ,almighty{SPACE},7924,3,1232,omnipotent{SPACE},3310,0,0
+35,S11,50,v e g e t a t i o n ,U,53,o s t e n t a t i o u s ,{SPACE},6781,2,329,obstentatious{SPACE},2041,0,0
+35,S11,64,H e p b u r n,U,54,O s w a l d ,,0,4,733,oswald{SPACE},1016,0,0
+35,S11,3,T o r o n t o,R,55,O t t a w a ,montreal{SPACE},3245,2,1073,ottawa{SPACE},1622,0,0
+35,S11,63,r e m e d y ,R,56,p a n a c e a,,0,4,1986,panacea{SPACE},1282,0,0
+35,S11,72,i d e a l,R,57,p a r a g o n,epitome{SPACE},4802,1,500,paragon{SPACE},1101,0,0
+35,S11,19,m a r r i a g e ,R,58,p o l y g a m y ,polygamy{SPACE},4548,1,641,polygamy{SPACE},2237,1,0
+35,S11,18,a d v a n c e d ,R,59,p r e c o c i o u s ,intelligence{SPACE},9031,3,1699,precocious{SPACE},1660,0,0
+35,S11,59,f o r e c a s t ,R,60,p r o p h e c y ,{SPACE},6283,2,736,prophecy{SPACE},1623,0,0
+35,S11,52,T o k y o,R,61,S e o u l,seoul{SPACE},3330,1,626,seoul{SPACE},861,1,0
+35,S11,46,W i l d e,R,62,S h a w ,{SPACE},2492,2,513,shaw{SPACE},569,0,0
+35,S11,12,C o r s i c a,R,63,S i c i l y ,sicily{SPACE},9346,1,3888,sicily{SPACE},1400,1,0
+35,S11,24,L e i a ,R,64,S k y w a l k e r,skywalker{SPACE},3963,1,576,skywalker{SPACE},1465,1,0
+35,S11,13,m i d w i f e,R,65,s u r r o g a t e,surrogate{SPACE},4621,1,391,surrogate{SPACE},1621,1,0
+35,S11,21,E m e r s o n,R,66,T h o r e a u,{SPACE},4345,2,1038,thoreau{SPACE},1597,0,0
+35,S11,4,j e r k ,R,67,t i c,tic{SPACE},4815,1,992,tic{SPACE},2069,1,0
+35,S11,53,h u r r i c a n e,R,68,t s u n a m i,tsunami{SPACE},2921,1,347,tsunami{SPACE},1922,1,0
+35,S11,65,H a w k i n g,R,69,T u r i n g ,,0,2,1441,turing{SPACE},1156,0,0
+35,S11,51,D o y l e,R,70,W a t s o n ,watson{SPACE},9777,1,925,watson{SPACE},921,1,0
+35,S11,38,K e n t ,R,71,W a y n e,wayne{SPACE},5206,1,262,wayne{SPACE},1209,1,0
+35,S11,48,G l a c i e r,R,72,Y e l l o w s t o n e,{SPACE},9200,2,1446,yellowstone{SPACE},1557,0,0
