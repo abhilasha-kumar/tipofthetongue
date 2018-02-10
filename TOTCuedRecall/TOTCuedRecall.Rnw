@@ -1,1 +1,121 @@
+\documentclass[letterpaper]{article}
+\usepackage[a4paper, total={6in, 8in}]{geometry}
 
+\usepackage{xcolor}
+\usepackage{Sweavel}
+\usepackage{graphicx}
+\def\Sweavesize{\normalsize}
+% Uncomment some of the following to use some alternatives:
+\def\Rcolor{\color{black}}
+\def\Routcolor{\color{blue}}
+\def\Rcommentcolor{\color{blue}}
+\definecolor{babyblueeyes}{rgb}{0.74, 0.83, 0.95}
+
+% To change background color or R code and/or output, use e.g.:
+\def\Rbackground{\color{babyblueeyes}}
+\def\Routbackground{\color[gray]{.8}}
+
+% To use rgb specifications use \color[rgb]{ , , }
+% To use gray scale use e.g. \color[gray]{0.5}
+% If you change any of these after the first chunk is produced, the
+% changes will have effect only for the next chunk.
+
+\title{TOT Cued Recall Analysis}
+\author{Abhilasha Kumar}
+
+\begin{document}
+\SweaveOpts{concordance=FALSE}
+
+ \maketitle
+
+\section{Reading the Data File}
+
+We first read the file into an object called TOTcuedrecall. We can also display some part of the data by calling the head() function.
+
+<<>>=
+TOTcuedrecall = read.csv("Compiled_TOTCuedRecall.csv",
+                         header = TRUE, sep = ",")
+head(TOTcuedrecall[,c(1,21,22)])
+@
+
+\section {Conditional Target Accuracy}
+
+In this section, we calculate the number of trials in which participants correctly or incorrectly recalled the item, and split that by whether they correctly recalled the target from the definition. Then, we calculate the proportion of trials from the raw number of trials.
+
+<<>>=
+library(dplyr)
+cued_acc = group_by(TOTcuedrecall, Subject, CuedRecallAcc) %>%
+  summarise(recalltrials = n())
+
+conditional_acc = group_by(TOTcuedrecall, Subject, 
+                           CuedRecallAcc, TargetAccuracy) %>%
+  summarise(trials = n())
+
+merge_acc = merge(conditional_acc, cued_acc, 
+                  by = c("Subject", "CuedRecallAcc"))
+merge_acc$prop = merge_acc$trials/merge_acc$recalltrials
+@
+
+\section {ANOVA}
+
+In this section, we perform a repeated measures ANOVA on our data, to see if we are indeed seeing a difference in the proportion of unsuccessful trials for failed and successful cued recall. 
+
+<<>>=
+merge_acc$Subject = 
+  as.factor(as.character(merge_acc$Subject))
+merge_acc$CuedRecallAcc = 
+  as.factor(as.character(merge_acc$CuedRecallAcc))
+merge_acc$TargetAccuracy = 
+  as.factor(as.character(merge_acc$TargetAccuracy))
+
+cond_aov = aov(data = merge_acc, 
+        prop ~ CuedRecallAcc*TargetAccuracy +
+        Error(Subject/(CuedRecallAcc*TargetAccuracy)))
+summary(cond_aov)
+@
+
+The ANOVA output tells us that the interaction term is not signiificant. We will next see this in a figure, to better understand our data.
+
+\section {Conditional Figure}
+
+<<>>=
+library(Rmisc)
+cond_figure = summarySE(merge_acc, 
+                        measurevar = "prop",
+                        groupvars = c("CuedRecallAcc", 
+                                      "TargetAccuracy"))
+
+library(ggplot2)
+library(ggthemes)
+cond_figure %>% mutate(Recall = factor(CuedRecallAcc, 
+                      levels = unique(CuedRecallAcc),
+                    labels = c("Failed Recall", 
+                               "Successful Recall")),
+                    TargetRetrieval = factor(TargetAccuracy,
+                          levels = unique(TargetAccuracy),
+                       labels = c("Failed Target Retrieval", 
+                            "Successful Target Retrieval")))%>%
+ggplot(aes(x = Recall, y = prop, 
+           fill = TargetRetrieval, group = TargetRetrieval))+
+ geom_bar(stat = "identity", position = "dodge", width = 0.7)+
+  geom_errorbar(aes(ymin=prop - ci, ymax=prop + ci), 
+             width=.2, color = "gray26", 
+             position = position_dodge(0.7))+
+ theme_few()+
+  scale_fill_wsj()+
+    xlab("Cued Recall Accuracy") + ylab("Mean Proportion of Trials") + 
+  ggtitle("Target Retrieval Accuracy 
+          as a function of Cued Recall Accuracy")  +
+   theme(axis.text = element_text(face = "bold", size = rel(1)),
+          axis.title = element_text(face = "bold", size = rel(1)),
+          legend.title = element_text(face = "bold", size = rel(1)),
+          plot.title = element_text(face = "bold", 
+                  size = rel(1.2), hjust = .5),
+         strip.text.x = element_text(face = "bold", size = rel(1.4)))
+@
+\break
+\begin{figure}[h]
+  \includegraphics[width=\linewidth]{CuedRecallFigure.jpeg}
+\end{figure}
+
+\end{document}
