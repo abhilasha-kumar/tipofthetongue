@@ -1,5 +1,5 @@
 \documentclass[letterpaper]{article}
-\usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage[a4paper, total={7in, 8in}]{geometry}
 
 \usepackage{xcolor}
 \usepackage{Sweavel}
@@ -44,6 +44,10 @@ In this section, we calculate the number of trials in which participants correct
 
 <<>>=
 library(dplyr)
+
+cued_acc = group_by(TOTcuedrecall) %>%
+  summarise_at(vars(CuedRecallAcc, TargetAccuracy), mean)
+
 cued_acc = group_by(TOTcuedrecall, Subject, CuedRecallAcc) %>%
   summarise(recalltrials = n())
 
@@ -87,7 +91,7 @@ cond_figure = summarySE(merge_acc,
 
 library(ggplot2)
 library(ggthemes)
-cond_figure %>% mutate(Recall = factor(CuedRecallAcc, 
+condfigure_plot = cond_figure %>% mutate(Recall = factor(CuedRecallAcc, 
                       levels = unique(CuedRecallAcc),
                     labels = c("Failed Recall", 
                                "Successful Recall")),
@@ -117,5 +121,33 @@ ggplot(aes(x = Recall, y = prop,
 \begin{figure}[h]
   \includegraphics[width=\linewidth]{CuedRecallFigure.jpeg}
 \end{figure}
+
+\section {Follow Up Tests}
+
+For each subject, we will calculate a difference score for drop off in accuracy when they failed to recall the item vs. when they successfully retrieved the item.
+
+<<>>=
+failedrecall = merge_acc %>% filter(CuedRecallAcc == "0")
+failedrecall = failedrecall[,-c(2,4,5)]
+successfulrecall = merge_acc %>% filter(CuedRecallAcc == "1")
+successfulrecall = successfulrecall[,-c(2,4,5)]
+
+## need to convert from long to wide: using spread
+library(tidyr)
+failed_wide = failedrecall %>%
+  spread(TargetAccuracy, prop)
+failed_wide$diff = failed_wide$`0` - failed_wide$`1`
+
+successful_wide = successfulrecall %>%
+  spread(TargetAccuracy, prop)
+successful_wide$diff = successful_wide$`0` - successful_wide$`1`
+@
+
+Now we have two datasets, each contains a difference score for each subject, for failed and successful cued recall. Now, we can perform a paired t-test (why paired? because the data for failed and successful recall comes from the same subjects i.e., it is a within-subjects design). 
+
+<<>>=
+t.test(failed_wide$diff, successful_wide$diff, paired = TRUE)
+@
+
 
 \end{document}
