@@ -57,6 +57,21 @@ prime_effect = cld(imm_lsm, alpha = 0.05,
                 adjust = "tukey", details = TRUE)
 library(knitr)
 kable(subset(prime_effect$comparisons,prime_effect$comparisons$p.value < 0.5 ))
+
+
+### SPECIFIC T TESTS
+target_p = prime_subject_acc %>% filter(PrimeCondition == "P")
+target_r = prime_subject_acc %>% filter(PrimeCondition == "R")
+target_b = prime_subject_acc %>% filter(PrimeCondition == "B")
+target_u = prime_subject_acc %>% filter(PrimeCondition == "U")
+
+t.test(target_p$TargetAccuracy, target_r$TargetAccuracy, paired = TRUE)
+t.test(target_p$TargetAccuracy, target_b$TargetAccuracy, paired = TRUE)
+t.test(target_p$TargetAccuracy, target_u$TargetAccuracy, paired = TRUE)
+
+t.test(target_b$TargetAccuracy, target_r$TargetAccuracy, paired = TRUE)
+t.test(target_b$TargetAccuracy, target_u$TargetAccuracy, paired = TRUE)
+t.test(target_r$TargetAccuracy, target_u$TargetAccuracy, paired = TRUE)
 @
 
 
@@ -107,8 +122,7 @@ summary(stateprime_aov)
 \subsection*{Target Accuracy Figure}
 
 <<fig=TRUE>>=
-library(Rmisc)
-target_rmisc = summarySE(prime_subject_acc, 
+target_rmisc = Rmisc::summarySE(prime_subject_acc, 
                       measurevar = "TargetAccuracy",
                       groupvars = c("PrimeCondition"))
 library(ggplot2)
@@ -118,7 +132,8 @@ target_rmisc %>% mutate(PrimeType = factor(PrimeCondition,
                     labels = c("Both", "Phonological", 
                                "Semantic", "Unrelated"))) %>%
 ggplot(aes(x = PrimeType, y = TargetAccuracy))+
- geom_bar(stat = "identity", position = "dodge", width = 0.5, fill = "darkgoldenrod")+
+ geom_bar(stat = "identity", position = "dodge", 
+          width = 0.5, fill = "royalblue4", color = "black")+
   geom_errorbar(aes(ymin = TargetAccuracy - ci, ymax = TargetAccuracy + ci),
                 width=.05, position=position_dodge(.5)) +
   theme_few()+
@@ -127,7 +142,7 @@ ggplot(aes(x = PrimeType, y = TargetAccuracy))+
     theme(axis.text = element_text(face = "bold", size = rel(1.2)),
           axis.title = element_text(face = "bold", size = rel(1.2)),
           legend.title = element_text(face = "bold", size = rel(1.2)),
-          plot.title = element_text(face = "bold", size = rel(1.4), hjust = .5))
+          plot.title = element_text( size = rel(1.4), hjust = .5))
 @
 
 \subsection *{Raw State Data}

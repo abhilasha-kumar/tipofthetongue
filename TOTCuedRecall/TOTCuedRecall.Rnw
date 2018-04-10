@@ -65,6 +65,12 @@ merge_acc$prop = merge_acc$trials/merge_acc$recalltrials
 In this section, we perform a repeated measures ANOVA on our data, to see if we are indeed seeing a difference in the proportion of unsuccessful trials for failed and successful cued recall. 
 
 <<>>=
+## mergeacc has 3 rows missing
+ez::ezDesign(merge_acc, Subject, CuedRecallAcc)
+merge_acc[70,] = c(12, 0, 0, 0, 0, 0)
+merge_acc[71,] = c(17, 1, 0, 0 ,0, 0)
+merge_acc[72,] = c(18, 0, 0, 0, 0, 0)
+
 merge_acc$Subject = 
   as.factor(as.character(merge_acc$Subject))
 merge_acc$CuedRecallAcc = 
@@ -83,8 +89,7 @@ The ANOVA output tells us that the interaction term is not signiificant. We will
 \section {Conditional Figure}
 
 <<>>=
-library(Rmisc)
-cond_figure = summarySE(merge_acc, 
+cond_figure = Rmisc::summarySE(merge_acc, 
                         measurevar = "prop",
                         groupvars = c("CuedRecallAcc", 
                                       "TargetAccuracy"))
@@ -95,12 +100,12 @@ condfigure_plot = cond_figure %>% mutate(Recall = factor(CuedRecallAcc,
                       levels = unique(CuedRecallAcc),
                     labels = c("Failed Recall", 
                                "Successful Recall")),
-                    TargetRetrieval = factor(TargetAccuracy,
+                    `Target Retrieval` = factor(TargetAccuracy,
                           levels = unique(TargetAccuracy),
                        labels = c("Failed Target Retrieval", 
                             "Successful Target Retrieval")))%>%
 ggplot(aes(x = Recall, y = prop, 
-           fill = TargetRetrieval, group = TargetRetrieval))+
+           fill = `Target Retrieval`, group = `Target Retrieval`))+
  geom_bar(stat = "identity", position = "dodge", width = 0.7)+
   geom_errorbar(aes(ymin=prop - ci, ymax=prop + ci), 
              width=.2, color = "gray26", 
@@ -116,6 +121,7 @@ ggplot(aes(x = Recall, y = prop,
           plot.title = element_text(face = "bold", 
                   size = rel(1.2), hjust = .5),
          strip.text.x = element_text(face = "bold", size = rel(1.4)))
+condfigure_plot
 @
 \break
 \begin{figure}[h]
@@ -148,6 +154,302 @@ Now we have two datasets, each contains a difference score for each subject, for
 <<>>=
 t.test(failed_wide$diff, successful_wide$diff, paired = TRUE)
 @
+
+\section {HLM Model}
+
+<<>>=
+library(lme4)
+TOTcuedrecall$TargetAccuracy = as.factor(TOTcuedrecall$TargetAccuracy)
+TOTcuedrecall$CuedRecallAcc = as.factor(TOTcuedrecall$CuedRecallAcc)
+
+TOTcuedrecall$FailedRetrieval = ifelse(TOTcuedrecall$TargetAccuracy == 1,0,1)
+
+totcuedrecall_hlm = glmer(data = TOTcuedrecall, FailedRetrieval ~ CuedRecallAcc +
+                        (1|Subject), family = "binomial")
+summary(totcuedrecall_hlm)
+@
+
+\subsubsection{Plot}
+
+<<fig=TRUE>>=
+fixed.frame <- 
+  data.frame(expand.grid( CuedRecallAcc = c("0","1"))) %>%
+  mutate(pred = predict(totcuedrecall_hlm, newdata = ., re.form = NA))
+
+fixed.frame$odds = exp(fixed.frame$pred)
+fixed.frame$prob = fixed.frame$odds/(1+ fixed.frame$odds)
+
+fixed.frame$failure = 1 - fixed.frame$prob
+
+
+
+fixed.frame %>% 
+  mutate(CuedRecallAccuracy = factor(CuedRecallAcc, 
+    levels = unique(CuedRecallAcc),
+                    labels = c("Failed Recall", "Successful Recall")))%>%
+ggplot(aes(x = CuedRecallAccuracy, y = prob))+
+  geom_line(group = 1)+
+  ylim(.5,1)+
+# geom_bar(stat = "identity", position = "dodge", 
+ #         width = 0.7, color = "black")+
+ theme_few()+
+  xlab("Cued Recall Accuracy") + ylab("Probability of Failing at Target Retrieval") + 
+  ggtitle("TOT Cued Recall ")  +
+   theme(axis.text = element_text(face = "bold", size = rel(1)),
+          axis.title = element_text(face = "bold", size = rel(1)),
+          legend.title = element_text(face = "bold", size = rel(1)),
+     plot.title = element_text(face = "bold", size = rel(1.5), hjust = .5),
+         strip.text.x = element_text(face = "bold", size = rel(1.4)))
+
+@
+
+\section {z-scoring RTs}
+\subsection*{RT prime and Target}
+
+<<>>=
+library(dplyr)
+colnames(TOTcuedrecall) = c("Subject", "Session", "Procedure", "Trial", 
+                            "Prime", "PrimeDefResp",
+                            "PrimeDefRT", "Cue","PrimeLength",
+                            "PrimeResp", "PrimeRespRT", "Stimuli1",
+                            "StimuliNo",
+                           "Target", "TargetDefResp", "TargetRT",
+                            "State", "StateRT", "TargetResp", "TargetRespRT",
+                            "CuedRecallAcc", "Accuracy",  
+                            "RTrecognisePrime", "RTrecogniseTarget",
+                           "FailedRetrieval")
+
+
+## aggregate per subject all IVs and DVs
+meanRT = group_by(TOTcuedrecall, Subject) %>%
+  summarise_at(vars(PrimeDefRT, TargetRT, RTrecognisePrime, RTrecogniseTarget), mean)
+colnames(meanRT) = c("Subject","MeanPrimeRT", "MeanTargetRT", 
+                     "MeanRTrecogPrime", "MeanRTrecogTarget")
+
+sdRT = group_by(TOTcuedrecall, Subject) %>%
+  summarise_at(vars(PrimeDefRT, TargetRT, RTrecognisePrime, RTrecogniseTarget), sd)
+colnames(sdRT) = c("Subject","sdPrimeRT", "sdTargetRT", 
+                     "sdRTrecogPrime", "sdRTrecogTarget")
+
+RT_agg = merge(meanRT, sdRT, by = "Subject")
+
+## merge aggregate info with long data
+TOTcuedrecall_z = merge(TOTcuedrecall, RT_agg, by = "Subject", all.x = T)
+
+## person and grand-mean centered scores using original and aggregate
+library(dplyr)
+TOTcuedrecall_z = TOTcuedrecall_z %>% mutate(zPrimeRT = 
+                                             (PrimeDefRT - MeanPrimeRT)/sdPrimeRT,
+                                           zTargetRT = 
+                                             (TargetRT - MeanTargetRT)/sdTargetRT,
+                                           zPrimeRecogRT = 
+                                             (RTrecognisePrime - 
+                                                MeanRTrecogPrime)/sdRTrecogPrime,
+                                           zTargetRecogRT = 
+                                             (RTrecogniseTarget - 
+                                                MeanRTrecogTarget)/sdRTrecogTarget)
+                 
+## checking: subject level means should be zero
+
+sub_pic = group_by(TOTcuedrecall_z, Subject) %>%
+  summarise_at(vars(zTargetRT,zPrimeRecogRT, zTargetRecogRT), mean)
+
+@
+
+\section{RT distributions}
+
+\subsection *{RT to Demask Prime}
+
+<<>>=
+library(ggplot2)
+library(ggthemes)
+## RT to demask prime
+ggplot(TOTcuedrecall_z, aes(x = RTrecognisePrime))+
+ geom_histogram(binwidth = 500, color = "gray26", fill = "goldenrod")+
+ theme_few()+
+ xlab("RT to recognise Prime") + ylab("Count") + 
+ggtitle("Raw RT to Recognize Prime")
+
+ggplot(TOTcuedrecall_z, aes(x = zPrimeRecogRT))+
+ geom_histogram(binwidth = 0.2, color = "gray26", fill = "goldenrod")+
+ theme_few()+
+ xlab("z-RT to recognise Prime") + ylab("Count") + 
+ggtitle("z-RT to Recognize Prime")
+@
+
+\subsection *{RT to Retrieve Target}
+<<>>=
+## RT to retrieve target
+ggplot(TOTcuedrecall_z, aes(x = TargetRT))+
+ geom_histogram(binwidth = 100, color = "gray26", fill = "goldenrod")+
+ theme_few()+
+ xlab("RT to Retrieve Target (ms)") + ylab("Count") + 
+ggtitle("Raw RT to Retrieve Target")
+
+ggplot(TOTcuedrecall_z, aes(x = zTargetRT))+
+ geom_histogram(binwidth = 0.1, color = "gray26", fill = "goldenrod")+
+ theme_few()+
+ xlab("z-RT to Retrieve Target") + ylab("Count") + 
+ggtitle("z-RT to Retrieve Target")
+
+@
+
+\subsectin *{RT to Demask Target}
+
+<<>>=
+## RT to demask target
+ggplot(TOTcuedrecall_z, aes(x = RTrecogniseTarget))+
+ geom_histogram(binwidth = 200, color = "gray26", fill = "goldenrod")+
+ theme_few()+
+ xlab("RT to Retrieve Target (ms)") + ylab("Count") + 
+ggtitle("Raw RT to Recognize Target")
+
+ggplot(TOTcuedrecall_z, aes(x = zTargetRecogRT))+
+ geom_histogram(binwidth = 0.1, color = "gray26", fill = "goldenrod")+
+ theme_few()+
+ xlab("z-RT to Retrieve Target") + ylab("Count") + 
+ggtitle("z-RT to Recognize Target")
+
+@
+
+\section {Trimming z-RTs}
+
+<<>>=
+
+#Note: We are trimming based on PrimeRecog RT because that's the RT we care about most: trim separately!!
+TOTcuedrecall_z_trimmed = subset(TOTcuedrecall_z, 
+                                TOTcuedrecall_z$zPrimeRecogRT < 3 & 
+                                  TOTcuedrecall_z$zPrimeRecogRT > -3)
+@
+
+\section {Repeating z-scoring}
+
+<<>>=
+## aggregate per subject all IVs and DVs
+meanRT = group_by(TOTcuedrecall_z_trimmed, Subject) %>%
+  summarise_at(vars(PrimeDefRT, TargetRT, RTrecognisePrime, RTrecogniseTarget), mean)
+colnames(meanRT) = c("Subject","MeanPrimeRT_trim", "MeanTargetRT_trim", 
+                     "MeanRTrecogPrime_trim", "MeanRTrecogTarget_trim")
+
+sdRT = group_by(TOTcuedrecall_z_trimmed, Subject) %>%
+  summarise_at(vars(PrimeDefRT, TargetRT, RTrecognisePrime, RTrecogniseTarget), sd)
+colnames(sdRT) = c("Subject", "sdPrimeRT_trim","sdTargetRT_trim", 
+                     "sdRTrecogPrime_trim", "sdRTrecogTarget_trim")
+
+RT_agg = merge(meanRT, sdRT, by = "Subject")
+
+## merge aggregate info with long data
+TOTcuedrecall_final_z = merge(TOTcuedrecall_z_trimmed, 
+                             RT_agg, by = "Subject", all.x = T)
+
+## person and grand-mean centered scores using original and aggregate
+library(dplyr)
+TOTcuedrecall_final_z = TOTcuedrecall_final_z %>% mutate(zPrimeRT_trim = 
+                                             (PrimeDefRT - 
+                                                MeanPrimeRT_trim)/sdPrimeRT_trim,
+                                             zTargetRT_trim = 
+                                             (TargetRT - 
+                                                MeanTargetRT_trim)/sdTargetRT_trim,
+                                           zPrimeRecogRT_trim = 
+                                             (RTrecognisePrime - 
+                                      MeanRTrecogPrime_trim)/sdRTrecogPrime_trim,
+                                           zTargetRecogRT_trim = 
+                                             (RTrecogniseTarget - 
+                                      MeanRTrecogTarget_trim)/sdRTrecogTarget_trim)
+                 
+## checking: subject level means should be zero
+
+sub_pic = group_by(TOTcuedrecall_final_z, Subject) %>%
+  summarise_at(vars(zTargetRT_trim,zPrimeRecogRT_trim, zTargetRecogRT_trim), mean)
+
+@
+
+\section {Final RT distributions}
+<<>>=
+ggplot(TOTcuedrecall_final_z, aes(x = zPrimeRecogRT_trim))+
+ geom_histogram(binwidth = 0.2, color = "gray26", fill = "goldenrod")+
+ theme_few()+
+ xlab("z-RT to recognise Prime") + ylab("Count") + 
+ggtitle("z-RT to Recognize Prime")
+
+ggplot(TOTcuedrecall_final_z, aes(x = zTargetRT_trim))+
+ geom_histogram(binwidth = 0.2, color = "gray26", fill = "goldenrod")+
+ theme_few()+
+ xlab("z-RT to recognise Target") + ylab("Count") + 
+ggtitle("z-RT to Recognize Target")
+
+ggplot(TOTcuedrecall_final_z, aes(x = zTargetRecogRT_trim))+
+ geom_histogram(binwidth = 0.2, color = "gray26", fill = "goldenrod")+
+ theme_few()+
+ xlab("z-RT to Retrieve Target") + ylab("Count") + 
+ggtitle("z-RT to Retrieve Target")
+
+@
+
+
+\section {Linear Models}
+
+<<>>=
+# Mean RT to retrieve Target as a function of Prime Condition
+
+# Effect of RT prime on Accuracy
+TOTcuedrecall_final_z = TOTcuedrecall_final_z %>%
+                          filter(!Subject %in% c(1))
+library(lme4)
+RTprime_acc_model = glmer(data = TOTcuedrecall_final_z, 
+                          Accuracy ~ zPrimeRecogRT_trim + 
+                            (1|Subject) + (1|Target), family = binomial )
+summary(RTprime_acc_model)
+library(sjPlot)
+sjp.glmer(RTprime_acc_model, type = "pred", vars = "zPrimeRecogRT_trim")
+
+@
+
+\section {Plotting Model Fits}
+\subsection {Model 1}
+<<fig=TRUE>>=
+fixed.frame <- 
+  data.frame(expand.grid(zPrimeRecogRT_trim = seq(-3,3,0.5)))%>%
+  mutate(pred = predict(RTprime_acc_model, newdata = ., re.form = NA))
+
+fixed.frame$odds = exp(fixed.frame$pred)
+fixed.frame$prob = fixed.frame$odds/(1+fixed.frame$odds)
+
+fixed.frame %>%
+  ggplot(aes(x = zPrimeRecogRT_trim, y = prob)) +
+    geom_line(size = 1, color = "blue") + 
+    ylim(0.10,0.40)+
+    xlab("z-RT to Demask Prime") + ylab ("Mean Target Accuracy")+ 
+  ggtitle("Model Fit: Target Accuracy by Prime Demasking RT")+
+theme_few() +
+    theme(axis.text = element_text(face = "bold", size = rel(1.2)),
+          axis.title = element_text(face = "bold", size = rel(1.2)),
+          legend.title = element_text(face = "bold", size = rel(1.2)),
+          plot.title = element_text(face = "bold", size = rel(1.2), hjust = .5))
+@
+
+
+\subsection {Raw Data}
+
+<<>>=
+TOTcuedrecall_final_z$Accuracy = as.numeric(as.character(TOTcuedrecall_final_z$Accuracy))
+TOTcuedrecall_final_z1 = TOTcuedrecall_final_z %>% filter(Subject != "6")
+mainplot = TOTcuedrecall_final_z1 %>%
+ ggplot(aes(x =zPrimeRecogRT_trim , y = Accuracy, 
+             group = factor(Subject))) +
+  geom_smooth(method = "lm", se = FALSE, color = "darkolivegreen4", size = 0.5)+
+  guides(color = FALSE)+
+    xlab("z-RT to Demask Prime") + ylab ("Mean Target Accuracy")+ 
+  ggtitle("Target Accuracy by Prime Demasking RT")+
+theme_few() +
+    theme(axis.text = element_text(face = "bold", size = rel(1.2)),
+          axis.title = element_text(face = "bold", size = rel(1.2)),
+          legend.title = element_text(face = "bold", size = rel(1.2)),
+          plot.title = element_text(face = "bold", size = rel(1.2), hjust = .5))
+mainplot + stat_smooth(aes(group = 1), method = "lm", color = "red")
+
+@
+
 
 
 \end{document}
