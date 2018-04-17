@@ -89,7 +89,7 @@ The ANOVA output tells us that the interaction term is not signiificant. We will
 
 \section {Conditional Figure}
 
-<<>>=
+<<fig=TRUE>>=
 cond_figure = Rmisc::summarySE(merge_acc, 
                         measurevar = "prop",
                         groupvars = c("CuedRecallAcc", 
@@ -124,36 +124,32 @@ ggplot(aes(x = Recall, y = prop,
          strip.text.x = element_text(face = "bold", size = rel(1.4)))
 condfigure_plot
 @
-\break
-\begin{figure}[h]
-  \includegraphics[width=\linewidth]{CuedRecallFigure.jpeg}
-\end{figure}
 
 \section {Follow Up Tests}
 
 For each subject, we will calculate a difference score for drop off in accuracy when they failed to recall the item vs. when they successfully retrieved the item.
 
 <<>>=
-failedrecall = merge_acc %>% filter(CuedRecallAcc == "0")
-failedrecall = failedrecall[,-c(2,4,5)]
-successfulrecall = merge_acc %>% filter(CuedRecallAcc == "1")
-successfulrecall = successfulrecall[,-c(2,4,5)]
-
-## need to convert from long to wide: using spread
-library(tidyr)
-failed_wide = failedrecall %>%
-  spread(TargetAccuracy, prop)
-failed_wide$diff = failed_wide$`0` - failed_wide$`1`
-
-successful_wide = successfulrecall %>%
-  spread(TargetAccuracy, prop)
-successful_wide$diff = successful_wide$`0` - successful_wide$`1`
+# failedrecall = merge_acc %>% filter(CuedRecallAcc == "0")
+# failedrecall = failedrecall[,-c(2,4,5)]
+# successfulrecall = merge_acc %>% filter(CuedRecallAcc == "1")
+# successfulrecall = successfulrecall[,-c(2,4,5)]
+# 
+# ## need to convert from long to wide: using spread
+# library(tidyr)
+# failed_wide = failedrecall %>%
+#   spread(TargetAccuracy, prop)
+# failed_wide$diff = failed_wide$`0` - failed_wide$`1`
+# 
+# successful_wide = successfulrecall %>%
+#   spread(TargetAccuracy, prop)
+# successful_wide$diff = successful_wide$`0` - successful_wide$`1`
 @
 
 Now we have two datasets, each contains a difference score for each subject, for failed and successful cued recall. Now, we can perform a paired t-test (why paired? because the data for failed and successful recall comes from the same subjects i.e., it is a within-subjects design). 
 
 <<>>=
-t.test(failed_wide$diff, successful_wide$diff, paired = TRUE)
+# t.test(failed_wide$diff, successful_wide$diff, paired = TRUE)
 @
 
 \section {HLM Model}
@@ -265,51 +261,51 @@ sub_pic = group_by(TOTcuedrecall_z, Subject) %>%
 library(ggplot2)
 library(ggthemes)
 ## RT to demask prime
-ggplot(TOTcuedrecall_z, aes(x = RTrecognisePrime))+
- geom_histogram(binwidth = 500, color = "gray26", fill = "goldenrod")+
- theme_few()+
- xlab("RT to recognise Prime") + ylab("Count") + 
-ggtitle("Raw RT to Recognize Prime")
-
-ggplot(TOTcuedrecall_z, aes(x = zPrimeRecogRT))+
- geom_histogram(binwidth = 0.2, color = "gray26", fill = "goldenrod")+
- theme_few()+
- xlab("z-RT to recognise Prime") + ylab("Count") + 
-ggtitle("z-RT to Recognize Prime")
+# ggplot(TOTcuedrecall_z, aes(x = RTrecognisePrime))+
+#  geom_histogram(binwidth = 500, color = "gray26", fill = "goldenrod")+
+#  theme_few()+
+#  xlab("RT to recognise Prime") + ylab("Count") + 
+# ggtitle("Raw RT to Recognize Prime")
+# 
+# ggplot(TOTcuedrecall_z, aes(x = zPrimeRecogRT))+
+#  geom_histogram(binwidth = 0.2, color = "gray26", fill = "goldenrod")+
+#  theme_few()+
+#  xlab("z-RT to recognise Prime") + ylab("Count") + 
+# ggtitle("z-RT to Recognize Prime")
 @
 
 \subsection *{RT to Retrieve Target}
 <<>>=
 ## RT to retrieve target
-ggplot(TOTcuedrecall_z, aes(x = TargetRT))+
- geom_histogram(binwidth = 100, color = "gray26", fill = "goldenrod")+
- theme_few()+
- xlab("RT to Retrieve Target (ms)") + ylab("Count") + 
-ggtitle("Raw RT to Retrieve Target")
-
-ggplot(TOTcuedrecall_z, aes(x = zTargetRT))+
- geom_histogram(binwidth = 0.1, color = "gray26", fill = "goldenrod")+
- theme_few()+
- xlab("z-RT to Retrieve Target") + ylab("Count") + 
-ggtitle("z-RT to Retrieve Target")
+# ggplot(TOTcuedrecall_z, aes(x = TargetRT))+
+#  geom_histogram(binwidth = 100, color = "gray26", fill = "goldenrod")+
+#  theme_few()+
+#  xlab("RT to Retrieve Target (ms)") + ylab("Count") + 
+# ggtitle("Raw RT to Retrieve Target")
+# 
+# ggplot(TOTcuedrecall_z, aes(x = zTargetRT))+
+#  geom_histogram(binwidth = 0.1, color = "gray26", fill = "goldenrod")+
+#  theme_few()+
+#  xlab("z-RT to Retrieve Target") + ylab("Count") + 
+# ggtitle("z-RT to Retrieve Target")
 
 @
 
-\subsectin *{RT to Demask Target}
+\subsection *{RT to Demask Target}
 
 <<>>=
 ## RT to demask target
-ggplot(TOTcuedrecall_z, aes(x = RTrecogniseTarget))+
- geom_histogram(binwidth = 200, color = "gray26", fill = "goldenrod")+
- theme_few()+
- xlab("RT to Retrieve Target (ms)") + ylab("Count") + 
-ggtitle("Raw RT to Recognize Target")
-
-ggplot(TOTcuedrecall_z, aes(x = zTargetRecogRT))+
- geom_histogram(binwidth = 0.1, color = "gray26", fill = "goldenrod")+
- theme_few()+
- xlab("z-RT to Retrieve Target") + ylab("Count") + 
-ggtitle("z-RT to Recognize Target")
+# ggplot(TOTcuedrecall_z, aes(x = RTrecogniseTarget))+
+#  geom_histogram(binwidth = 200, color = "gray26", fill = "goldenrod")+
+#  theme_few()+
+#  xlab("RT to Retrieve Target (ms)") + ylab("Count") + 
+# ggtitle("Raw RT to Recognize Target")
+# 
+# ggplot(TOTcuedrecall_z, aes(x = zTargetRecogRT))+
+#  geom_histogram(binwidth = 0.1, color = "gray26", fill = "goldenrod")+
+#  theme_few()+
+#  xlab("z-RT to Retrieve Target") + ylab("Count") + 
+# ggtitle("z-RT to Recognize Target")
 
 @
 
@@ -367,30 +363,30 @@ sub_pic = group_by(TOTcuedrecall_final_z, Subject) %>%
 
 \section {Final RT distributions}
 <<>>=
-ggplot(TOTcuedrecall_final_z, aes(x = zPrimeRecogRT_trim))+
- geom_histogram(binwidth = 0.2, color = "gray26", fill = "goldenrod")+
- theme_few()+
- xlab("z-RT to recognise Prime") + ylab("Count") + 
-ggtitle("z-RT to Recognize Prime")
-
-ggplot(TOTcuedrecall_final_z, aes(x = zTargetRT_trim))+
- geom_histogram(binwidth = 0.2, color = "gray26", fill = "goldenrod")+
- theme_few()+
- xlab("z-RT to recognise Target") + ylab("Count") + 
-ggtitle("z-RT to Recognize Target")
-
-ggplot(TOTcuedrecall_final_z, aes(x = zTargetRecogRT_trim))+
- geom_histogram(binwidth = 0.2, color = "gray26", fill = "goldenrod")+
- theme_few()+
- xlab("z-RT to Retrieve Target") + ylab("Count") + 
-ggtitle("z-RT to Retrieve Target")
+# ggplot(TOTcuedrecall_final_z, aes(x = zPrimeRecogRT_trim))+
+#  geom_histogram(binwidth = 0.2, color = "gray26", fill = "goldenrod")+
+#  theme_few()+
+#  xlab("z-RT to recognise Prime") + ylab("Count") + 
+# ggtitle("z-RT to Recognize Prime")
+# 
+# ggplot(TOTcuedrecall_final_z, aes(x = zTargetRT_trim))+
+#  geom_histogram(binwidth = 0.2, color = "gray26", fill = "goldenrod")+
+#  theme_few()+
+#  xlab("z-RT to recognise Target") + ylab("Count") + 
+# ggtitle("z-RT to Recognize Target")
+# 
+# ggplot(TOTcuedrecall_final_z, aes(x = zTargetRecogRT_trim))+
+#  geom_histogram(binwidth = 0.2, color = "gray26", fill = "goldenrod")+
+#  theme_few()+
+#  xlab("z-RT to Retrieve Target") + ylab("Count") + 
+# ggtitle("z-RT to Retrieve Target")
 
 @
 
 
 \section {Linear Models}
 
-<<>>=
+<<fig=TRUE>>=
 # Mean RT to retrieve Target as a function of Prime Condition
 
 # Effect of RT prime on Accuracy
@@ -432,7 +428,7 @@ theme_few() +
 
 \subsection {Raw Data}
 
-<<>>=
+<<fig=TRUE>>=
 TOTcuedrecall_final_z$Accuracy = as.numeric(as.character(TOTcuedrecall_final_z$Accuracy))
 TOTcuedrecall_final_z1 = TOTcuedrecall_final_z %>% filter(Subject != "6")
 mainplot = TOTcuedrecall_final_z1 %>%

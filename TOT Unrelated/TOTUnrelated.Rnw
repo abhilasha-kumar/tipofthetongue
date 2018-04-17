@@ -85,7 +85,7 @@ The ANOVA output tells us that the interaction term is not signiificant. We will
 
 \section {Conditional Figure}
 
-<<>>=
+<<fig=TRUE>>=
 cond_figure = Rmisc::summarySE(merge_acc, 
                         measurevar = "prop",
                         groupvars = c("PrimeFirstResp_ACC", 
@@ -120,10 +120,6 @@ ggplot(aes(x = Recall, y = prop,
          strip.text.x = element_text(face = "bold", size = rel(1.4)))
 condfigure_plot
 @
-\break
-\begin{figure}[h]
-  \includegraphics[width=\linewidth]{CuedRecallFigure.jpeg}
-\end{figure}
 
 \section {Follow Up Tests}
 
@@ -260,51 +256,51 @@ sub_pic = group_by(TOTUnrelated_z, Subject) %>%
 library(ggplot2)
 library(ggthemes)
 ## RT to demask prime
-ggplot(TOTUnrelated_z, aes(x = RTrecognisePrime))+
- geom_histogram(binwidth = 500, color = "gray26", fill = "goldenrod")+
- theme_few()+
- xlab("RT to recognise Prime") + ylab("Count") + 
-ggtitle("Raw RT to Recognize Prime")
-
-ggplot(TOTUnrelated_z, aes(x = zPrimeRecogRT))+
- geom_histogram(binwidth = 0.2, color = "gray26", fill = "goldenrod")+
- theme_few()+
- xlab("z-RT to recognise Prime") + ylab("Count") + 
-ggtitle("z-RT to Recognize Prime")
+# ggplot(TOTUnrelated_z, aes(x = RTrecognisePrime))+
+#  geom_histogram(binwidth = 500, color = "gray26", fill = "goldenrod")+
+#  theme_few()+
+#  xlab("RT to recognise Prime") + ylab("Count") + 
+# ggtitle("Raw RT to Recognize Prime")
+# 
+# ggplot(TOTUnrelated_z, aes(x = zPrimeRecogRT))+
+#  geom_histogram(binwidth = 0.2, color = "gray26", fill = "goldenrod")+
+#  theme_few()+
+#  xlab("z-RT to recognise Prime") + ylab("Count") + 
+# ggtitle("z-RT to Recognize Prime")
 @
 
 \subsection *{RT to Retrieve Target}
 <<>>=
 ## RT to retrieve target
-ggplot(TOTUnrelated_z, aes(x = TargetRT))+
- geom_histogram(binwidth = 100, color = "gray26", fill = "goldenrod")+
- theme_few()+
- xlab("RT to Retrieve Target (ms)") + ylab("Count") + 
-ggtitle("Raw RT to Retrieve Target")
-
-ggplot(TOTUnrelated_z, aes(x = zTargetRT))+
- geom_histogram(binwidth = 0.1, color = "gray26", fill = "goldenrod")+
- theme_few()+
- xlab("z-RT to Retrieve Target") + ylab("Count") + 
-ggtitle("z-RT to Retrieve Target")
+# ggplot(TOTUnrelated_z, aes(x = TargetRT))+
+#  geom_histogram(binwidth = 100, color = "gray26", fill = "goldenrod")+
+#  theme_few()+
+#  xlab("RT to Retrieve Target (ms)") + ylab("Count") + 
+# ggtitle("Raw RT to Retrieve Target")
+# 
+# ggplot(TOTUnrelated_z, aes(x = zTargetRT))+
+#  geom_histogram(binwidth = 0.1, color = "gray26", fill = "goldenrod")+
+#  theme_few()+
+#  xlab("z-RT to Retrieve Target") + ylab("Count") + 
+# ggtitle("z-RT to Retrieve Target")
 
 @
 
-\subsectin *{RT to Demask Target}
+\subsection *{RT to Demask Target}
 
 <<>>=
 ## RT to demask target
-ggplot(TOTUnrelated_z, aes(x = RTrecogniseTarget))+
- geom_histogram(binwidth = 200, color = "gray26", fill = "goldenrod")+
- theme_few()+
- xlab("RT to Retrieve Target (ms)") + ylab("Count") + 
-ggtitle("Raw RT to Recognize Target")
-
-ggplot(TOTUnrelated_z, aes(x = zTargetRecogRT))+
- geom_histogram(binwidth = 0.1, color = "gray26", fill = "goldenrod")+
- theme_few()+
- xlab("z-RT to Retrieve Target") + ylab("Count") + 
-ggtitle("z-RT to Recognize Target")
+# ggplot(TOTUnrelated_z, aes(x = RTrecogniseTarget))+
+#  geom_histogram(binwidth = 200, color = "gray26", fill = "goldenrod")+
+#  theme_few()+
+#  xlab("RT to Retrieve Target (ms)") + ylab("Count") + 
+# ggtitle("Raw RT to Recognize Target")
+# 
+# ggplot(TOTUnrelated_z, aes(x = zTargetRecogRT))+
+#  geom_histogram(binwidth = 0.1, color = "gray26", fill = "goldenrod")+
+#  theme_few()+
+#  xlab("z-RT to Retrieve Target") + ylab("Count") + 
+# ggtitle("z-RT to Recognize Target")
 
 @
 
@@ -362,30 +358,30 @@ sub_pic = group_by(TOTUnrelated_final_z, Subject) %>%
 
 \section {Final RT distributions}
 <<>>=
-ggplot(TOTUnrelated_final_z, aes(x = zPrimeRecogRT_trim))+
- geom_histogram(binwidth = 0.2, color = "gray26", fill = "goldenrod")+
- theme_few()+
- xlab("z-RT to recognise Prime") + ylab("Count") + 
-ggtitle("z-RT to Recognize Prime")
-
-ggplot(TOTUnrelated_final_z, aes(x = zTargetRT_trim))+
- geom_histogram(binwidth = 0.2, color = "gray26", fill = "goldenrod")+
- theme_few()+
- xlab("z-RT to recognise Target") + ylab("Count") + 
-ggtitle("z-RT to Recognize Target")
-
-ggplot(TOTUnrelated_final_z, aes(x = zTargetRecogRT_trim))+
- geom_histogram(binwidth = 0.2, color = "gray26", fill = "goldenrod")+
- theme_few()+
- xlab("z-RT to Retrieve Target") + ylab("Count") + 
-ggtitle("z-RT to Retrieve Target")
+# ggplot(TOTUnrelated_final_z, aes(x = zPrimeRecogRT_trim))+
+#  geom_histogram(binwidth = 0.2, color = "gray26", fill = "goldenrod")+
+#  theme_few()+
+#  xlab("z-RT to recognise Prime") + ylab("Count") + 
+# ggtitle("z-RT to Recognize Prime")
+# 
+# ggplot(TOTUnrelated_final_z, aes(x = zTargetRT_trim))+
+#  geom_histogram(binwidth = 0.2, color = "gray26", fill = "goldenrod")+
+#  theme_few()+
+#  xlab("z-RT to recognise Target") + ylab("Count") + 
+# ggtitle("z-RT to Recognize Target")
+# 
+# ggplot(TOTUnrelated_final_z, aes(x = zTargetRecogRT_trim))+
+#  geom_histogram(binwidth = 0.2, color = "gray26", fill = "goldenrod")+
+#  theme_few()+
+#  xlab("z-RT to Retrieve Target") + ylab("Count") + 
+# ggtitle("z-RT to Retrieve Target")
 
 @
 
 
 \section {Linear Models}
 
-<<>>=
+<<fig=TRUE>>=
 # Mean RT to retrieve Target as a function of Prime Condition
 
 # Effect of RT prime on Accuracy
