@@ -203,7 +203,7 @@ ggplot(aes(x = PrimeRetrieval, y = prob))+
 library(dplyr)
 colnames(TOTSemantic) = c( "Subject", "Session", "Trial", "Prime", "PrimeDefResp",
                             "PrimeDefRT", "PrimeResp",
-                           "PrimeRespRT", "Stimuli1",
+                           "PrimeRespRT", 
                            "Target", "TargetDefResp", "TargetRT",
                             "State", "StateRT", "TargetResp", "TargetRespRT",
                             "PrimeAcc", "Accuracy",  
