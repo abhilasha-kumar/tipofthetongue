@@ -154,7 +154,44 @@ cond_aov = aov(data = merge_acc,
         prop ~ ExperimentName*PrimeFirstResp_ACC*TargetFirstResp_ACC +
         Error(Subject/(PrimeFirstResp_ACC*TargetFirstResp_ACC)))
 summary(cond_aov)
+
+## prime condition effect
+
+prime_sub = group_by(US, ExperimentName, Subject, PrimeCondition) %>%
+  summarise_at(vars(TargetFirstResp_ACC), mean)
+
+prime_aov = aov(data = prime_sub, TargetFirstResp_ACC ~ PrimeCondition)
+summary(prime_aov)
+
 @
+
+\subsection*{Target Accuracy Figure}
+
+<<fig=TRUE>>=
+target_rmisc = Rmisc::summarySE(prime_sub, 
+                      measurevar = "TargetFirstResp_ACC",
+                      groupvars = c("ExperimentName","PrimeCondition"))
+
+library(ggplot2)
+library(ggthemes)
+target_rmisc %>% mutate(PrimeType = factor(PrimeCondition, 
+                                                 levels = unique(PrimeCondition),
+                    labels = c("Semantic", "Unrelated"))) %>%
+ggplot(aes(x = ExperimentName, y = TargetFirstResp_ACC, 
+           group = PrimeType, fill = PrimeType))+
+ geom_bar(stat = "identity", position = "dodge", width = 0.5)+
+  geom_errorbar(aes(ymin = TargetFirstResp_ACC - se, ymax = TargetFirstResp_ACC + se),
+                width=.05, position=position_dodge(.5)) +
+  theme_few()+
+  scale_fill_gdocs()+
+  xlab("Experiment") + ylab("Mean Target Accuracy") + 
+  ggtitle("Target Retrieval Accuracy Across E1 and E2") +
+    theme(axis.text = element_text(face = "bold", size = rel(1)),
+          axis.title = element_text(face = "bold", size = rel(1.2)),
+          legend.title = element_text(face = "bold", size = rel(1.2)),
+          plot.title = element_text(face = "bold", size = rel(1.4), hjust = .5))
+@
+
 
 \subsection {Conditional Figure}
 
@@ -276,7 +313,8 @@ colnames(US) = c( "ExperimentName", "Subject","ID", "Session", "Procedure", "Tri
                            "Target", "TargetDefResp", "TargetRT",
                             "State", "StateRT", "TargetResp", "TargetRespRT",
                             "PrimeAcc", "Accuracy",  
-                            "RTrecognisePrime", "RTrecogniseTarget")
+                            "RTrecognisePrime", "RTrecogniseTarget", 
+                  "PrimeCondition")
 
 US$PrimeDefRT = as.numeric(as.character(US$PrimeDefRT))
 ## aggregate per subject all IVs and DVs
@@ -299,7 +337,7 @@ US_z = merge(US, RT_agg, by = c("ExperimentName", "Subject"), all.x = T)
 library(dplyr)
 US_z = US_z %>% mutate(zPrimeRT = (PrimeDefRT - MeanPrimeRT)/sdPrimeRT,
                                            zTargetRT = 
-                                             (TargetRT - MeanTargetRT)/sdTargetRT,
+                                     (TargetRT - MeanTargetRT)/sdTargetRT,
                                            zPrimeRecogRT = 
                                              (RTrecognisePrime - 
                                                 MeanRTrecogPrime)/sdRTrecogPrime,
@@ -318,51 +356,114 @@ sub_pic = group_by(US_z, Subject) %>%
 
 <<>>=
 
-#Note: We are trimming based on PrimeRecog RT because that's the RT we care about most: trim separately!!
-US_z_trimmed = subset(US_z, US_z$zPrimeRecogRT < 3 & 
+#Note: trimming separately!!
+US_z_trimmed_prime = subset(US_z, US_z$zPrimeRecogRT < 3 & 
                                   US_z$zPrimeRecogRT > -3)
+US_z_trimmed_target = subset(US_z, 
+                                US_z$zTargetRecogRT < 3 & 
+                                  US_z$zTargetRecogRT > -3)
 @
 
 \subsection {Repeating z-scoring}
 
+\subsection{For prime}
+
+
 <<>>=
 ## aggregate per subject all IVs and DVs
-meanRT = group_by(US_z_trimmed, ExperimentName, Subject) %>%
-  summarise_at(vars(PrimeDefRT, TargetRT, RTrecognisePrime, RTrecogniseTarget), mean)
-colnames(meanRT) = c("ExperimentName", "Subject","MeanPrimeRT_trim", "MeanTargetRT_trim", 
-                     "MeanRTrecogPrime_trim", "MeanRTrecogTarget_trim")
+meanRT_prime = group_by(US_z_trimmed_prime, ExperimentName, Subject) %>%
+  summarise_at(vars(PrimeDefRT, TargetRT, RTrecognisePrime), mean)
+colnames(meanRT_prime) = c("ExperimentName", "Subject",
+                     "MeanPrimeRT_trim", "MeanTargetRT_trim", 
+                     "MeanRTrecogPrime_trim")
 
-sdRT = group_by(US_z_trimmed, ExperimentName, Subject) %>%
-  summarise_at(vars(PrimeDefRT, TargetRT, RTrecognisePrime, RTrecogniseTarget), sd)
-colnames(sdRT) = c("ExperimentName", "Subject", "sdPrimeRT_trim","sdTargetRT_trim", 
-                     "sdRTrecogPrime_trim", "sdRTrecogTarget_trim")
+sdRT_prime = group_by(US_z_trimmed_prime, ExperimentName, Subject) %>%
+  summarise_at(vars(PrimeDefRT, TargetRT, RTrecognisePrime), sd)
+colnames(sdRT_prime) = c("ExperimentName", "Subject",
+                   "sdPrimeRT_trim","sdTargetRT_trim", 
+                     "sdRTrecogPrime_trim")
 
-RT_agg = merge(meanRT, sdRT, by = c("ExperimentName", "Subject"))
+RT_agg_prime = merge(meanRT_prime, sdRT_prime, 
+                     by = c("ExperimentName", "Subject"))
 
 ## merge aggregate info with long data
-US_final_z = merge(US_z_trimmed, 
-                             RT_agg, by = c("ExperimentName", "Subject"), all.x = T)
+US_final_z_prime = merge(US_z_trimmed_prime, 
+                             RT_agg_prime, 
+                   by = c("ExperimentName", "Subject"), all.x = T)
 
 ## person and grand-mean centered scores using original and aggregate
 library(dplyr)
-US_final_z = US_final_z %>% mutate(zPrimeRT_trim = 
+US_final_z_prime = US_final_z_prime %>% mutate(zPrimeRT_trim = 
                                              (PrimeDefRT - 
                                                 MeanPrimeRT_trim)/sdPrimeRT_trim,
                                              zTargetRT_trim = 
                                              (TargetRT - 
-                                                MeanTargetRT_trim)/sdTargetRT_trim,
+                                        MeanTargetRT_trim)/sdTargetRT_trim,
                                            zPrimeRecogRT_trim = 
                                              (RTrecognisePrime - 
-                                      MeanRTrecogPrime_trim)/sdRTrecogPrime_trim,
-                                           zTargetRecogRT_trim = 
-                                             (RTrecogniseTarget - 
-                                      MeanRTrecogTarget_trim)/sdRTrecogTarget_trim)
+                             MeanRTrecogPrime_trim)/sdRTrecogPrime_trim)
                  
 ## checking: subject level means should be zero
 
-sub_pic = group_by(US_final_z, Subject) %>%
-  summarise_at(vars(zTargetRT_trim,zPrimeRecogRT_trim, zTargetRecogRT_trim), mean)
+sub_pic = group_by(US_final_z_prime, Subject) %>%
+  summarise_at(vars(zTargetRT_trim,zPrimeRecogRT_trim), mean)
 
+@
+
+
+\subsection{For target}
+
+
+<<>>=
+## aggregate per subject all IVs and DVs
+meanRT_target = group_by(US_z_trimmed_target, ExperimentName, Subject) %>%
+  summarise_at(vars(PrimeDefRT, TargetRT, RTrecogniseTarget), mean)
+colnames(meanRT_target) = c("ExperimentName", "Subject",
+                     "MeanPrimeRT_trim", "MeanTargetRT_trim", 
+                      "MeanRTrecogTarget_trim")
+
+sdRT_target = group_by(US_z_trimmed_target, ExperimentName, Subject) %>%
+  summarise_at(vars(PrimeDefRT, TargetRT, RTrecogniseTarget), sd)
+colnames(sdRT_target) = c("ExperimentName", "Subject", 
+                          "sdPrimeRT_trim","sdTargetRT_trim", 
+                     "sdRTrecogTarget_trim")
+
+RT_agg = merge(meanRT_target, sdRT_target, by = c("ExperimentName", "Subject"))
+
+## merge aggregate info with long data
+US_final_z_target = merge(US_z_trimmed_target, 
+                             RT_agg, 
+                          by = c("ExperimentName", "Subject"), all.x = T)
+
+## person and grand-mean centered scores using original and aggregate
+library(dplyr)
+US_final_z_target = US_final_z_target %>% mutate(zPrimeRT_trim = 
+                                             (PrimeDefRT - 
+                                                MeanPrimeRT_trim)/sdPrimeRT_trim,
+                                             zTargetRT_trim = 
+                                             (TargetRT - 
+                                         MeanTargetRT_trim)/sdTargetRT_trim,
+                                           zTargetRecogRT_trim = 
+                                             (RTrecogniseTarget - 
+                                   MeanRTrecogTarget_trim)/sdRTrecogTarget_trim)
+                 
+## checking: subject level means should be zero
+
+sub_pic = group_by(US_final_z_target, Subject) %>%
+  summarise_at(vars(zTargetRT_trim, zTargetRecogRT_trim), mean)
+
+@
+
+\subsection {Combining z-RT Prime and Target }
+
+<<>>=
+## now we have separately z-scored RTprime and RTtarget. Need to combine.
+## taking only necessary columns
+US_final_z_prime = US_final_z_prime[,c(2,6,45)]
+
+US_final_z = merge(US_final_z_target, 
+                             US_final_z_prime, 
+                             by  = c("Subject", "Trial"))
 @
 
 \subsection {Linear Models}
@@ -377,10 +478,13 @@ RTprime_acc_model = glmer(data = US_final_z,
                             (1|Subject) + (1|Target), family = binomial )
 summary(RTprime_acc_model)
 
-
+RTprime_RT_model = lmer(data = US_final_z, 
+                  zTargetRecogRT_trim ~ ExperimentName*zPrimeRecogRT_trim + 
+                            (1|Subject) + (1|Target))
+summary(RTprime_RT_model)
 @
 
-\subsubsection {Raw Data}
+\subsubsection {Raw Data 1}
 
 <<fig=TRUE>>=
 library(ggplot2)
@@ -410,7 +514,36 @@ mainplot
 
 @
 
-\subsubsection {Model Plot}
+\subsubsection {Raw Data 2}
+
+<<fig=TRUE>>=
+library(ggplot2)
+library(ggthemes)
+mainplot2 = US_final_z %>%
+  mutate(Primes = factor(ExperimentName,
+                          levels = unique(ExperimentName),
+                       labels = c("Only Semantic", 
+                            "Only Unrelated")))%>%
+  ggplot(aes(x =zPrimeRecogRT_trim , y = zTargetRecogRT_trim, 
+             group = Primes, color = Primes)) +
+  geom_smooth(method = "glm", se = FALSE, size = 1)+
+    xlab("z-scored RT to Demask Prime") + ylab ("z-scored RT to Demask Target")+ 
+  ggtitle("")+
+theme_few() +
+  scale_color_manual(values = c("darkorange1", "springgreen4"))+
+    theme(axis.text = element_text(face = "bold", size = rel(1.4)),
+         axis.title.y = element_text(face = "bold", size = rel(1.4)),
+          axis.title = element_text(face = "bold", size = rel(1)),
+          legend.title = element_text(face = "bold", size = rel(1.2)),
+          plot.title = element_text(face = "bold", 
+                  size = rel(1.4), hjust = .5),
+         legend.text = element_text(face = "bold", size = rel(1.2)),
+         strip.text.x = element_text(face = "bold", size = rel(1.4)))
+mainplot2 
+
+@
+
+\subsubsection {Model Plot 1}
 
 <<fig=TRUE>>=
 library(ggplot2)
@@ -437,6 +570,46 @@ fixed.frame %>%
              group = Primes, color = Primes)) +
 geom_line(size = 1)+
       xlab("z-scored RT to Demask Prime") + ylab ("Mean Target Accuracy")+ 
+  ggtitle("")+
+theme_few() +
+  scale_color_manual(values = c("darkorange1", "springgreen4"))+
+    theme(axis.text = element_text(face = "bold", size = rel(1.4)),
+         axis.title.y = element_text(face = "bold", size = rel(1.4)),
+          axis.title = element_text(face = "bold", size = rel(1)),
+          legend.title = element_text(face = "bold", size = rel(1.2)),
+          plot.title = element_text(face = "bold", 
+                  size = rel(1.4), hjust = .5),
+         legend.text = element_text(face = "bold", size = rel(1.2)),
+         strip.text.x = element_text(face = "bold", size = rel(1.4)))
+@
+
+\subsubsection {Model Plot 2}
+
+<<fig=TRUE>>=
+library(ggplot2)
+library(ggthemes)
+
+library(dplyr)
+fixed.frame <-
+  data.frame(
+    expand.grid(
+      ExperimentName = c("TOT_Semantic", "TOT_Unrelated"),
+      zPrimeRecogRT_trim = seq(-3, 3, 0.001))) 
+      
+fixed.frame$pred = predict(RTprime_RT_model, newdata = fixed.frame, re.form = NA, type = c("link"))
+
+fixed.frame$prob = exp(fixed.frame$pred)/(1+exp(fixed.frame$pred))
+
+
+fixed.frame %>%
+  mutate(Primes = factor(ExperimentName,
+                          levels = unique(ExperimentName),
+                       labels = c("Only Semantic", 
+                            "Only Unrelated")))%>%
+  ggplot(aes(x =zPrimeRecogRT_trim , y = prob, 
+             group = Primes, color = Primes)) +
+geom_line(size = 1)+
+      xlab("z-scored RT to Demask Prime") + ylab ("z-RT to Demask Target")+ 
   ggtitle("")+
 theme_few() +
   scale_color_manual(values = c("darkorange1", "springgreen4"))+

@@ -307,52 +307,102 @@ sub_pic = group_by(TOTSemantic_z, Subject) %>%
 
 <<>>=
 
-#Note: We are trimming based on PrimeRecog RT because that's the RT we care about most: trim separately!!
-TOTSemantic_z_trimmed = subset(TOTSemantic_z, 
+#Note: We are trimming based on PrimeRecog RT because that's the RT we care about most
+TOTSemantic_z_trimmed_prime = subset(TOTSemantic_z, 
                                 TOTSemantic_z$zPrimeRecogRT < 3 & 
                                   TOTSemantic_z$zPrimeRecogRT > -3)
+
+TOTSemantic_z_trimmed_target = subset(TOTSemantic_z, 
+                                TOTSemantic_z$zTargetRecogRT < 3 & 
+                                  TOTSemantic_z$zTargetRecogRT > -3)
 @
 
 \section {Repeating z-scoring}
 
+\subsection{For prime}
+
 <<>>=
 ## aggregate per subject all IVs and DVs
-meanRT = group_by(TOTSemantic_z_trimmed, Subject) %>%
-  summarise_at(vars(PrimeDefRT, TargetRT, RTrecognisePrime, RTrecogniseTarget), mean)
-colnames(meanRT) = c("Subject","MeanPrimeRT_trim", "MeanTargetRT_trim", 
-                     "MeanRTrecogPrime_trim", "MeanRTrecogTarget_trim")
+meanRT_prime = group_by(TOTSemantic_z_trimmed_prime, Subject) %>%
+  summarise_at(vars(TargetRT, RTrecognisePrime), mean)
+colnames(meanRT_prime) = c("Subject", "MeanTargetRT_trim", 
+                     "MeanRTrecogPrime_trim")
 
-sdRT = group_by(TOTSemantic_z_trimmed, Subject) %>%
-  summarise_at(vars(PrimeDefRT, TargetRT, RTrecognisePrime, RTrecogniseTarget), sd)
-colnames(sdRT) = c("Subject", "sdPrimeRT_trim","sdTargetRT_trim", 
-                     "sdRTrecogPrime_trim", "sdRTrecogTarget_trim")
+sdRT_prime = group_by(TOTSemantic_z_trimmed_prime, Subject) %>%
+  summarise_at(vars(TargetRT, RTrecognisePrime), sd)
+colnames(sdRT_prime) = c("Subject", "sdTargetRT_trim", 
+                     "sdRTrecogPrime_trim")
 
-RT_agg = merge(meanRT, sdRT, by = "Subject")
+RT_agg_prime = merge(meanRT_prime, sdRT_prime, by = "Subject")
 
 ## merge aggregate info with long data
-TOTSemantic_final_z = merge(TOTSemantic_z_trimmed, 
-                             RT_agg, by = "Subject", all.x = T)
+TOTSemantic_final_z_prime = merge(TOTSemantic_z_trimmed_prime, 
+                             RT_agg_prime, by = "Subject", all.x = T)
 
 ## person and grand-mean centered scores using original and aggregate
 library(dplyr)
-TOTSemantic_final_z = TOTSemantic_final_z %>% mutate(zPrimeRT_trim = 
-                                             (PrimeDefRT - 
-                                                MeanPrimeRT_trim)/sdPrimeRT_trim,
-                                             zTargetRT_trim = 
+TOTSemantic_final_z_prime = TOTSemantic_final_z_prime %>% 
+                                  mutate(zTargetRT_trim = 
                                              (TargetRT - 
                                                 MeanTargetRT_trim)/sdTargetRT_trim,
                                            zPrimeRecogRT_trim = 
                                              (RTrecognisePrime - 
-                                      MeanRTrecogPrime_trim)/sdRTrecogPrime_trim,
+                                      MeanRTrecogPrime_trim)/sdRTrecogPrime_trim)
+                 
+## checking: subject level means should be zero
+
+sub_pic = group_by(TOTSemantic_final_z_prime, Subject) %>%
+  summarise_at(vars(zTargetRT_trim,zPrimeRecogRT_trim), mean)
+
+@
+
+\subsection{For Target}
+
+<<>>=
+## aggregate per subject all IVs and DVs
+meanRT_target = group_by(TOTSemantic_z_trimmed_target, Subject) %>%
+  summarise_at(vars(TargetRT, RTrecogniseTarget), mean)
+colnames(meanRT_target) = c("Subject", "MeanTargetRT_trim", 
+                     "MeanRTrecogTarget_trim")
+
+sdRT_target = group_by(TOTSemantic_z_trimmed_target, Subject) %>%
+  summarise_at(vars(TargetRT, RTrecogniseTarget), sd)
+colnames(sdRT_target) = c("Subject", "sdTargetRT_trim", 
+                      "sdRTrecogTarget_trim")
+
+RT_agg_target = merge(meanRT_target, sdRT_target, by = "Subject")
+
+## merge aggregate info with long data
+TOTSemantic_final_z_target = merge(TOTSemantic_z_trimmed_target, 
+                             RT_agg_target, by = "Subject", all.x = T)
+
+## person and grand-mean centered scores using original and aggregate
+library(dplyr)
+TOTSemantic_final_z_target = TOTSemantic_final_z_target %>% 
+                                  mutate(zTargetRT_trim = 
+                                             (TargetRT - 
+                                                MeanTargetRT_trim)/sdTargetRT_trim,
                                            zTargetRecogRT_trim = 
                                              (RTrecogniseTarget - 
                                       MeanRTrecogTarget_trim)/sdRTrecogTarget_trim)
                  
 ## checking: subject level means should be zero
 
-sub_pic = group_by(TOTSemantic_final_z, Subject) %>%
-  summarise_at(vars(zTargetRT_trim,zPrimeRecogRT_trim, zTargetRecogRT_trim), mean)
+sub_pic = group_by(TOTSemantic_final_z_target, Subject) %>%
+  summarise_at(vars(zTargetRT_trim, zTargetRecogRT_trim), mean)
 
+@
+
+\subsection {Combining z-RT Prime and Target }
+
+<<>>=
+## now we have separately z-scored RTprime and RTtarget. Need to combine.
+## taking only necessary columns
+TOTSemantic_final_z_prime = TOTSemantic_final_z_prime[,c(1,3,38)]
+
+TOTSemantic_final_z = merge(TOTSemantic_final_z_target, 
+                             TOTSemantic_final_z_prime, 
+                             by  = c("Subject", "Trial"))
 @
 
 \section {Final RT distributions}
@@ -400,6 +450,11 @@ ggtitle("Target Accuracy ~ \nDemasking RT") +
           legend.title = element_text(face = "bold", size = rel(1)),
          plot.title = element_text(hjust = .5),
          strip.text.x = element_text(face = "bold", size = rel(1.4)))
+
+RTprime_RT_model = lmer(data = TOTSemantic_final_z, 
+                          zTargetRecogRT_trim ~ zPrimeRecogRT_trim + 
+                            (1|Subject) + (1|Target))
+summary(RTprime_RT_model)
 
 @
 

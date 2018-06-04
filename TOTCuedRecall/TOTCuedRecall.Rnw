@@ -65,12 +65,12 @@ merge_acc$prop = merge_acc$trials/merge_acc$recalltrials
 In this section, we perform a repeated measures ANOVA on our data, to see if we are indeed seeing a difference in the proportion of unsuccessful trials for failed and successful cued recall. 
 
 <<>>=
-## mergeacc has 3 rows missing
-ez::ezDesign(merge_acc, Subject, CuedRecallAcc)
+## mergeacc has 4 rows missing
+ez::ezDesign(merge_acc, Subject, TargetAccuracy)
 merge_acc[101,] = c(12, 0, 0, 0, 0, 0)
-merge_acc[102,] = c(17, 1, 0, 0 ,0, 0)
-merge_acc[103,] = c(18, 0, 0, 0, 0, 0)
-merge_acc[104,] = c(21, 0, 0, 0, 0, 0)
+merge_acc[102,] = c(17, 1, 1, 0 ,0, 0)
+merge_acc[103,] = c(18, 0, 1, 0, 0, 0)
+merge_acc[104,] = c(21, 0, 1, 0, 0, 0)
 
 merge_acc$Subject = 
   as.factor(as.character(merge_acc$Subject))
@@ -79,10 +79,14 @@ merge_acc$CuedRecallAcc =
 merge_acc$TargetAccuracy = 
   as.factor(as.character(merge_acc$TargetAccuracy))
 
+merge_acc = merge_acc[order(merge_acc$Subject, merge_acc$CuedRecallAcc),]
+
 cond_aov = aov(data = merge_acc, 
         prop ~ CuedRecallAcc*TargetAccuracy +
         Error(Subject/(CuedRecallAcc*TargetAccuracy)))
 summary(cond_aov)
+
+
 @
 
 The ANOVA output tells us that the interaction term is not signiificant. We will next see this in a figure, to better understand our data.
@@ -397,7 +401,7 @@ RTprime_acc_model = glmer(data = TOTcuedrecall_final_z,
                           Accuracy ~ zPrimeRecogRT_trim + 
                             (1|Subject) + (1|Target), family = binomial )
 summary(RTprime_acc_model)
-library(sjPlot)
+.library(sjPlot)
 sjp.glmer(RTprime_acc_model, type = "pred", vars = "zPrimeRecogRT_trim")
 
 @
@@ -439,7 +443,6 @@ mainplot = TOTcuedrecall_final_z1 %>%
     xlab("z-RT to Demask Prime") + ylab ("Mean Target Accuracy")+ 
   ggtitle("Target Accuracy by Prime Demasking RT")+
 theme_few() +
-  ylim(-0.2,1)+
     theme(axis.text = element_text(face = "bold", size = rel(1.2)),
           axis.title = element_text(face = "bold", size = rel(1.2)),
           legend.title = element_text(face = "bold", size = rel(1.2)),
