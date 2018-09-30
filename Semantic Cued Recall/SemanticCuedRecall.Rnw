@@ -1,0 +1,629 @@
+\documentclass[letterpaper]{article}
+\usepackage[a4paper, total={7in, 8in}]{geometry}
+
+\usepackage{xcolor}
+\usepackage{Sweavel}
+\usepackage{graphicx}
+\def\Sweavesize{\normalsize}
+% Uncomment some of the following to use some alternatives:
+\def\Rcolor{\color{black}}
+\def\Routcolor{\color{blue}}
+\def\Rcommentcolor{\color{blue}}
+\definecolor{babyblueeyes}{rgb}{0.74, 0.83, 0.95}
+
+% To change background color or R code and/or output, use e.g.:
+\def\Rbackground{\color{babyblueeyes}}
+\def\Routbackground{\color[gray]{.8}}
+
+% To use rgb specifications use \color[rgb]{ , , }
+% To use gray scale use e.g. \color[gray]{0.5}
+% If you change any of these after the first chunk is produced, the
+% changes will have effect only for the next chunk.
+
+\title{TOT Cued Recall Analysis}
+\author{Abhilasha Kumar}
+
+\begin{document}
+\SweaveOpts{concordance=FALSE}
+
+ \maketitle
+
+\section{Reading the Data File}
+
+We first read the file into an object called SemanticCuedRecall. We can also display some part of the data by calling the head() function.
+
+<<>>=
+SemanticCuedRecall = read.csv("SemanticCuedRecall.csv",
+                         header = TRUE, sep = ",")
+head(SemanticCuedRecall[,c(1,21,22)])
+@
+
+\section {Conditional Target Accuracy}
+
+In this section, we calculate the number of trials in which participants correctly or incorrectly recalled the item, and split that by whether they correctly recalled the target from the definition. Then, we calculate the proportion of trials from the raw number of trials.
+
+<<>>=
+library(dplyr)
+
+cued_acc = group_by(SemanticCuedRecall) %>%
+  summarise_at(vars(CuedRecallAcc, TargetAccuracy), mean)
+
+cued_acc = group_by(SemanticCuedRecall, Subject, 
+                    PrimeCondition, CuedRecallAcc) %>%
+  summarise(recalltrials = n())
+
+conditional_acc = group_by(SemanticCuedRecall, Subject, PrimeCondition,
+                           CuedRecallAcc, TargetAccuracy) %>%
+  summarise(trials = n())
+
+merge_acc = merge(conditional_acc, cued_acc, 
+                  by = c("Subject", "PrimeCondition", "CuedRecallAcc"))
+merge_acc$prop = merge_acc$trials/merge_acc$recalltrials
+@
+
+\section {ANOVA}
+
+In this section, we perform a repeated measures ANOVA on our data, to see if we are indeed seeing a difference in the proportion of unsuccessful trials for failed and successful cued recall. 
+
+<<>>=
+
+merge_acc$Subject = 
+  as.factor(as.character(merge_acc$Subject))
+merge_acc$CuedRecallAcc = 
+  as.factor(as.character(merge_acc$CuedRecallAcc))
+merge_acc$TargetAccuracy = 
+  as.factor(as.character(merge_acc$TargetAccuracy))
+
+merge_acc = merge_acc[order(merge_acc$Subject, merge_acc$CuedRecallAcc),]
+
+library(lme4)
+cond_aov = lmer(data = merge_acc, 
+        prop ~ PrimeCondition*CuedRecallAcc*TargetAccuracy +
+          (1|Subject))
+summary(cond_aov)
+car::Anova(cond_aov)
+
+@
+
+The ANOVA output tells us that the interaction term is not signiificant. We will next see this in a figure, to better understand our data.
+
+\section {Conditional Figure}
+
+<<fig=TRUE>>=
+cond_figure = Rmisc::summarySE(merge_acc, 
+                        measurevar = "prop",
+                        groupvars = c("PrimeCondition", "CuedRecallAcc", 
+                                      "TargetAccuracy"))
+
+library(ggplot2)
+library(ggthemes)
+condfigure_plot = cond_figure %>% mutate(Recall = factor(CuedRecallAcc, 
+                      levels = unique(CuedRecallAcc),
+                    labels = c("Failed Recall", 
+                               "Successful Recall")),
+                    `Target Retrieval` = factor(TargetAccuracy,
+                          levels = unique(TargetAccuracy),
+                       labels = c("Failed Target Retrieval", 
+                            "Successful Target Retrieval")))%>%
+ggplot(aes(x = Recall, y = prop, 
+           fill = `Target Retrieval`, group = `Target Retrieval`))+
+ geom_bar(stat = "identity", position = "dodge", width = 0.7)+
+  geom_errorbar(aes(ymin=prop - ci, ymax=prop + ci), 
+             width=.2, color = "gray26", 
+             position = position_dodge(0.7))+
+  facet_wrap(~PrimeCondition)+
+ theme_few()+
+  scale_fill_wsj()+
+    xlab("Cued Recall Accuracy") + ylab("Mean Proportion of Trials") + 
+  ggtitle("Target Retrieval Accuracy 
+          as a function of Cued Recall Accuracy")  +
+   theme(axis.text = element_text(face = "bold", size = rel(1)),
+          axis.title = element_text(face = "bold", size = rel(1)),
+          legend.title = element_text(face = "bold", size = rel(1)),
+          plot.title = element_text(face = "bold", 
+                  size = rel(1.2), hjust = .5),
+         strip.text.x = element_text(face = "bold", size = rel(1.4)))
+condfigure_plot
+@
+
+\section*{Figure Overall Target Accuracy }
+
+<<fig=TRUE>>=
+
+prime_targetacc = group_by(SemanticCuedRecall, Subject, PrimeCondition) %>%
+  summarise_at(vars(TargetAccuracy), mean)
+
+target_rmisc_overall = Rmisc::summarySE(prime_targetacc, 
+                      measurevar = "TargetAccuracy",
+                      groupvars = c("PrimeCondition"))
+
+library(ggplot2)
+library(ggthemes)
+target_rmisc_overall %>% 
+ggplot(aes(x = PrimeCondition , y = TargetAccuracy))+
+ geom_bar(stat = "identity", position = "dodge", width = 0.5)+
+  geom_errorbar(aes(ymin = TargetAccuracy - se, ymax = TargetAccuracy + se),
+                width=.05, position=position_dodge(.5)) +
+  theme_few()+
+  scale_fill_manual(values= c("slategray4", "slategray1"))+
+  xlab("Item Condition") + ylab("Mean Target Accuracy") + 
+  ggtitle("Target Retrieval Accuracy ") +
+    theme(axis.text = element_text(face = "bold", size = rel(1)),
+          axis.title = element_text(face = "bold", size = rel(1.2)),
+          legend.title = element_text(face = "bold", size = rel(1.2)),
+          plot.title = element_text(face = "bold", size = rel(1.4), hjust = .5))
+@
+
+\subsection *{ANOVA}
+
+<<>>=
+prime_targetacc$Subject = as.factor(prime_targetacc$Subject)
+targetacc_aov = aov(data = prime_targetacc, 
+                    TargetAccuracy ~ PrimeCondition + 
+                      Error(Subject/PrimeCondition))
+summary(targetacc_aov)
+@
+
+\section*{Figure Target Accuracy }
+
+<<fig=TRUE>>=
+target_retrievalacc = group_by(SemanticCuedRecall, Subject, PrimeCondition,
+                               CuedRecallAcc) %>%
+  summarise_at(vars(TargetAccuracy), mean)
+target_rmisc = Rmisc::summarySE(target_retrievalacc, 
+                      measurevar = "TargetAccuracy",
+                      groupvars = c("PrimeCondition", "CuedRecallAcc"))
+
+library(ggplot2)
+library(ggthemes)
+target_rmisc %>% mutate(`Item Retrieval` = factor(CuedRecallAcc, 
+                                        levels = unique(CuedRecallAcc),
+                    labels = c("Not Retrieved", "Retrieved")))%>%
+ggplot(aes(x = PrimeCondition , y = TargetAccuracy,
+      group = `Item Retrieval`, fill = `Item Retrieval`))+
+ geom_bar(stat = "identity", position = "dodge", width = 0.5)+
+  geom_errorbar(aes(ymin = TargetAccuracy - se, ymax = TargetAccuracy + se),
+                width=.05, position=position_dodge(.5)) +
+  theme_few()+
+  scale_fill_manual(values= c("slategray4", "slategray1"))+
+  xlab("Item Condition") + ylab("Mean Target Accuracy") + 
+  ggtitle("Target Retrieval Accuracy ") +
+    theme(axis.text = element_text(face = "bold", size = rel(1)),
+          axis.title = element_text(face = "bold", size = rel(1.2)),
+          legend.title = element_text(face = "bold", size = rel(1.2)),
+          plot.title = element_text(face = "bold", size = rel(1.4), hjust = .5))
+@
+
+\subsection {ANOVA}
+
+<<>>=
+target_retrievalacc[40,] = c(3, "Unrelated", 1, 0 )
+target_retrievalacc$Subject = as.factor(target_retrievalacc$Subject)
+target_retrievalacc$TargetAccuracy = as.numeric(target_retrievalacc$TargetAccuracy)
+target_retrievalacc$CuedRecallAcc = as.factor(target_retrievalacc$CuedRecallAcc)
+
+
+targetacc_aov = aov(data = target_retrievalacc, 
+                    TargetAccuracy ~ PrimeCondition*CuedRecallAcc + 
+                      Error(Subject/(PrimeCondition*CuedRecallAcc)))
+summary(targetacc_aov)
+@
+
+
+
+
+\section {HLM Model}
+
+<<>>=
+library(lme4)
+SemanticCuedRecall$TargetAccuracy = as.factor(SemanticCuedRecall$TargetAccuracy)
+SemanticCuedRecall$CuedRecallAcc = as.factor(SemanticCuedRecall$CuedRecallAcc)
+
+SemanticCuedRecall$FailedRetrieval = ifelse(SemanticCuedRecall$TargetAccuracy == 1,0,1)
+
+SemanticCuedRecall_hlm = glmer(data = SemanticCuedRecall, 
+                               TargetAccuracy ~ PrimeCondition*CuedRecallAcc +
+                        (1|Subject), family = "binomial")
+summary(SemanticCuedRecall_hlm)
+car::Anova(SemanticCuedRecall_hlm)
+@
+
+\subsubsection{Plot}
+
+<<fig=TRUE>>=
+fixed.frame <- 
+  data.frame(expand.grid( PrimeCondition = c("Semantic", "Unrelated"),
+                          CuedRecallAcc = c("0","1"))) %>%
+  mutate(pred = predict(SemanticCuedRecall_hlm, newdata = ., re.form = NA))
+
+fixed.frame$odds = exp(fixed.frame$pred)
+fixed.frame$prob = fixed.frame$odds/(1+ fixed.frame$odds)
+
+fixed.frame$failure = 1 - fixed.frame$prob
+
+
+fixed.frame %>% 
+  mutate(CuedRecallAccuracy = factor(CuedRecallAcc, 
+    levels = unique(CuedRecallAcc),
+                    labels = c("Failed Recall", "Successful Recall")))%>%
+ggplot(aes(x = CuedRecallAccuracy, y = prob, 
+           group = PrimeCondition, color = PrimeCondition))+
+  geom_line()+
+# geom_bar(stat = "identity", position = "dodge", 
+ #         width = 0.7, color = "black")+
+ theme_few()+
+  xlab("Cued Recall Accuracy") + ylab("Probability of Failing at Target Retrieval") + 
+  ggtitle("TOT Cued Recall ")  +
+   theme(axis.text = element_text(face = "bold", size = rel(1)),
+          axis.title = element_text(face = "bold", size = rel(1)),
+          legend.title = element_text(face = "bold", size = rel(1)),
+     plot.title = element_text(face = "bold", size = rel(1.5), hjust = .5),
+         strip.text.x = element_text(face = "bold", size = rel(1.4)))
+
+@
+
+\section {z-scoring RTs}
+\subsection*{RT prime and Target}
+
+<<>>=
+library(dplyr)
+colnames(SemanticCuedRecall) = c("Subject", "Session",	"Procedure",
+"Trial",	"ActualPrime",	"PrimeCondition",	"PrimeDef",	"PrimeDefRT",
+"PrimeDefinition",	"PrimeLength",	"PrimeResponse"	, 
+"PrimeResponseRT", "Stimuli1", "Target",	"TargetDefinition", 
+"TargetDefRT", "State",	"StateRT", "TargetResponse", "TargetResponseRT",	"CuedRecallAcc", "TargetAccuracy",	"PrimeIntrusion",	"ItemResponse", 
+"TargetResponse", "RTrecognisePrime",	"RTrecogniseTarget",
+                           "FailedRetrieval")
+
+SemanticCuedRecall_firsttrim_target = subset(SemanticCuedRecall, 
+                                 SemanticCuedRecall$RTrecogniseTarget > 250 &
+                                SemanticCuedRecall$RTrecogniseTarget < 7000)
+
+SemanticCuedRecall_firsttrim_prime = subset(SemanticCuedRecall, 
+                                 SemanticCuedRecall$RTrecognisePrime > 250 &
+                                SemanticCuedRecall$RTrecognisePrime < 7000)
+
+SemanticCuedRecall_firsttrim_targetdef = subset(SemanticCuedRecall, 
+                                 SemanticCuedRecall$TargetDefRT > 250 &
+                                SemanticCuedRecall$TargetDefRT < 9000)
+
+@ 
+
+\subsection*{RTRecogniseprime}
+
+<<>>=
+## FOR PRIME
+## aggregate per subject all IVs and DVs
+meanRT = group_by(SemanticCuedRecall_firsttrim_prime, Subject) %>%
+  summarise_at(vars(RTrecognisePrime), mean)
+colnames(meanRT) = c("Subject", 
+                     "MeanRTrecogPrime")
+
+sdRT = group_by(SemanticCuedRecall_firsttrim_prime, Subject) %>%
+  summarise_at(vars(RTrecognisePrime), sd)
+colnames(sdRT) = c("Subject",
+                     "sdRTrecogPrime")
+
+RT_agg = merge(meanRT, sdRT, by = "Subject")
+
+## merge aggregate info with long data
+SemanticCuedRecall_z_prime = merge(SemanticCuedRecall_firsttrim_prime, 
+                             RT_agg, by = "Subject", all.x = T)
+
+## person and grand-mean centered scores using original and aggregate
+library(dplyr)
+SemanticCuedRecall_z_prime = SemanticCuedRecall_z_prime %>% mutate(zPrimeRecogRT = 
+                                             (RTrecognisePrime - 
+                                                MeanRTrecogPrime)/sdRTrecogPrime)
+                 
+## checking: subject level means should be zero
+
+sub_pic = group_by(SemanticCuedRecall_z_prime, Subject) %>%
+  summarise_at(vars(zPrimeRecogRT), mean)
+@
+
+\subsection*{RTRecogniseTarget}
+<<>>=
+## FOR TARGET
+## aggregate per subject all IVs and DVs
+meanRT = group_by(SemanticCuedRecall_firsttrim_target, Subject) %>%
+  summarise_at(vars(RTrecogniseTarget), mean)
+colnames(meanRT) = c("Subject", "MeanRTrecogTarget")
+
+sdRT = group_by(SemanticCuedRecall_firsttrim_target, Subject) %>%
+  summarise_at(vars(RTrecogniseTarget), sd)
+colnames(sdRT) = c("Subject", "sdRTrecogTarget")
+
+RT_agg = merge(meanRT, sdRT, by = "Subject")
+
+## merge aggregate info with long data
+SemanticCuedRecall_z_target= merge(SemanticCuedRecall_firsttrim_target,
+                             RT_agg, by = "Subject", all.x = T)
+
+## person and grand-mean centered scores using original and aggregate
+library(dplyr)
+SemanticCuedRecall_z_target = SemanticCuedRecall_z_target %>% mutate( zTargetRecogRT = 
+                                             (RTrecogniseTarget - 
+                                                MeanRTrecogTarget)/sdRTrecogTarget)
+                 
+## checking: subject level means should be zero
+
+sub_pic = group_by(SemanticCuedRecall_z_target, Subject) %>%
+  summarise_at(vars(zTargetRecogRT), mean)
+
+@
+
+\subsection*{TargetDefRT}
+<<>>=
+## FOR TARGET
+## aggregate per subject all IVs and DVs
+meanRT = group_by(SemanticCuedRecall_firsttrim_targetdef, Subject) %>%
+  summarise_at(vars(TargetDefRT), mean)
+colnames(meanRT) = c("Subject", "MeanTargetRT")
+
+sdRT = group_by(SemanticCuedRecall_firsttrim_targetdef, Subject) %>%
+  summarise_at(vars(TargetDefRT), sd)
+colnames(sdRT) = c("Subject", "sdTargetRT")
+
+RT_agg = merge(meanRT, sdRT, by = "Subject")
+
+## merge aggregate info with long data
+SemanticCuedRecall_z_targetdef = merge(SemanticCuedRecall_firsttrim_targetdef,
+                             RT_agg, by = "Subject", all.x = T)
+
+## person and grand-mean centered scores using original and aggregate
+library(dplyr)
+SemanticCuedRecall_z_targetdef = SemanticCuedRecall_z_targetdef %>% mutate( zTargetRT = 
+                                             (TargetDefRT - 
+                                                MeanTargetRT)/sdTargetRT)
+                 
+## checking: subject level means should be zero
+
+sub_pic = group_by(SemanticCuedRecall_z_targetdef, Subject) %>%
+  summarise_at(vars(zTargetRT), mean)
+
+@
+
+\section {Trimming z-RTs}
+
+<<>>=
+
+SemanticCuedRecall_z_trimmed_prime = subset(SemanticCuedRecall_z_prime, 
+                         SemanticCuedRecall_z_prime$zPrimeRecogRT < 3 & 
+                            SemanticCuedRecall_z_prime$zPrimeRecogRT > -3)
+
+SemanticCuedRecall_z_trimmed_target = subset(SemanticCuedRecall_z_target, 
+                        SemanticCuedRecall_z_target$zTargetRecogRT < 3 & 
+                            SemanticCuedRecall_z_target$zTargetRecogRT > -3)
+
+SemanticCuedRecall_z_trimmed_targetdef = subset(SemanticCuedRecall_z_targetdef,                             SemanticCuedRecall_z_targetdef$zTargetRT < 3 &                                SemanticCuedRecall_z_targetdef$zTargetRT > -3)
+@
+
+\section {Repeating z-scoring}
+
+\subsection{For prime}
+
+<<>>=
+## aggregate per subject all IVs and DVs
+meanRT_prime = group_by(SemanticCuedRecall_z_trimmed_prime, Subject) %>%
+  summarise_at(vars(RTrecognisePrime), mean)
+colnames(meanRT_prime) = c("Subject", 
+                     "MeanRTrecogPrime_trim")
+
+sdRT_prime = group_by(SemanticCuedRecall_z_trimmed_prime, Subject) %>%
+  summarise_at(vars(RTrecognisePrime), sd)
+colnames(sdRT_prime) = c("Subject",
+                     "sdRTrecogPrime_trim")
+
+RT_agg_prime = merge(meanRT_prime, sdRT_prime, by = "Subject")
+
+## merge aggregate info with long data
+SemanticCuedRecall_final_z_prime = merge(SemanticCuedRecall_z_trimmed_prime, 
+                             RT_agg_prime, by = "Subject", all.x = T)
+
+## person and grand-mean centered scores using original and aggregate
+library(dplyr)
+SemanticCuedRecall_final_z_prime = SemanticCuedRecall_final_z_prime %>% 
+                                  mutate( zPrimeRecogRT_trim = 
+                                             (RTrecognisePrime - 
+                                      MeanRTrecogPrime_trim)/sdRTrecogPrime_trim)
+                 
+## checking: subject level means should be zero
+
+sub_pic = group_by(SemanticCuedRecall_final_z_prime, Subject) %>%
+  summarise_at(vars(zPrimeRecogRT_trim), mean)
+
+@
+
+\subsection{For Target}
+
+<<>>=
+## aggregate per subject all IVs and DVs
+meanRT_target = group_by(SemanticCuedRecall_z_trimmed_target, Subject) %>%
+  summarise_at(vars(RTrecogniseTarget), mean)
+colnames(meanRT_target) = c("Subject", 
+                     "MeanRTrecogTarget_trim")
+
+sdRT_target = group_by(SemanticCuedRecall_z_trimmed_target, Subject) %>%
+  summarise_at(vars(RTrecogniseTarget), sd)
+colnames(sdRT_target) = c("Subject", 
+                      "sdRTrecogTarget_trim")
+
+RT_agg_target = merge(meanRT_target, sdRT_target, by = "Subject")
+
+## merge aggregate info with long data
+SemanticCuedRecall_final_z_target = merge(SemanticCuedRecall_z_trimmed_target, 
+                             RT_agg_target, by = "Subject", all.x = T)
+
+## person and grand-mean centered scores using original and aggregate
+library(dplyr)
+SemanticCuedRecall_final_z_target = SemanticCuedRecall_final_z_target %>% 
+                                  mutate( zTargetRecogRT_trim = 
+                                             (RTrecogniseTarget - 
+                                      MeanRTrecogTarget_trim)/sdRTrecogTarget_trim)
+                 
+## checking: subject level means should be zero
+
+sub_pic = group_by(SemanticCuedRecall_final_z_target, Subject) %>%
+  summarise_at(vars(zTargetRecogRT_trim), mean)
+
+@
+
+\subsection{For TargetDefRT}
+
+<<>>=
+## aggregate per subject all IVs and DVs
+meanRT_targetdef = group_by(SemanticCuedRecall_z_trimmed_targetdef, Subject) %>%
+  summarise_at(vars(TargetDefRT), mean)
+colnames(meanRT_targetdef) = c("Subject", "MeanTargetRT_trim")
+
+sdRT_targetdef = group_by(SemanticCuedRecall_z_trimmed_targetdef, Subject) %>%
+  summarise_at(vars(TargetDefRT), sd)
+colnames(sdRT_targetdef) = c("Subject", "sdTargetRT_trim")
+
+RT_agg_targetdef = merge(meanRT_targetdef, sdRT_targetdef, by = "Subject")
+
+## merge aggregate info with long data
+SemanticCuedRecall_final_z_targetdef = merge(SemanticCuedRecall_z_trimmed_targetdef, 
+                             RT_agg_targetdef, by = "Subject", all.x = T)
+
+## person and grand-mean centered scores using original and aggregate
+library(dplyr)
+SemanticCuedRecall_final_z_targetdef = SemanticCuedRecall_final_z_targetdef %>% 
+                                  mutate(zTargetRT_trim = 
+                                             (TargetDefRT - 
+                                                MeanTargetRT_trim)/sdTargetRT_trim)
+                 
+## checking: subject level means should be zero
+
+sub_pic = group_by(SemanticCuedRecall_final_z_targetdef, Subject) %>%
+  summarise_at(vars(zTargetRT_trim), mean)
+
+@
+
+\subsection {Combining z-RT Prime and Target }
+
+<<>>=
+## now we have separately z-scored RTprime and RTtarget. Need to combine.
+## taking only necessary columns
+SemanticCuedRecall_final_z_prime2 = 
+  SemanticCuedRecall_final_z_prime[,c(1,4,34)]
+
+SemanticCuedRecall_final_z = merge(SemanticCuedRecall_final_z_target, 
+                             SemanticCuedRecall_final_z_prime2, 
+                             by  = c("Subject", "Trial"))
+
+primefinal_z_targetdef = merge(SemanticCuedRecall_final_z_targetdef, 
+                             SemanticCuedRecall_final_z_prime2, 
+                             by  = c("Subject", "Trial"))
+@
+
+\section {Linear Models}
+
+<<>>=
+# Mean RT to retrieve Target as a function of Prime Condition
+
+# Effect of RT prime on Accuracy
+SemanticCuedRecall_final_z = SemanticCuedRecall_final_z
+
+library(lme4)
+RTprime_acc_model = glmer(data = SemanticCuedRecall_final_z, 
+                    TargetAccuracy ~ PrimeCondition*zPrimeRecogRT_trim + 
+                            (1|Subject) + (1|Target), family = binomial )
+summary(RTprime_acc_model)
+car::Anova(RTprime_acc_model)
+
+RTprime_RT_model = lmer(data = SemanticCuedRecall_final_z, 
+                    zTargetRecogRT_trim ~ PrimeCondition*zPrimeRecogRT_trim + 
+                            (1|Subject) + (1|Target))
+summary(RTprime_RT_model)
+car::Anova(RTprime_RT_model)
+
+## TARGET DEF MODEL
+
+RTprime_RTtargetdef_model = lmer(data = primefinal_z_targetdef, 
+                    zTargetRT_trim ~ PrimeCondition*zPrimeRecogRT_trim + 
+                            (1|Subject) + (1|Target))
+summary(RTprime_RTtargetdef_model)
+car::Anova(RTprime_RTtargetdef_model)
+
+@
+
+\section {Plotting Model Fits}
+\subsection {Model 1}
+<<fig=TRUE>>=
+fixed.frame <- 
+  data.frame(expand.grid(PrimeCondition = c("Semantic", "Unrelated"),
+    zPrimeRecogRT_trim = seq(-3,3,0.5)))%>%
+  mutate(pred = predict(RTprime_acc_model, newdata = ., re.form = NA))
+
+fixed.frame$odds = exp(fixed.frame$pred)
+fixed.frame$prob = fixed.frame$odds/(1+fixed.frame$odds)
+
+fixed.frame %>%
+  ggplot(aes(x = zPrimeRecogRT_trim, y = prob, 
+             group = PrimeCondition, color = PrimeCondition )) +
+    geom_line(size = 1) + 
+    #ylim(0.10,0.40)+
+    xlab("z-RT to Demask Prime") + ylab ("Mean Target Accuracy")+ 
+  ggtitle("Model Fit: Target Accuracy by Prime Demasking RT")+
+theme_few() +
+    theme(axis.text = element_text(face = "bold", size = rel(1.2)),
+          axis.title = element_text(face = "bold", size = rel(1.2)),
+          legend.title = element_text(face = "bold", size = rel(1.2)),
+          plot.title = element_text(face = "bold", size = rel(1.2), hjust = .5))
+@
+
+
+\subsection {RAW RT Model}
+
+<<fig=TRUE>>=
+
+mainplot = SemanticCuedRecall_final_z %>%
+ ggplot(aes(x =zPrimeRecogRT_trim , y = zTargetRecogRT_trim, 
+             group = PrimeCondition, color = PrimeCondition)) +
+  geom_smooth(method = "lm", se = FALSE,  size = 0.5)+
+    xlab("") + ylab ("z-RT to Demask Target")+ 
+  ggtitle("Experiment 5")+
+theme_hc() +
+    theme(axis.text = element_text(face = "bold", size = rel(1.2)),
+          axis.title = element_text(face = "bold", size = rel(1.2)),
+          # legend.title = element_blank(),
+          # legend.text = element_blank(),
+          # legend.key = element_blank(),
+    strip.text.x = element_text(face = "bold", size = rel(1.4)),
+    plot.title = element_text(face = "bold", size = rel(1.2), hjust = .5))
+
+mainplot 
+
+@
+
+\subsection {RAW ACC Model}
+
+<<fig=TRUE>>=
+
+SemanticCuedRecall_final_z$TargetAccuracy = as.numeric(as.character(SemanticCuedRecall_final_z$TargetAccuracy))
+SemanticCuedRecall_final_z1 = SemanticCuedRecall_final_z 
+
+mainplot = SemanticCuedRecall_final_z1 %>%
+ ggplot(aes(x =zPrimeRecogRT_trim , y = TargetAccuracy, 
+             group = PrimeCondition, color = PrimeCondition)) +
+  geom_smooth(method = "glm", se = FALSE,  size = 0.5)+
+#  guides(color = FALSE)+
+    xlab("z-RT to Demask Prime") + ylab ("Mean Target Accuracy")+ 
+  ggtitle("Experiment 5")+
+theme_few() +
+    theme(axis.text = element_text(face = "bold", size = rel(1.2)),
+          axis.title = element_text(face = "bold", size = rel(1.2)),
+         # legend.title = element_blank(),
+        #  legend.text = element_blank(),
+         # legend.key = element_blank(),
+    strip.text.x = element_text(face = "bold", size = rel(1.4)),
+    plot.title = element_text(face = "bold", size = rel(1.2), hjust = .5))
+
+mainplot 
+
+@
+
+
+\end{document}
