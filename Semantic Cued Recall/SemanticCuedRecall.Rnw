@@ -33,9 +33,59 @@
 We first read the file into an object called SemanticCuedRecall. We can also display some part of the data by calling the head() function.
 
 <<>>=
-SemanticCuedRecall = read.csv("SemanticCuedRecall.csv",
+SemanticCuedRecall = read.csv("SemanticCuedRecall_FINAL.csv",
                          header = TRUE, sep = ",")
 head(SemanticCuedRecall[,c(1,21,22)])
+@
+
+\section {Retrieval States}
+
+<<>>=
+
+SemanticCuedRecall_Count = group_by(SemanticCuedRecall,
+                                    Subject, PrimeCondition,
+                                    TargetQuestion.RESP.Trial.) %>%
+  summarise(Count = n())
+
+state_rmisc = Rmisc::summarySE(SemanticCuedRecall_Count,
+                               measurevar = "Count",
+                               groupvars = c("PrimeCondition",
+                                             "TargetQuestion.RESP.Trial."))
+
+x <- c("1","2", "3", "4")
+
+state_rmisc = state_rmisc %>%
+  mutate(rstate =  factor(TargetQuestion.RESP.Trial., levels = x)) %>%
+  arrange(rstate)
+
+library(ggplot2)
+library(ggthemes)
+
+percentplot = state_rmisc %>% 
+  mutate(PrimeType = factor(PrimeCondition, levels = unique(PrimeCondition),
+                    labels = c("Semantic", "Unrelated")),
+   R = factor(rstate, levels = unique(rstate),
+                                labels = c( "1: Know","2: Dont Know",
+                                            "3:Other", "4: TOT")))%>%
+ggplot(aes(x = R, y = Count, 
+           group = PrimeType, fill = PrimeType))+
+ geom_bar(stat = "identity", position = "dodge", width = 0.7, 
+          color= "black")+
+  geom_errorbar(aes(ymin=Count - se, ymax=Count + se), 
+             width=.2, color = "gray26", 
+             position = position_dodge(0.7))+
+ theme_few()+
+    xlab("") + ylab("Number of trials") + 
+ scale_fill_manual(values = c( "red",
+                               "lightgreen"))+    
+  ggtitle("E6")  +
+   theme(axis.text = element_text(size = rel(1)),
+          axis.title = element_text(face = "bold", size = rel(1)),
+          legend.title = element_text(face = "bold", size = rel(1)),
+         plot.title = element_text(hjust = .5),
+                  axis.text.x = element_text(size = rel(1)),
+         strip.text.x = element_text(face = "bold", size = rel(1.4)))
+percentplot
 @
 
 \section {Conditional Target Accuracy}
@@ -194,13 +244,63 @@ ggplot(aes(x = PrimeCondition , y = TargetAccuracy,
           plot.title = element_text(face = "bold", size = rel(1.4), hjust = .5))
 @
 
+\subsection {Masters Retrieval Figure}
+
+<<>>=
+SemanticCuedRecall_fig = SemanticCuedRecall
+SemanticCuedRecall_fig$primefac = ordered(as.factor(as.character(SemanticCuedRecall_fig$PrimeCondition)), 
+                      levels = c("Semantic", "Unrelated"))
+
+SemanticCuedRecall_fig$TargetAccuracy = as.numeric(as.character(SemanticCuedRecall_fig$TargetAccuracy))
+
+SemanticCuedRecall_fig$CuedRecallAcc_Fac = ordered(as.factor(as.character(SemanticCuedRecall_fig$CuedRecallAcc)), levels = c("1", "0"))
+
+
+targetacc2  = group_by(SemanticCuedRecall_fig, Subject, primefac,
+                       CuedRecallAcc_Fac) %>%
+  summarise_at(vars(TargetAccuracy), mean)
+
+ret_figure = Rmisc::summarySE(targetacc2, 
+                    measurevar = "TargetAccuracy",
+                groupvars = c("primefac", "CuedRecallAcc_Fac"))
+
+library(ggplot2)
+library(ggthemes)
+ret_figure  %>% mutate(PrimeType = factor(primefac, 
+                                        levels = unique(primefac),
+                    labels = c("Semantic", 
+                                "Unrelated")),
+                    `Prime Retrieval` = factor(CuedRecallAcc_Fac, 
+                                levels = unique(CuedRecallAcc_Fac),
+                    labels = c("Retrieved", "Not Retrieved")))%>%
+   ggplot(aes(x = `Prime Retrieval`, y = TargetAccuracy, 
+                          group =PrimeType , 
+                          fill = PrimeType)) +
+  geom_bar(stat = "identity", position = "dodge", width = 0.5,
+           color ="gray28")+
+   geom_errorbar(aes(ymin = TargetAccuracy - se, 
+                     ymax = TargetAccuracy + se),
+                width=.08, position=position_dodge(.5)) +
+  theme_few()+
+#  scale_fill_canva()+
+ scale_fill_manual(values = c(  "red",
+                               "lightgreen"))+       
+  xlab("Prime Retrieval") + ylab("Mean Target Accuracy") + 
+ggtitle(" Experiment 6") +
+  theme(axis.text = element_text(size = rel(1)),
+          axis.title = element_text(face = "bold", size = rel(1)),
+          legend.title = element_text(face = "bold", size = rel(1)),
+         plot.title = element_text(hjust = .5, size = rel(1)),
+         axis.text.x = element_text(face = "bold", size = rel(1.2)))
+
+@
 \subsection {ANOVA}
 
 <<>>=
-target_retrievalacc[40,] = c(3, "Unrelated", 1, 0 )
+target_retrievalacc[120,] = c(3, "Unrelated", 1, 0 )
 target_retrievalacc$Subject = as.factor(target_retrievalacc$Subject)
 target_retrievalacc$TargetAccuracy = as.numeric(target_retrievalacc$TargetAccuracy)
-target_retrievalacc$CuedRecallAcc = as.factor(target_retrievalacc$CuedRecallAcc)
+target_retrievalacc$CuedRecallAcc = as.factor(target_retrievalacc$CuedRecallAcc).
 
 
 targetacc_aov = aov(data = target_retrievalacc, 
@@ -533,11 +633,16 @@ RTprime_acc_model = glmer(data = SemanticCuedRecall_final_z,
 summary(RTprime_acc_model)
 car::Anova(RTprime_acc_model)
 
-RTprime_RT_model = lmer(data = SemanticCuedRecall_final_z, 
+options(contrasts = c("contr.sum","contr.poly"))
+anova(RTprime_acc_model)
+
+.RTprime_RT_model = lmer(data = SemanticCuedRecall_final_z, 
                     zTargetRecogRT_trim ~ PrimeCondition*zPrimeRecogRT_trim + 
                             (1|Subject) + (1|Target))
 summary(RTprime_RT_model)
 car::Anova(RTprime_RT_model)
+
+
 
 ## TARGET DEF MODEL
 
@@ -584,7 +689,7 @@ mainplot = SemanticCuedRecall_final_z %>%
              group = PrimeCondition, color = PrimeCondition)) +
   geom_smooth(method = "lm", se = FALSE,  size = 0.5)+
     xlab("") + ylab ("z-RT to Demask Target")+ 
-  ggtitle("Experiment 5")+
+  ggtitle("Experiment 6")+
 theme_hc() +
     theme(axis.text = element_text(face = "bold", size = rel(1.2)),
           axis.title = element_text(face = "bold", size = rel(1.2)),
@@ -604,22 +709,22 @@ mainplot
 
 SemanticCuedRecall_final_z$TargetAccuracy = as.numeric(as.character(SemanticCuedRecall_final_z$TargetAccuracy))
 SemanticCuedRecall_final_z1 = SemanticCuedRecall_final_z 
-
+SemanticCuedRecall_final_z1$PrimeType = SemanticCuedRecall_final_z1$PrimeCondition
 mainplot = SemanticCuedRecall_final_z1 %>%
  ggplot(aes(x =zPrimeRecogRT_trim , y = TargetAccuracy, 
-             group = PrimeCondition, color = PrimeCondition)) +
-  geom_smooth(method = "glm", se = FALSE,  size = 0.5)+
+             group = PrimeType, color = PrimeType)) +
+  geom_smooth(method = "glm",  se = FALSE)+
 #  guides(color = FALSE)+
     xlab("z-RT to Demask Prime") + ylab ("Mean Target Accuracy")+ 
-  ggtitle("Experiment 5")+
+  ggtitle("")+
 theme_few() +
-    theme(axis.text = element_text(face = "bold", size = rel(1.2)),
-          axis.title = element_text(face = "bold", size = rel(1.2)),
-         # legend.title = element_blank(),
-        #  legend.text = element_blank(),
-         # legend.key = element_blank(),
-    strip.text.x = element_text(face = "bold", size = rel(1.4)),
-    plot.title = element_text(face = "bold", size = rel(1.2), hjust = .5))
+  scale_color_manual(values = c( "red",
+                           "lightgreen"))+   
+   theme(axis.text = element_text(size = rel(1)),
+          axis.title = element_text(face = "bold", size = rel(1)),
+          legend.title = element_text(face = "bold", size = rel(1)),
+         plot.title = element_text(hjust = .5, size = rel(1)),
+         axis.text.x = element_text(face = "bold", size = rel(1.2)))
 
 mainplot 
 
