@@ -41,7 +41,7 @@ head(SemanticCuedRecall[,c(1,21,22)])
 \section {Retrieval States}
 
 <<>>=
-
+library(dplyr)
 SemanticCuedRecall_Count = group_by(SemanticCuedRecall,
                                     Subject, PrimeCondition,
                                     TargetQuestion.RESP.Trial.) %>%
@@ -300,7 +300,7 @@ ggtitle(" Experiment 6") +
 target_retrievalacc[120,] = c(3, "Unrelated", 1, 0 )
 target_retrievalacc$Subject = as.factor(target_retrievalacc$Subject)
 target_retrievalacc$TargetAccuracy = as.numeric(target_retrievalacc$TargetAccuracy)
-target_retrievalacc$CuedRecallAcc = as.factor(target_retrievalacc$CuedRecallAcc).
+target_retrievalacc$CuedRecallAcc = as.factor(target_retrievalacc$CuedRecallAcc)
 
 
 targetacc_aov = aov(data = target_retrievalacc, 
@@ -326,6 +326,8 @@ SemanticCuedRecall_hlm = glmer(data = SemanticCuedRecall,
                         (1|Subject), family = "binomial")
 summary(SemanticCuedRecall_hlm)
 car::Anova(SemanticCuedRecall_hlm)
+options(contrasts = c("contr.sum","contr.poly"))
+anova(SemanticCuedRecall_hlm)
 @
 
 \subsubsection{Plot}
@@ -632,17 +634,19 @@ RTprime_acc_model = glmer(data = SemanticCuedRecall_final_z,
                             (1|Subject) + (1|Target), family = binomial )
 summary(RTprime_acc_model)
 car::Anova(RTprime_acc_model)
+options(contrasts = c("contr.sum","contr.poly"))
+anova(RTprime_acc_model)
 
 options(contrasts = c("contr.sum","contr.poly"))
 anova(RTprime_acc_model)
 
-.RTprime_RT_model = lmer(data = SemanticCuedRecall_final_z, 
+RTprime_RT_model = lmer(data = SemanticCuedRecall_final_z, 
                     zTargetRecogRT_trim ~ PrimeCondition*zPrimeRecogRT_trim + 
                             (1|Subject) + (1|Target))
 summary(RTprime_RT_model)
 car::Anova(RTprime_RT_model)
-
-
+options(contrasts = c("contr.sum","contr.poly"))
+anova(RTprime_RT_model)
 
 ## TARGET DEF MODEL
 
